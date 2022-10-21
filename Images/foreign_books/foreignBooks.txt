@@ -1,0 +1,153 @@
+const foreignBooks = [
+  {
+    id: 101,
+    author: "Trang Anh",
+    title:
+      "30 Chủ Đề Từ Vựng Tiếng Anh (Tập 1)",
+    srcImg: [],
+    price: 190000,
+    currentPrice: 12000,
+    description: "Ngữ pháp và từ vựng là hai mảng không thể thiếu trong quá trình học ngoại ngữ nói chung và học tiếng Anh nói riêng. Hai phạm trù này sẽ góp phần giúp chúng ta đạt được sự thành thạo về ngôn ngữ. Nếu như ngữ pháp có các quy tắc, có cấu trúc để tuân theo thì từ vựng lại không có bất cứ quy tắc nào",
+  },
+{
+    id: 102,
+    author: "Trang Anh",
+    title:
+      "30 Chủ Đề Từ Vựng Tiếng Anh (Tập 2)",
+    srcImg: [],
+    price: 190000,
+    currentPrice: 12000,
+    description: "Ngữ pháp và từ vựng là hai mảng không thể thiếu trong quá trình học ngoại ngữ nói chung và học tiếng Anh nói riêng. Hai phạm trù này sẽ góp phần giúp chúng ta đạt được sự thành thạo về ngôn ngữ. Nếu như ngữ pháp có các quy tắc, có cấu trúc để tuân theo thì từ vựng lại không có bất cứ quy tắc nào",
+  },
+{
+    id: 103,
+    author: "Mai Lan Hương, Hà Thanh Uyên",
+    title:
+      "Giải Thích Ngữ Pháp Tiếng Anh (Tái Bản 2022)",
+    srcImg: [],
+    price: 220000,
+    currentPrice: 143000,
+    description: "Hy vọng Giải Thích Ngữ Pháp Tiếng Anh sẽ là một quyển sách thiết thực, đáp ứng yêu cầu học, ôn tập và nâng cao trình độ ngữ pháp cho người học và là quyển sách tham khảo bổ ích dành cho giáo viên.",
+  },
+{
+    id: 104,
+    author: "Trang Anh",
+    title:
+      "25 Chuyên Đề Ngữ Pháp Tiếng Anh Trọng Tâm - Tập 1",
+    srcImg: [],
+    price: 110000,
+    currentPrice: 79000,
+    description: "Các chuyên đề ngữ pháp trọng tâm được trình bày đơn giản, dễ hiểu cùng với hệ thống bài tập và từ vựng phong phú. Có tất cả 25 chuyên đề trong 2 tập sách, là tài liệu hữu ích cho học sinh, sinh viên, người đi làm, luyện thi cho các kỳ thi quốc gia, ôn luyện các chứng chỉ quốc tế và là tài liệu tham khảo cho giáo viên.",
+  },
+{
+    id: 105,
+    author: "Trang Anh",
+    title:
+      "Cẩm Nang Cấu Trúc Tiếng Anh",
+    srcImg: [],
+    price: 110000,
+    currentPrice: 80000,
+    description: "Các chuyên đề ngữ pháp trọng tâm được trình bày đơn giản, dễ hiểu cùng với hệ thống bài tập và từ vựng phong phú. Có tất cả 25 chuyên đề trong 2 tập sách, là tài liệu hữu ích cho học sinh, sinh viên, người đi làm, luyện thi cho các kỳ thi quốc gia, ôn luyện các chứng chỉ quốc tế và là tài liệu tham khảo cho giáo viên.",
+  },
+{
+    id: 106,
+    author: "Trang Anh",
+    title:
+      "Hacker Ielts English",
+    srcImg: [],
+    price: 110000,
+    currentPrice: 80000,
+    description: "Các chuyên đề ngữ pháp trọng tâm được trình bày đơn giản, dễ hiểu cùng với hệ thống bài tập và từ vựng phong phú. Có tất cả 25 chuyên đề trong 2 tập sách, là tài liệu hữu ích cho học sinh, sinh viên, người đi làm, luyện thi cho các kỳ thi quốc gia, ôn luyện các chứng chỉ quốc tế và là tài liệu tham khảo cho giáo viên.",
+  },
+{
+    id: 107,
+    author: "Trang Anh",
+    title:
+      "Mind Map English Grammar",
+    srcImg: [],
+    price: 152000,
+    currentPrice: 100000,
+    description: "Các chuyên đề ngữ pháp trọng tâm được trình bày đơn giản, dễ hiểu cùng với hệ thống bài tập và từ vựng phong phú. Có tất cả 25 chuyên đề trong 2 tập sách, là tài liệu hữu ích cho học sinh, sinh viên, người đi làm, luyện thi cho các kỳ thi quốc gia, ôn luyện các chứng chỉ quốc tế và là tài liệu tham khảo cho giáo viên.",
+  },
+{
+    id: 108,
+    author: "Trang Anh",
+    title:
+      "Developing Skills For The Toeic Test",
+    srcImg: [],
+    price: 110000,
+    currentPrice: 80000,
+    description: "Các chuyên đề ngữ pháp trọng tâm được trình bày đơn giản, dễ hiểu cùng với hệ thống bài tập và từ vựng phong phú. Có tất cả 25 chuyên đề trong 2 tập sách, là tài liệu hữu ích cho học sinh, sinh viên, người đi làm, luyện thi cho các kỳ thi quốc gia, ôn luyện các chứng chỉ quốc tế và là tài liệu tham khảo cho giáo viên.",
+  },
+{
+    id: 109,
+    author: "Trang Anh",
+    title:
+      "Từ Vựng Lelts 8.0 - Từ Vựng Đất Để Đạt Điểm Cao 4 Kỹ Năng",
+    srcImg: [],
+    price: 200000,
+    currentPrice: 150000,
+    description: "Các chuyên đề ngữ pháp trọng tâm được trình bày đơn giản, dễ hiểu cùng với hệ thống bài tập và từ vựng phong phú. Có tất cả 25 chuyên đề trong 2 tập sách, là tài liệu hữu ích cho học sinh, sinh viên, người đi làm, luyện thi cho các kỳ thi quốc gia, ôn luyện các chứng chỉ quốc tế và là tài liệu tham khảo cho giáo viên.",
+  },
+{
+    id: 110,
+    author: "Trang Anh",
+    title:
+      "Cambridge Ielts 16 Academy With Answers",
+    srcImg: [],
+    price: 800000,
+    currentPrice: 600000,
+    description: "Các chuyên đề ngữ pháp trọng tâm được trình bày đơn giản, dễ hiểu cùng với hệ thống bài tập và từ vựng phong phú. Có tất cả 25 chuyên đề trong 2 tập sách, là tài liệu hữu ích cho học sinh, sinh viên, người đi làm, luyện thi cho các kỳ thi quốc gia, ôn luyện các chứng chỉ quốc tế và là tài liệu tham khảo cho giáo viên.",
+  },
+{
+    id: 111,
+    author: "Trang Anh",
+    title:
+      "Động từ Bất quy tắc & Ngữ pháp Tiếng anh Căn Bản",
+    srcImg: [],
+    price: 250000,
+    currentPrice: 100000,
+    description: "Các chuyên đề ngữ pháp trọng tâm được trình bày đơn giản, dễ hiểu cùng với hệ thống bài tập và từ vựng phong phú. Có tất cả 25 chuyên đề trong 2 tập sách, là tài liệu hữu ích cho học sinh, sinh viên, người đi làm, luyện thi cho các kỳ thi quốc gia, ôn luyện các chứng chỉ quốc tế và là tài liệu tham khảo cho giáo viên.",
+  },
+{
+    id: 112,
+    author: "Trang Anh",
+    title:
+      "Tự Học 2000 Từ vựng Tiếng Anh theo chủ đề",
+    srcImg: [],
+    price: 610000,
+    currentPrice: 80000,
+    description: "Các chuyên đề ngữ pháp trọng tâm được trình bày đơn giản, dễ hiểu cùng với hệ thống bài tập và từ vựng phong phú. Có tất cả 25 chuyên đề trong 2 tập sách, là tài liệu hữu ích cho học sinh, sinh viên, người đi làm, luyện thi cho các kỳ thi quốc gia, ôn luyện các chứng chỉ quốc tế và là tài liệu tham khảo cho giáo viên.",
+  },
+{
+    id: 113,
+    author: "Trang Anh",
+    title:
+      "600 Động Từ bất quy tắc Và cách dùng các thì trong Tiếng hoa",
+    srcImg: [],
+    price: 520000,
+    currentPrice: 400000,
+    description: "Các chuyên đề ngữ pháp trọng tâm được trình bày đơn giản, dễ hiểu cùng với hệ thống bài tập và từ vựng phong phú. Có tất cả 25 chuyên đề trong 2 tập sách, là tài liệu hữu ích cho học sinh, sinh viên, người đi làm, luyện thi cho các kỳ thi quốc gia, ôn luyện các chứng chỉ quốc tế và là tài liệu tham khảo cho giáo viên.",
+  },
+{
+    id: 114,
+    author: "Trang Anh",
+    title:
+      "Sách tự học Hiragana Katakana",
+    srcImg: [],
+    price: 710000,
+    currentPrice: 600000,
+    description: "Các chuyên đề ngữ pháp trọng tâm được trình bày đơn giản, dễ hiểu cùng với hệ thống bài tập và từ vựng phong phú. Có tất cả 25 chuyên đề trong 2 tập sách, là tài liệu hữu ích cho học sinh, sinh viên, người đi làm, luyện thi cho các kỳ thi quốc gia, ôn luyện các chứng chỉ quốc tế và là tài liệu tham khảo cho giáo viên.",
+  },
+{
+    id: 115,
+    author: "Trang Anh",
+    title:
+      "Ngữ pháp Tiếng Hàn Thông dụng (Sơ cấp)",
+    srcImg: [],
+    price: 910000,
+    currentPrice: 800000,
+    description: "Các chuyên đề ngữ pháp trọng tâm được trình bày đơn giản, dễ hiểu cùng với hệ thống bài tập và từ vựng phong phú. Có tất cả 25 chuyên đề trong 2 tập sách, là tài liệu hữu ích cho học sinh, sinh viên, người đi làm, luyện thi cho các kỳ thi quốc gia, ôn luyện các chứng chỉ quốc tế và là tài liệu tham khảo cho giáo viên.",
+  }
+]
+

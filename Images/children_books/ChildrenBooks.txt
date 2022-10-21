@@ -1,0 +1,152 @@
+const childrenBooks = [
+  {
+    id: 201,
+    author: "William J Bennett",
+    title:
+      "Tuyển Tập Truyện Hay Dành Cho Thiếu Nhi",
+    srcImg: [  ],
+    price: 100000,
+    currentPrice: 50000,
+    description: "Ngày nay, mối quan tâm hàng đầu của các bậc phụ huynh là làm thế nào để giúp con trẻ phát triển toàn diện, cả về thể chất, tinh thần và trí tuệ",
+  },
+{
+    id: 202,
+    author: "William J Bennett",
+    title:
+      "Tuyển Tập Văn Học Viết Cho Thiếu Nhi - Tô Hoài - 2",
+    srcImg: [  ],
+    price: 200000,
+    currentPrice: 100000,
+    description: "Ngày nay, mối quan tâm hàng đầu của các bậc phụ huynh là làm thế nào để giúp con trẻ phát triển toàn diện, cả về thể chất, tinh thần và trí tuệ",
+  },
+{
+    id: 203,
+    author: "William J Bennett",
+    title:
+      "Combo Truyện Cổ Tích Việt Nam Dành Cho Thiếu Nhi: Sọ Dừa",
+    srcImg: [  ],
+    price: 300000,
+    currentPrice: 150000,
+    description: "Ngày nay, mối quan tâm hàng đầu của các bậc phụ huynh là làm thế nào để giúp con trẻ phát triển toàn diện, cả về thể chất, tinh thần và trí tuệ",
+  },
+{
+    id: 204,
+    author: "William J Bennett",
+    title:
+      "Văn Học Thiếu Nhi - Dấu Ấn Thế hệ mới - Đừng giẫm lên cỏ",
+    srcImg: [  ],
+    price: 400000,
+    currentPrice: 200000,
+    description: "Ngày nay, mối quan tâm hàng đầu của các bậc phụ huynh là làm thế nào để giúp con trẻ phát triển toàn diện, cả về thể chất, tinh thần và trí tuệ",
+  },
+{
+    id: 205,
+    author: "William J Bennett",
+    title:
+      "Truyện Tranh Ngụ Ngôn Dành cho Thiếu Nhi",
+    srcImg: [  ],
+    price: 500000,
+    currentPrice: 200000,
+    description: "Ngày nay, mối quan tâm hàng đầu của các bậc phụ huynh là làm thế nào để giúp con trẻ phát triển toàn diện, cả về thể chất, tinh thần và trí tuệ",
+  },
+{
+    id: 206,
+    author: "William J Bennett",
+    title:
+      "Truyện Tranh Ngụ Ngôn Dành Cho Thiếu Nhi",
+    srcImg: [  ],
+    price: 700000,
+    currentPrice: 350000,
+    description: "Ngày nay, mối quan tâm hàng đầu của các bậc phụ huynh là làm thế nào để giúp con trẻ phát triển toàn diện, cả về thể chất, tinh thần và trí tuệ",
+  },
+{
+    id: 207,
+    author: "William J Bennett",
+    title:
+      "Truyện Tranh Ngụ Ngôn Dành cho Thiếu Nhi: Lừa Đội Lốt Sư Tử",
+    srcImg: [  ],
+    price: 600000,
+    currentPrice: 350000,
+    description: "Ngày nay, mối quan tâm hàng đầu của các bậc phụ huynh là làm thế nào để giúp con trẻ phát triển toàn diện, cả về thể chất, tinh thần và trí tuệ",
+  },
+{
+    id: 208,
+    author: "William J Bennett",
+    title:
+      "Những Truyện Hay Viết Cho Thiếu Nhi - Nguyễn Kiên",
+    srcImg: [  ],
+    price: 800000,
+    currentPrice: 400000,
+    description: "Ngày nay, mối quan tâm hàng đầu của các bậc phụ huynh là làm thế nào để giúp con trẻ phát triển toàn diện, cả về thể chất, tinh thần và trí tuệ",
+  },
+{
+    id: 209,
+    author: "William J Bennett",
+    title:
+      "Truyện Tranh Ngụ Ngôn Dành Cho Thiếu Nhi: CHuột, Gà trống và mèo",
+    srcImg: [  ],
+    price: 900000,
+    currentPrice: 520000,
+    description: "Ngày nay, mối quan tâm hàng đầu của các bậc phụ huynh là làm thế nào để giúp con trẻ phát triển toàn diện, cả về thể chất, tinh thần và trí tuệ",
+  },
+{
+    id: 210,
+    author: "William J Bennett",
+    title:
+      "Truyện Tranh Ngụ Ngôn Dành Cho Thiếu Nhi : Bộ Lông mượn",
+    srcImg: [  ],
+    price: 110000,
+    currentPrice: 50000,
+    description: "Ngày nay, mối quan tâm hàng đầu của các bậc phụ huynh là làm thế nào để giúp con trẻ phát triển toàn diện, cả về thể chất, tinh thần và trí tuệ",
+  },
+{
+    id: 211,
+    author: "William J Bennett",
+    title:
+      "Truyện Tranh Ngụ Ngôn Dành cho Thiếu Nhi : Cò và sáo",
+    srcImg: [  ],
+    price: 150000,
+    currentPrice: 100000,
+    description: "Ngày nay, mối quan tâm hàng đầu của các bậc phụ huynh là làm thế nào để giúp con trẻ phát triển toàn diện, cả về thể chất, tinh thần và trí tuệ",
+  },
+{
+    id: 212,
+    author: "William J Bennett",
+    title:
+      "Tủ Sách Vàng - Tác Phẩm Chọn Lọc Dành Cho Thiếu Nhi",
+    srcImg: [  ],
+    price: 180000,
+    currentPrice: 100000,
+    description: "Ngày nay, mối quan tâm hàng đầu của các bậc phụ huynh là làm thế nào để giúp con trẻ phát triển toàn diện, cả về thể chất, tinh thần và trí tuệ",
+  },
+{
+    id: 213,
+    author: "William J Bennett",
+    title:
+      "Cổ Tích Nhật Bản Dành Cho Thiếu Nhi : Chuyện Kì Lạ về Taro",
+    srcImg: [  ],
+    price: 200000,
+    currentPrice: 100000,
+    description: "Ngày nay, mối quan tâm hàng đầu của các bậc phụ huynh là làm thế nào để giúp con trẻ phát triển toàn diện, cả về thể chất, tinh thần và trí tuệ",
+  },
+{
+    id: 214,
+    author: "William J Bennett",
+    title:
+      "Combo 10 Vạn Câu hỏi vì sao Dành cho Thiếu Nhi",
+    srcImg: [  ],
+    price: 350000,
+    currentPrice: 150000,
+    description: "Ngày nay, mối quan tâm hàng đầu của các bậc phụ huynh là làm thế nào để giúp con trẻ phát triển toàn diện, cả về thể chất, tinh thần và trí tuệ",
+  },
+{
+    id: 215,
+    author: "William J Bennett",
+    title:
+      "Truyện Thiếu Nhi Hạt giống Tâm Hồn - Bữa Ăn sáng bằng hồ dán",
+    srcImg: [  ],
+    price: 450000,
+    currentPrice: 300000,
+    description: "Ngày nay, mối quan tâm hàng đầu của các bậc phụ huynh là làm thế nào để giúp con trẻ phát triển toàn diện, cả về thể chất, tinh thần và trí tuệ",
+  }
+]

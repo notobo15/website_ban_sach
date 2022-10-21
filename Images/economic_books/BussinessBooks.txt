@@ -1,0 +1,166 @@
+const businessBooks = [
+  {
+    id: 301,
+    author: "Đình Phi Hổ",
+    title:
+      "Kinh tế phát triển - Căn bản và Nâng Cao",
+    srcImg: [],
+    price: 100000,
+    currentPrice: 50000,
+    description: "PGS. TS. Đinh Phi Hổ là giảng viên chính tại trường Đại học Kinh tế TP. Hồ Chí Minh và là giảng viên thỉnh giảng các môn học Kinh tế vĩ mô, Kinh tế vi mô, Kinh tế phát triển, Kinh tế nông nghiệp và Phương pháp nghiên cứu kinh tế cho các chương trình sau đại học của các trường ĐH Ngân hàng",
+  },
+{
+    id: 302,
+    author: "Đình Phi Hổ",
+    title:
+      "Kinh Tế Học Viking - Cách Bắc Âu Thành Công",
+    srcImg: [],
+    price: 200000,
+    currentPrice: 100000,
+    description: "PGS. TS. Đinh Phi Hổ là giảng viên chính tại trường Đại học Kinh tế TP. Hồ Chí Minh và là giảng viên thỉnh giảng các môn học Kinh tế vĩ mô, Kinh tế vi mô, Kinh tế phát triển, Kinh tế nông nghiệp và Phương pháp nghiên cứu kinh tế cho các chương trình sau đại học của các trường ĐH Ngân hàng",
+  },
+
+{
+    id: 303,
+    author: "Đình Phi Hổ",
+    title:
+      "Kinh tế Thành Viên",
+    srcImg: [],
+    price: 300000,
+    currentPrice: 150000,
+    description: "PGS. TS. Đinh Phi Hổ là giảng viên chính tại trường Đại học Kinh tế TP. Hồ Chí Minh và là giảng viên thỉnh giảng các môn học Kinh tế vĩ mô, Kinh tế vi mô, Kinh tế phát triển, Kinh tế nông nghiệp và Phương pháp nghiên cứu kinh tế cho các chương trình sau đại học của các trường ĐH Ngân hàng",
+  },
+
+{
+    id: 304,
+    author: "Đình Phi Hổ",
+    title:
+      "Kinh tế Đêm và Chính Thức",
+    srcImg: [],
+    price: 400000,
+    currentPrice: 200000,
+    description: "PGS. TS. Đinh Phi Hổ là giảng viên chính tại trường Đại học Kinh tế TP. Hồ Chí Minh và là giảng viên thỉnh giảng các môn học Kinh tế vĩ mô, Kinh tế vi mô, Kinh tế phát triển, Kinh tế nông nghiệp và Phương pháp nghiên cứu kinh tế cho các chương trình sau đại học của các trường ĐH Ngân hàng",
+  },
+
+{
+    id: 305,
+    author: "Đình Phi Hổ",
+    title:
+      "Kinh tế Vĩ Mô (NS Kinh Tế)",
+    srcImg: [],
+    price: 500000,
+    currentPrice: 200000,
+    description: "PGS. TS. Đinh Phi Hổ là giảng viên chính tại trường Đại học Kinh tế TP. Hồ Chí Minh và là giảng viên thỉnh giảng các môn học Kinh tế vĩ mô, Kinh tế vi mô, Kinh tế phát triển, Kinh tế nông nghiệp và Phương pháp nghiên cứu kinh tế cho các chương trình sau đại học của các trường ĐH Ngân hàng",
+  },
+
+{
+    id: 306,
+    author: "Đình Phi Hổ",
+    title:
+      "Kinh tế Học Dành Cho Đại Chúng",
+    srcImg: [],
+    price: 600000,
+    currentPrice: 530000,
+    description: "PGS. TS. Đinh Phi Hổ là giảng viên chính tại trường Đại học Kinh tế TP. Hồ Chí Minh và là giảng viên thỉnh giảng các môn học Kinh tế vĩ mô, Kinh tế vi mô, Kinh tế phát triển, Kinh tế nông nghiệp và Phương pháp nghiên cứu kinh tế cho các chương trình sau đại học của các trường ĐH Ngân hàng",
+  },
+
+{
+    id: 307,
+    author: "Đình Phi Hổ",
+    title:
+      "Kinh tế Hậu Covid",
+    srcImg: [],
+    price: 700000,
+    currentPrice: 350000,
+    description: "PGS. TS. Đinh Phi Hổ là giảng viên chính tại trường Đại học Kinh tế TP. Hồ Chí Minh và là giảng viên thỉnh giảng các môn học Kinh tế vĩ mô, Kinh tế vi mô, Kinh tế phát triển, Kinh tế nông nghiệp và Phương pháp nghiên cứu kinh tế cho các chương trình sau đại học của các trường ĐH Ngân hàng",
+  },
+
+{
+    id: 308,
+    author: "Đình Phi Hổ",
+    title:
+      "Kinh tế Dành Cho Doanh Nhân",
+    srcImg: [],
+    price: 800000,
+    currentPrice: 500000,
+    description: "PGS. TS. Đinh Phi Hổ là giảng viên chính tại trường Đại học Kinh tế TP. Hồ Chí Minh và là giảng viên thỉnh giảng các môn học Kinh tế vĩ mô, Kinh tế vi mô, Kinh tế phát triển, Kinh tế nông nghiệp và Phương pháp nghiên cứu kinh tế cho các chương trình sau đại học của các trường ĐH Ngân hàng",
+  },
+
+{
+    id: 309,
+    author: "Đình Phi Hổ",
+    title:
+      "Kinh tế Quốc Tế",
+    srcImg: [],
+    price: 900000,
+    currentPrice: 400000,
+    description: "PGS. TS. Đinh Phi Hổ là giảng viên chính tại trường Đại học Kinh tế TP. Hồ Chí Minh và là giảng viên thỉnh giảng các môn học Kinh tế vĩ mô, Kinh tế vi mô, Kinh tế phát triển, Kinh tế nông nghiệp và Phương pháp nghiên cứu kinh tế cho các chương trình sau đại học của các trường ĐH Ngân hàng",
+  },
+
+{
+    id: 310,
+    author: "Đình Phi Hổ",
+    title:
+      "Kinh tế Nhật Bản",
+    srcImg: [],
+    price: 150000,
+    currentPrice: 50000,
+    description: "PGS. TS. Đinh Phi Hổ là giảng viên chính tại trường Đại học Kinh tế TP. Hồ Chí Minh và là giảng viên thỉnh giảng các môn học Kinh tế vĩ mô, Kinh tế vi mô, Kinh tế phát triển, Kinh tế nông nghiệp và Phương pháp nghiên cứu kinh tế cho các chương trình sau đại học của các trường ĐH Ngân hàng",
+  },
+
+{
+    id: 311,
+    author: "Đình Phi Hổ",
+    title:
+      "Kinh tế Quản lí bất động sản",
+    srcImg: [],
+    price: 330000,
+    currentPrice: 200000,
+    description: "PGS. TS. Đinh Phi Hổ là giảng viên chính tại trường Đại học Kinh tế TP. Hồ Chí Minh và là giảng viên thỉnh giảng các môn học Kinh tế vĩ mô, Kinh tế vi mô, Kinh tế phát triển, Kinh tế nông nghiệp và Phương pháp nghiên cứu kinh tế cho các chương trình sau đại học của các trường ĐH Ngân hàng",
+  },
+
+{
+    id: 312,
+    author: "Đình Phi Hổ",
+    title:
+      "Kinh tế Trong Cuộc Cách Mạng Cộng Nghệ 4.0",
+    srcImg: [],
+    price: 550000,
+    currentPrice: 300000,
+    description: "PGS. TS. Đinh Phi Hổ là giảng viên chính tại trường Đại học Kinh tế TP. Hồ Chí Minh và là giảng viên thỉnh giảng các môn học Kinh tế vĩ mô, Kinh tế vi mô, Kinh tế phát triển, Kinh tế nông nghiệp và Phương pháp nghiên cứu kinh tế cho các chương trình sau đại học của các trường ĐH Ngân hàng",
+  },
+
+{
+    id: 313,
+    author: "Đình Phi Hổ",
+    title:
+      "Kinh tế Thương Nghiệp Việt Nam dưới Triều Nguyễn",
+    srcImg: [],
+    price: 900000,
+    currentPrice: 500000,
+    description: "PGS. TS. Đinh Phi Hổ là giảng viên chính tại trường Đại học Kinh tế TP. Hồ Chí Minh và là giảng viên thỉnh giảng các môn học Kinh tế vĩ mô, Kinh tế vi mô, Kinh tế phát triển, Kinh tế nông nghiệp và Phương pháp nghiên cứu kinh tế cho các chương trình sau đại học của các trường ĐH Ngân hàng",
+  },
+
+{
+    id: 314,
+    author: "Đình Phi Hổ",
+    title:
+      "Kinh tế và Xã hội việt Nam Dưới Triều Nguyễn",
+    srcImg: [],
+    price: 500000,
+    currentPrice: 400000,
+    description: "PGS. TS. Đinh Phi Hổ là giảng viên chính tại trường Đại học Kinh tế TP. Hồ Chí Minh và là giảng viên thỉnh giảng các môn học Kinh tế vĩ mô, Kinh tế vi mô, Kinh tế phát triển, Kinh tế nông nghiệp và Phương pháp nghiên cứu kinh tế cho các chương trình sau đại học của các trường ĐH Ngân hàng",
+  },
+
+{
+    id: 315,
+    author: "Đình Phi Hổ",
+    title:
+      "Kinh tế học Khái Lược Những Tư Tưởng Lớn",
+    srcImg: [],
+    price: 600000,
+    currentPrice: 300000,
+    description: "PGS. TS. Đinh Phi Hổ là giảng viên chính tại trường Đại học Kinh tế TP. Hồ Chí Minh và là giảng viên thỉnh giảng các môn học Kinh tế vĩ mô, Kinh tế vi mô, Kinh tế phát triển, Kinh tế nông nghiệp và Phương pháp nghiên cứu kinh tế cho các chương trình sau đại học của các trường ĐH Ngân hàng",
+  }
+]
+
