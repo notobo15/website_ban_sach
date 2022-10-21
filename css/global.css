@@ -956,6 +956,7 @@ header {
 /* ====================== */
 .toolbar__search {
   display: flex;
+  flex-wrap: nowrap;
   justify-content: space-around;
   align-items: center;
   max-width: 1200px;

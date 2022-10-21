@@ -4,16 +4,28 @@ function renderProducts(arrProducts, element, nameCategory) {
     if (item.category == nameCategory) {
       htmls += `
       <div class="container__row-card" onclick="showItemDetail(${item.id})">
-      <img src="${item.srcImg[0]}" alt="" />
+      <img src="${item.srcImg[0]}" />
       <div class="container__row-card-title">${item.title}</div>
-      <div class="container__row-card-price">${item.currentPrice}</div>
+      <div class="container__row-card-price">${numbertoVND(
+        item.currentPrice
+      )}</div>
     </div>
       `;
     }
   });
+  function header(str) {
+    let heading;
+    if (str == "skill_books") heading = "Sách Kĩ Năng";
+    else if (str == "economic_books") heading = "Sách Kinh Tế";
+    else if (str == "children_books") heading = "Sách Trẻ Em";
+    else if (str == "full_books") heading = "all";
+    return heading;
+  }
   let container = `
     <div class="container__row-header">
-          <span class="container__row-header-heading"> Sách Mới</span>
+          <span class="container__row-header-heading">${header(
+            nameCategory
+          )}</span>
           <span onclick="showAllProducts('${nameCategory}')" class="container__row-header-seeMore" >Xem tất cả</span>
         </div>
 

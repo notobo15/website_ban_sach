@@ -215,35 +215,29 @@
             <span>Thể loại</span>
             <i class="fa-solid fa-caret-down"></i>
           </div>
+
           <div class="toolbar__search-filter-list">
-            <div class="toolbar__search-range-item">
-              Sách Nấu Ăn 1<i class="fa-solid fa-check"></i>
+            <div class="toolbar__search-range-item" value="skill_books">
+              Sách Kĩ Năng<i class="fa-solid fa-check"></i>
             </div>
-            <div class="toolbar__search-range-item">
-              Sách Nấu Ăn 2<i class="fa-solid fa-check"></i>
+            <div class="toolbar__search-range-item" value="economic_books">
+              Sách Kinh Tế<i class="fa-solid fa-check"></i>
             </div>
-            <div class="toolbar__search-range-item">
-              Sách Nấu Ăn 3<i class="fa-solid fa-check"></i>
+            <div class="toolbar__search-range-item" value="children_books">
+              Sách Trẻ Em<i class="fa-solid fa-check"></i>
             </div>
-            <div class="toolbar__search-range-item">
-              Sách Nấu Ăn 4<i class="fa-solid fa-check"></i>
+            <div class="toolbar__search-range-item active" value="full_books">
+              Tất cả<i class="fa-solid fa-check"></i>
             </div>
           </div>
         </div>
-
-        <div class="price-range">
-          <input placeholder="10.000đ" type="number" name="" required />
-          <span></span>
-          <input placeholder="1.000.000đ" type="number" name="" required />
-        </div>
-
         <div class="toolbar__search-range">
           <div class="toolbar__search-range-title">
             <span>Giá</span>
             <i class="fa-solid fa-caret-down"></i>
           </div>
           <div class="toolbar__search-range-list">
-            <div class="toolbar__search-range-item-up">
+            <div class="toolbar__search-range-item-up active">
               Giá: Thấp đến Cao<i class="fa-solid fa-check"></i>
             </div>
             <div class="toolbar__search-range-item-down">
@@ -251,8 +245,12 @@
             </div>
           </div>
         </div>
+        <div class="price-range">
+          <input placeholder="10.000đ" type="number" name="" required />
+          <span></span>
+          <input placeholder="1.000.000đ" type="number" name="" required />
+        </div>
       </div>
-
       <button type="submit" class="toolbar__search-icon">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>

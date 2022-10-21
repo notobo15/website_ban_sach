@@ -21,7 +21,7 @@ var books = [
     id: 2,
     category: "skill_books",
     author: "",
-    title: "Thiên Tài Bên Trái, Kẻ Điên Bên Phải faf fasd(Tái Bản)",
+    title: "Thiên Tài Bên Trái, Kẻ Điên Bên Phải(Tái Bản)",
     shortName: "thien tai bai trai ke dien ben phai",
     srcImg: [
       "./images/skill_books/2.jpg",
