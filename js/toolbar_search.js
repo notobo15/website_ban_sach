@@ -38,40 +38,41 @@ toolbar(searchFilter, titleFilter);
 const inputSearch = document.querySelector(".header__search__input");
 const btnSearchSubmit = document.querySelector(".header__search__btn");
 const container_header = document.querySelector(".container-header");
-
+let searchItems = [];
+console.log();
 function renderDataSearch(arr) {
   current_page = 1;
   DisplayList(arr, rows, current_page);
   SetupPagination(arr, pagination_element, rows);
+  console.log(container_header);
+  container_header.innerHTML = `Có ${searchItems.length} kết quả tìm kiếm`;
 }
-let searchItems = [];
 btnSearchSubmit.addEventListener("click", () => {
   Banner("disable");
   products_list("disable");
   const inputSearchValue = inputSearch.value;
-  searchItems = books.filter((item) => {
+  const search = books.filter((item) => {
     return item.title.toLowerCase().includes(inputSearchValue.toLowerCase());
   });
-  console.log(searchItems);
+  searchItems = search;
 
   if (searchItems.length === 0) {
     container_content.style.display = "flex";
 
-    console.log(container_content);
     container_content.innerHTML = `
         <div class="search__no-result-found">
             <p>Xin lỗi 😔 không có kểt quả với:<h3>${inputSearchValue}</h3></p>
             <img class="search__no-result-found__img" src="./images/no_result_found.png" alt="">
         </div>
       `;
-    // pagination_element.style.display = "none";
-    // container_header.innerHTML = "";
+    pagination_element.style.display = "none";
+    container_header.innerHTML = "";
   } else {
     // toolbarForm.style.display = "flex";
     const btnSearch = document.querySelector(".toolbar__search-icon");
 
     // btnSearch.style.display = "none";
-    container_header.innerHTML = `Có ${searchItems.length} kết quả tìm kiếm với: <b>${inputSearchValue}</b>`;
+
     container_content.style.display = "flex";
     pagination_element.style.display = "flex";
     renderDataSearch(searchItems);
@@ -95,13 +96,14 @@ categoryList.forEach((item) => {
   item.addEventListener("click", () => {
     let category = item.getAttribute("value");
     console.log(category);
-    searchCategory = searchItems.filter((item) => {
+    searchCategory = books.filter((item) => {
       if (category == "full_books") {
         return item;
       } else {
         return item.category === category;
       }
     });
+    searchItems = searchCategory;
     console.log(searchCategory);
     renderDataSearch(searchCategory);
   });
