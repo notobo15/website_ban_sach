@@ -20,7 +20,7 @@ var books = [
   {
     id: 2,
     category: "skill_books",
-    author: "",
+    c: "",
     title: "Thiên Tài Bên Trái, Kẻ Điên Bên Phải(Tái Bản)",
     shortName: "thien tai bai trai ke dien ben phai",
     srcImg: [

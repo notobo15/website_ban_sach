@@ -2,17 +2,27 @@ const titleRange = document.querySelector(".toolbar__search-range-title span");
 const searchRange = document.querySelectorAll(
   ".toolbar__search-range-list div"
 );
+const btnBack = document.querySelector(".controler");
+console.log(btnBack);
 function toolbar(listItem, title) {
+  console.log(title);
+  title.textContent = title.getAttribute("value");
+  function handleActive() {
+    for (const i of listItem) {
+      if (i.classList.contains("active")) {
+        i.classList.remove("active");
+      }
+    }
+  }
+  handleActive();
+
   listItem.forEach((item) => {
     item.addEventListener("click", () => {
-      for (const i of listItem) {
-        if (i.classList.contains("active")) {
-          i.classList.remove("active");
-        }
-      }
+      handleActive();
       item.classList.add("active");
-      title.innerText = item.innerText;
+      title.textContent = item.textContent;
     });
+    item.removeEventListener("click", handleActive);
   });
 }
 const titleFilter = document.querySelector(
@@ -22,7 +32,6 @@ const searchFilter = document.querySelectorAll(
   ".toolbar__search-filter-list div"
 );
 toolbar(searchRange, titleRange);
-
 toolbar(searchFilter, titleFilter);
 
 /* searchRange.forEach((item) => {
@@ -39,71 +48,74 @@ const inputSearch = document.querySelector(".header__search__input");
 const btnSearchSubmit = document.querySelector(".header__search__btn");
 const container_header = document.querySelector(".container-header");
 let searchItems = [];
-console.log();
+let searchCategory = [];
 function renderDataSearch(arr) {
   current_page = 1;
   DisplayList(arr, rows, current_page);
   SetupPagination(arr, pagination_element, rows);
   console.log(container_header);
-  container_header.innerHTML = `Có ${searchItems.length} kết quả tìm kiếm`;
+  container_header.innerHTML = `Có ${arr.length} kết quả tìm kiếm`;
 }
 btnSearchSubmit.addEventListener("click", () => {
   Banner("disable");
   products_list("disable");
-  const inputSearchValue = inputSearch.value;
+  toolbar(searchRange, titleRange);
+  toolbar(searchFilter, titleFilter);
+  btnBack.classList.add("show");
+  const inputSearchValue = toNonAccentVietnamese(inputSearch.value);
+  console.log(inputSearchValue);
   const search = books.filter((item) => {
-    return item.title.toLowerCase().includes(inputSearchValue.toLowerCase());
+    return toNonAccentVietnamese(item.title)
+      .toLowerCase()
+      .includes(inputSearchValue.toLowerCase());
   });
   searchItems = search;
-
+  console.log(searchItems);
   if (searchItems.length === 0) {
     container_content.style.display = "flex";
-
+    pagination_element.style.display = "none";
+    container_header.innerHTML = "";
+    toolbarForm.style.display = "none";
     container_content.innerHTML = `
         <div class="search__no-result-found">
             <p>Xin lỗi 😔 không có kểt quả với:<h3>${inputSearchValue}</h3></p>
             <img class="search__no-result-found__img" src="./images/no_result_found.png" alt="">
         </div>
       `;
-    pagination_element.style.display = "none";
-    container_header.innerHTML = "";
   } else {
-    // toolbarForm.style.display = "flex";
+    toolbarForm.style.display = "flex";
     const btnSearch = document.querySelector(".toolbar__search-icon");
-
-    // btnSearch.style.display = "none";
-
     container_content.style.display = "flex";
     pagination_element.style.display = "flex";
     renderDataSearch(searchItems);
-    const toolbar = document.querySelector(".toolbar__search");
-    toolbar.style.display = "flex";
-    const btnB = document.querySelector(".controler");
-    btnB.addEventListener("click", () => {
-      Banner("show");
-      products_list("show");
-      inputSearch.value = "";
-      toolbarForm.style.display = "flex";
-      container_content.style.display = "none";
-      pagination_element.style.display = "none";
-      document.querySelector(".container-header").style.display = "none";
-    });
+
+    // toolbar.style.display = "flex";
   }
 });
+btnBack.addEventListener("click", () => {
+  Banner("show");
+  products_list("show");
+  btnBack.classList.remove("show");
+
+  inputSearch.value = "";
+  toolbarForm.style.display = "none";
+  container_content.style.display = "none";
+  pagination_element.style.display = "none";
+  document.querySelector(".container-header").style.display = "none";
+});
 const categoryList = document.querySelectorAll(".toolbar__search-range-item");
-console.log(categoryList);
 categoryList.forEach((item) => {
   item.addEventListener("click", () => {
-    let category = item.getAttribute("value");
+    category = item.getAttribute("value");
     console.log(category);
-    searchCategory = books.filter((item) => {
+    searchCategory = searchItems.filter((item) => {
       if (category == "full_books") {
         return item;
       } else {
         return item.category === category;
       }
     });
-    searchItems = searchCategory;
+    // searchItems = searchCategory;
     console.log(searchCategory);
     renderDataSearch(searchCategory);
   });
@@ -130,17 +142,17 @@ function sortNameDown(a, b) {
 const rangeUp = document.querySelector(".toolbar__search-range-item-up");
 const rangeDown = document.querySelector(".toolbar__search-range-item-down");
 rangeUp.addEventListener("click", () => {
-  const search = books.sort(sortNameUp).filter((book) => {
+  const search = searchCategory.sort(sortNameUp).filter((book) => {
     return book;
   });
-  searchItems = search;
+  searchCategory = search;
   renderDataSearch(search);
 });
 rangeDown.addEventListener("click", () => {
-  const search = books.sort(sortNameDown).filter((book) => {
+  const search = searchCategory.sort(sortNameDown).filter((book) => {
     return book;
   });
-  searchItems = search;
+  searchCategory = search;
   renderDataSearch(search);
 });
 
@@ -161,6 +173,26 @@ toolbarForm.addEventListener("submit", (e) => {
     renderDataSearch(search);
   }
 });
+function toNonAccentVietnamese(str) {
+  str = str.replace(/A|Á|À|Ã|Ạ|Â|Ấ|Ầ|Ẫ|Ậ|Ă|Ắ|Ằ|Ẵ|Ặ/g, "A");
+  str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+  str = str.replace(/E|É|È|Ẽ|Ẹ|Ê|Ế|Ề|Ễ|Ệ/, "E");
+  str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+  str = str.replace(/I|Í|Ì|Ĩ|Ị/g, "I");
+  str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+  str = str.replace(/O|Ó|Ò|Õ|Ọ|Ô|Ố|Ồ|Ỗ|Ộ|Ơ|Ớ|Ờ|Ỡ|Ợ/g, "O");
+  str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+  str = str.replace(/U|Ú|Ù|Ũ|Ụ|Ư|Ứ|Ừ|Ữ|Ự/g, "U");
+  str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+  str = str.replace(/Y|Ý|Ỳ|Ỹ|Ỵ/g, "Y");
+  str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+  str = str.replace(/Đ/g, "D");
+  str = str.replace(/đ/g, "d");
+  // Some system encode vietnamese combining accent as individual utf-8 characters
+  str = str.replace(/\u0300|\u0301|\u0303|\u0309|\u0323/g, ""); // Huyền sắc hỏi ngã nặng
+  str = str.replace(/\u02C6|\u0306|\u031B/g, ""); // Â, Ê, Ă, Ơ, Ư
+  return str;
+}
 
 /* const search = books.sort(sortNameUp).filter((book) => {
   return (

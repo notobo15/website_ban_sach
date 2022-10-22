@@ -40,33 +40,40 @@ function renderProducts(arrProducts, element, nameCategory) {
   element.innerHTML = container;
 }
 function showAllProducts(nameCategory) {
-  const banner = document.querySelector(".banner");
-  const toolbar = document.querySelector(".toolbar__search");
-  const container = document.querySelector(".container-content");
-  const pagination_element = document.getElementById("pagination");
-  const productContainer = document.querySelector(".product__container");
-  const btnBack = document.querySelector(".controler");
-  banner.style.display = "none";
-  productContainer.style.display = "none";
-  container.style.display = "flex";
-  toolbar.style.display = "flex";
-  pagination.style.display = "flex";
-  window.scrollTo(0, 0);
-  let current_page = 1;
-  let rows = 5;
-
-  //   DisplayList(books1, item, currentPage);
-  //   SetupPagination(books1, pagination, item);
-  DisplayList(books1, rows, current_page);
-  SetupPagination(books1, pagination_element, rows, current_page);
-
-  btnBack.addEventListener("click", () => {
-    banner.style.display = "block";
-    productContainer.style.display = "block";
-    container.style.display = "none";
-    toolbar.style.display = "none";
-    pagination.style.display = "none";
+  btnSearchSubmit.click();
+  console.log(categoryList);
+  categoryList.forEach((item) => {
+    if (item.getAttribute("value") == nameCategory) item.click();
   });
+  window.scrollTo(0, 0);
+
+  // const banner = document.querySelector(".banner");
+  // const toolbar = document.querySelector(".toolbar__search");
+  // const container = document.querySelector(".container-content");
+  // const pagination_element = document.getElementById("pagination");
+  // const productContainer = document.querySelector(".product__container");
+  // const btnBack = document.querySelector(".controler");
+  // banner.style.display = "none";
+  // productContainer.style.display = "none";
+  // container.style.display = "flex";
+  // toolbar.style.display = "flex";
+  // pagination.style.display = "flex";
+  // window.scrollTo(0, 0);
+  // let current_page = 1;
+  // let rows = 5;
+
+  // //   DisplayList(books1, item, currentPage);
+  // //   SetupPagination(books1, pagination, item);
+  // // DisplayList(books1, rows, current_page);
+  // // SetupPagination(books1, pagination_element, rows, current_page);
+
+  // btnBack.addEventListener("click", () => {
+  //   banner.style.display = "block";
+  //   productContainer.style.display = "block";
+  //   container.style.display = "none";
+  //   toolbar.style.display = "none";
+  //   pagination.style.display = "none";
+  // });
 }
 
 const productContaier = document.querySelectorAll(".container__row");

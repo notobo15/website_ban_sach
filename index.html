@@ -202,17 +202,17 @@
       </div>
     </div>
 
+    <div class="controler">
+      <!-- <i class="fa-solid fa-left-long"></i> -->
+      <i class="fa-solid fa-circle-left"></i>
+    </div>
     <form class="toolbar__search" style="display: none">
-      <div class="controler">
-        <!-- <i class="fa-solid fa-left-long"></i> -->
-        <i class="fa-solid fa-circle-left"></i>
-      </div>
       <div class="toolbar__search-left">
         <span class="toolbar__search-title">Sắp xếp theo</span>
 
         <div class="toolbar__search-filter">
           <div class="toolbar__search-filter-title">
-            <span>Thể loại</span>
+            <span value="Thể loại"></span>
             <i class="fa-solid fa-caret-down"></i>
           </div>
 
@@ -226,18 +226,18 @@
             <div class="toolbar__search-range-item" value="children_books">
               Sách Trẻ Em<i class="fa-solid fa-check"></i>
             </div>
-            <div class="toolbar__search-range-item active" value="full_books">
+            <div class="toolbar__search-range-item" value="full_books">
               Tất cả<i class="fa-solid fa-check"></i>
             </div>
           </div>
         </div>
         <div class="toolbar__search-range">
           <div class="toolbar__search-range-title">
-            <span>Giá</span>
+            <span value="Giá"></span>
             <i class="fa-solid fa-caret-down"></i>
           </div>
           <div class="toolbar__search-range-list">
-            <div class="toolbar__search-range-item-up active">
+            <div class="toolbar__search-range-item-up">
               Giá: Thấp đến Cao<i class="fa-solid fa-check"></i>
             </div>
             <div class="toolbar__search-range-item-down">
@@ -245,15 +245,13 @@
             </div>
           </div>
         </div>
-        <div class="price-range">
-          <input placeholder="10.000đ" type="number" name="" required />
-          <span></span>
-          <input placeholder="1.000.000đ" type="number" name="" required />
-        </div>
       </div>
-      <button type="submit" class="toolbar__search-icon">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </button>
+      <div class="price-range">
+        <input placeholder="10.000đ" type="number" name="" required />
+        <span></span>
+        <input placeholder="1.000.000đ" type="number" name="" required />
+        <button type="submit" class="toolbar__search-icon">Áp dụng</button>
+      </div>
     </form>
     <div class="toolbar__search-message"></div>
     <div class="product__container">
@@ -589,12 +587,7 @@
       <div class="footer__copyright">© Bản quyền thuộc về Team</div>
     </footer>
   </body>
-  <script
-    src="https://code.jquery.com/jquery-3.6.1.min.js"
-    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-    crossorigin="anonymous"
-    defer
-  ></script>
+
   <script src="./js/data.js"></script>
   <script src="./js/toolbar_search.js"></script>
   <script src="./js/pagination.js"></script>
@@ -605,7 +598,6 @@
   <script src="./js/callAPIProvinces.js"></script>
   <script src="./js/info_user.js"></script>
   <script src="./js/orders.js"></script>
-
   <!-- <script src="./js/renderData.js" defer></script> -->
   <!-- <script src="./js/login_register.js" defer></script> -->
 </html>

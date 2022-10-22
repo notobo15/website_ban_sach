@@ -85,14 +85,19 @@ body {
   margin: 0 auto;
   width: var(--container-width-lg);
 }
+
 .controler {
   font-size: 26px;
-  display: block;
+  display: none;
   margin-left: 20px;
   position: absolute;
-  top: -50px;
+  /* top: -50px; */
   left: 0%;
   color: red;
+
+}
+.controler.show {
+  display: block;
 }
 /* ===============================  */
 header {
@@ -916,8 +921,7 @@ header {
   padding: 15px;
   margin: 0 4px;
 }
-.footer__info {
-}
+
 .footer__info__icon {
   font-size: 20px;
 }
@@ -993,9 +997,12 @@ header {
   border-radius: 20px;
 }
 .toolbar__search-icon {
-  font-size: 20px;
-  width: auto;
+  font-size: 14px;
+  margin-left: 20px;
   padding: 6px 12px;
+  background: red;
+  color: #fff;
+  border: none;
 }
 /* ===============Tool Search */
 .toolbar__search-range,

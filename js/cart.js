@@ -17,6 +17,38 @@ const cartCount = document.querySelector(".cart__counter");
 cart.addEventListener("click", () => {
   itemsCart.classList.toggle("show");
   cartOverlay.classList.toggle("show");
+  const btnInput = document.querySelector(".cart__input");
+  const deleteItemsCart = document.querySelectorAll(".cart__item__trash");
+  const priceTotal = document.querySelector(".cart__total > p");
+  const btnDown = document.querySelectorAll(".cart__btn-down");
+  const inputQuantity = document.querySelectorAll(".cart__input");
+  const btnUp = document.querySelectorAll(".cart__btn-up");
+  userCart.forEach((item, index) => {
+    if (inputQuantity[index].value == 1) {
+      btnDown[index].classList.add("disable");
+    }
+    btnDown[index].addEventListener("click", () => {
+      if (inputQuantity[index].value <= 1) {
+        inputQuantity[index].value = 1;
+        // btnDown[index].classList.add("disable");
+      } else {
+        inputQuantity[index].value--;
+        ordersById[index].quantity--;
+        console.log(ordersById);
+        // item.quantity--;
+      }
+      // console.log(sumPriceTotal(userCart));
+      // priceTotal.innerHTML = `${numbertoVND(sumPriceTotal(userCart))}`;
+    });
+    btnUp[index].addEventListener("click", () => {
+      ordersById[index].quantity++;
+      inputQuantity[index].value++;
+      // btnDown[index].classList.remove("disable");
+
+      // item.quantity++;
+      // priceTotal.innerHTML = `${numbertoVND(sumPriceTotal(userCart))}`;
+    });
+  });
 });
 cartBtnClose.addEventListener("click", () => {
   cart.click();
@@ -74,9 +106,8 @@ function getIdCart(id) {
     // noCart.classList.add("show");
     cartItems.classList.add("show");
   }
-
+  console.log(b);
   renderCart(b);
-
   const modal = document.querySelector("#modal");
   const modalOverlay = document.querySelector(".modal-overlay");
   modal.classList.remove("show");
@@ -201,7 +232,7 @@ function deleteItem(eDelete, id) {
   console.log(cartCount); */
   let confirmDelete = confirm("Bạn có chắc chắn muốn xóa");
   if (confirmDelete === true) {
-    eDelete.parentNode.remove();
+    // eDelete.parentNode.remove();
     let index = userCart.forEach((i, indx) => {
       if (i.id === id) {
         console.log(indx);
@@ -209,8 +240,9 @@ function deleteItem(eDelete, id) {
         cartCount.innerText = userCart.length;
       }
     });
-    let e = document.querySelector(".cart__total p");
-    e.innerHTML = numbertoVND(renderMoneyCurrent(userCart));
+    renderCart(userCart);
+    // let e = document.querySelector(".cart__total p");
+    // e.innerHTML = numbertoVND(renderMoneyCurrent(userCart));
     if (userCart.length === 0) {
       const noCart = document.querySelector(".cart__noCart");
       const footer = document.querySelector(".cart__footer");
@@ -298,13 +330,8 @@ function renderCart(userCart) {
 
   <button class="cart__btnOrder">Đặt Hàng</button>`;
   cartItemList.innerHTML = htmls + cartFooter;
-  const btnInput = document.querySelector(".cart__input");
-  const deleteItemsCart = document.querySelectorAll(".cart__item__trash");
-  const priceTotal = document.querySelector(".cart__total > p");
+
   // console.log(priceTotal);
-  const btnDown = document.querySelectorAll(".cart__btn-down");
-  const inputQuantity = document.querySelectorAll(".cart__input");
-  const btnUp = document.querySelectorAll(".cart__btn-up");
 
   function sumPriceTotal(arr) {
     let s = 0;
@@ -313,45 +340,4 @@ function renderCart(userCart) {
     });
     return s;
   }
-  // console.log(btnDown);
-  // console.log(inputQuantity);
-  // console.log(btnUp);
-  userCart.forEach((item, index) => {
-    if (inputQuantity[index].value == 1) {
-      btnDown[index].classList.add("disable");
-    }
-    btnDown[index].addEventListener("click", () => {
-      if (inputQuantity[index].value <= 1) {
-        inputQuantity[index].value = 1;
-        // btnDown[index].classList.add("disable");
-      } else {
-        inputQuantity[index].value--;
-        ordersById[index].quantity--;
-        console.log(ordersById);
-        // item.quantity--;
-      }
-      // console.log(sumPriceTotal(userCart));
-      priceTotal.innerHTML = `${numbertoVND(sumPriceTotal(userCart))}`;
-    });
-    btnUp[index].addEventListener("click", () => {
-      ordersById[index].quantity++;
-      inputQuantity[index].value++;
-      console.log(ordersById);
-      // btnDown[index].classList.remove("disable");
-
-      // item.quantity++;
-      priceTotal.innerHTML = `${numbertoVND(sumPriceTotal(userCart))}`;
-    });
-  });
-  /*  btnDown.addEventListener("click", () => {
-    inputQuantity.value--;
-    productsUser.quantity--;
-  });
-  btnUp.addEventListener("click", () => {
-    inputQuantity.value++;
-    productsUser.quantity++;
-  });
-
-  console.log(productsUser); */
 }
-

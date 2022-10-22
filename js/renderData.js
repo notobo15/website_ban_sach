@@ -262,6 +262,8 @@ function showItemDetail(id) {
             </div>
 
             <div class="modal-body-right">
+            
+
             <div class="card__title">${item.title}</div>
               <p class="card__author">Tác giả: ${item.author}</p>
               <div>
