@@ -57,6 +57,7 @@ cartOverlay.addEventListener("click", () => {
   cart.click();
 });
 let ordersById = [];
+let orderID = 1;
 if (localStorage.getItem("orders") == null) {
   localStorage.setItem("orders", JSON.stringify([]));
 }
@@ -82,6 +83,9 @@ function getIdCart(id) {
   const b = books.filter((item) => {
     return ordersById.find((pro) => {
       item.quantity = pro.quantity;
+      item.buyer = JSON.parse(
+        localStorage.getItem("userLoginCurrent")
+      ).user_name;
       return pro.id === item.id;
     });
   });
@@ -146,11 +150,12 @@ function getIdCart(id) {
 
   const btnOrder = document.querySelector(".cart__btnOrder");
   btnOrder.addEventListener("click", () => {
-    if (localStorage.getItem("userLoginCurrent") == null) {
-      alert("Dăng nhập để đặt hàng");
-      cartBtnClose.click();
-      log;
-    } else {
+    let user = localStorage.getItem("userLoginCurrent");
+    console.log(user);
+    let checkUserOrder = userCart.some((item) => {
+      return user.user_name == item.id_buyer;
+    });
+    if (user != null && checkUserOrder == true) {
       alert("Đặt hàng thành công");
       cartCount.innerHTML = 0;
       let date = new Date();
@@ -160,7 +165,7 @@ function getIdCart(id) {
       console.log(userCart);
       // c(userCart, dateOrder);
       console.log(ordersById);
-      let orderID = 1;
+
       let productDetails = "";
       userCart.forEach((item) => {
         return (productDetails += `${item.title}(x${item.quantity})<br/>`);
@@ -172,28 +177,32 @@ function getIdCart(id) {
       // console.log(productDetails);
       let info = JSON.parse(localStorage.getItem("info"));
       let infoAcc = JSON.parse(localStorage.getItem("userLoginCurrent"));
-      console.log(info);
-      /*   */
-      const order = {
-        order_id: orderID++,
-        details: productDetails,
-        user_name: infoAcc.user_name,
-        full_name: `${info.lastName} ${info.firstName}`,
-        phone: info.phone,
-        order_date: dateOrder,
-        address_delivery: "Giao Hàng Nhanh",
-        total_price: p,
-        isConfirm: "false",
-      };
-      const orderAll = JSON.parse(localStorage.getItem("orders"));
-      orderAll.push(order);
-      localStorage.setItem("orders", JSON.stringify(orderAll));
-      userCart = [];
-      ordersById = [];
-      cartItems.innerHTML = "";
-      noCart.classList.remove("disable");
-      cartItemList.classList.remove("show");
-      cart.click();
+      if (info.id_user == infoAcc.id) {
+        const order = {
+          order_id: `DH000${orderID++}`,
+          details: productDetails,
+          user_name: infoAcc.user_name,
+          full_name: `${info.lastName} ${info.firstName}`,
+          phone: info.phone,
+          order_date: dateOrder,
+          address_delivery: "Giao Hàng Nhanh",
+          total_price: p,
+          isConfirm: "false",
+        };
+        console.log(order);
+        const orderAll = JSON.parse(localStorage.getItem("orders"));
+        orderAll.push(order);
+        localStorage.setItem("orders", JSON.stringify(orderAll));
+        userCart = [];
+        ordersById = [];
+        cartItems.innerHTML = "";
+        noCart.classList.remove("disable");
+        cartItemList.classList.remove("show");
+        cart.click();
+      }
+    } else {
+      alert("Dăng nhập để đặt hàng");
+      cartBtnClose.click();
     }
   });
 }

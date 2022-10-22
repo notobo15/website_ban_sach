@@ -4,7 +4,9 @@ const inputs = formInfo.querySelectorAll("input");
 const btnSave = document.querySelector(".form__info-btn-save > button");
 const selects = formInfo.querySelectorAll("select");
 console.log(selects);
-if (JSON.parse(localStorage.getItem("info")) != null) {
+let infoAcc = JSON.parse(localStorage.getItem("userLoginCurrent"));
+let info = JSON.parse(localStorage.getItem("info"));
+if (info != null && infoAcc.id == info.id_user) {
   let user = JSON.parse(localStorage.getItem("info"));
   inputs[0].value = user.lastName;
   inputs[1].value = user.firstName;

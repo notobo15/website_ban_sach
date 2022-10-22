@@ -94,7 +94,6 @@ body {
   /* top: -50px; */
   left: 0%;
   color: red;
-
 }
 .controler.show {
   display: block;
@@ -424,6 +423,9 @@ header {
 /* link go to admin */
 .header__login-go-to-admin {
   display: none;
+}
+.header__login-go-to-admin > a {
+  display: block;
 }
 .header__login-go-to-admin.show {
   display: block;
