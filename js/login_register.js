@@ -142,6 +142,9 @@ loginContent.addEventListener("submit", (e) => {
   }
   registerAccount = JSON.parse(getUserRegister);
   console.log(getUserRegister);
+  const findRegister = registerAccount.find((item) => {
+    return item.user_name === username.value && item.pw === pass.value;
+  });
   const findUser = usersAccount.find((item) => {
     return item.user_name === username.value && item.pw === pass.value;
   });
@@ -150,16 +153,22 @@ loginContent.addEventListener("submit", (e) => {
   });
  */
   // if (findUser || findUserByRegister) {
-  if (findUser || registerAccount) {
+  console.log(findRegister);
+  console.log(findUser);
+  if (
+    (findUser != undefined && findRegister == undefined) ||
+    (findUser == undefined && findRegister != undefined)
+  ) {
     localStorage.setItem(
       "userLoginCurrent",
       // findUser !== undefined ? JSON.stringify(findUser): JSON.stringify(findUserByRegister);
       findUser !== undefined
         ? JSON.stringify(findUser)
-        : JSON.stringify(registerAccount)
+        : JSON.stringify(findRegister)
     );
     console.log(JSON.parse(localStorage.getItem("userLoginCurrent")).user_name);
     alert("Đăng nhập thành công");
+    location.reload();
     nameUser.innerText = JSON.parse(
       localStorage.getItem("userLoginCurrent")
     ).user_name;
@@ -191,19 +200,34 @@ registerContent.addEventListener("submit", (e) => {
   e.preventDefault();
   const inputs = registerContent.querySelectorAll("input");
   // let isEmpty = checkEmptyValue(inputs);
+  let isUserLength0, isEmail1, isUserLength2, isUserLength3, isMatchingPW3;
   if (checkEmptyInput(inputs[0]) == false) {
-    var isUserLength0 = checkLength(inputs[0], 3, 8);
+    isUserLength0 = checkLength(inputs[0], 3, 8);
+  } else {
+    isUserLength0 = true;
   }
   if (checkEmptyInput(inputs[1]) == false) {
-    var isEmail1 = checkEmail(inputs[1]);
+    isEmail1 = checkEmail(inputs[1]);
+  } else {
+    isEmail1 = true;
   }
   if (checkEmptyInput(inputs[2]) == false) {
-    var isUserLength2 = checkLength(inputs[2], 3, 8);
+    isUserLength2 = checkLength(inputs[2], 3, 8);
+  } else {
+    isUserLength2 = true;
   }
   if (checkEmptyInput(inputs[3]) == false) {
-    var isUserLength3 = checkLength(inputs[3], 3, 8);
-    var isMatchingPW3 = checkMathingPassword(inputs[2], inputs[3]);
+    isUserLength3 = checkLength(inputs[3], 3, 8);
+    isMatchingPW3 = checkMathingPassword(inputs[2], inputs[3]);
+  } else {
+    isUserLength3 = true;
+    isMatchingPW3 = true;
   }
+  console.log(isUserLength0);
+  console.log(isEmail1);
+  console.log(isUserLength2);
+  console.log(isUserLength3);
+  console.log(isMatchingPW3);
   if (
     !isUserLength0 &&
     !isEmail1 &&
@@ -219,15 +243,22 @@ registerContent.addEventListener("submit", (e) => {
       email: inputs[1].value,
       pw: inputs[2].value,
     };
-    console.log(user);
-    let data = registerAccount;
-    if (data.length !== 0) {
-      let user = localStorage.getItem("registerAccount");
-      data = JSON.parse(user);
+    let data = localStorage.getItem("registerAccount");
+    if (data == null) {
+      localStorage.setItem("registerAccount", JSON.stringify([]));
+      data = [];
     }
-    data.push(user);
-    let json = JSON.stringify(data);
-    localStorage.setItem("registerAccount", json);
+    let checkAccountLogin = adminAccount.some((item) => {
+      return (item.user_name = user.user_name);
+    });
+    console.log(user);
+    if (checkAccountLogin) {
+      alert("tai khoan da ton tai");
+    } else {
+      data.push(user);
+    }
+    console.log(data);
+    localStorage.setItem("registerAccount", JSON.stringify(data));
   }
 });
 

@@ -11,7 +11,11 @@ order.addEventListener("click", () => {
   orderOverlay.classList.toggle("show");
   containerTable.classList.toggle("show");
   let orders = JSON.parse(localStorage.getItem("orders"));
-  console.log(orders);
+  let infoAcc = JSON.parse(localStorage.getItem("userLoginCurrent"));
+  let findOrders = orders.filter((item) => {
+    return item.user_name == infoAcc.user_name;
+  });
+  orders = findOrders;
   renderTableOrders(orders);
 });
 btnClose.addEventListener("click", () => {
@@ -22,6 +26,12 @@ orderOverlay.addEventListener("click", () => {
 });
 let id = 1;
 function renderTableOrders(userCart) {
+  let infoAcc = JSON.parse(localStorage.getItem("userLoginCurrent"));
+  let result = userCart.filter((item) => {
+    return item.user_name == infoAcc.user_name;
+  });
+  console.log(result);
+  userCart = result;
   if (userCart.length > 0) {
     table.classList.add("show");
     mess.classList.add("disable");
@@ -46,6 +56,5 @@ function renderTableOrders(userCart) {
         `;
     });
     tableBody.innerHTML = htmls;
-    
   }
 }

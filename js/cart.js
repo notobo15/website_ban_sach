@@ -183,8 +183,6 @@ function handleOrder() {
     return user.user_name == item.id_buyer;
   });
   if (user != null && checkUserOrder == true) {
-    alert("Đặt hàng thành công");
-    cartCount.innerHTML = 0;
     let date = new Date();
     let dateOrder = `${date.getDate()}/${
       date.getMonth() + 1
@@ -197,23 +195,33 @@ function handleOrder() {
     const p = userCart.reduce((total, item) => {
       return (total += item.currentPrice * item.quantity);
     }, 0);
-    // console.log(p);
-    // console.log(productDetails);
     let info = JSON.parse(localStorage.getItem("info"));
+    console.log(info);
+    let a = JSON.parse(user).id;
+    console.log(a);
+    let checkInfo = info.find((item) => {
+      console.log(item.id_user);
+      return item.id_user == a;
+    });
+
     let infoAcc = JSON.parse(localStorage.getItem("userLoginCurrent"));
-    if (info.id_user == infoAcc.id) {
+    console.log(checkInfo);
+    if (checkInfo == undefined) {
+      alert("Bạn chưa điền thông tin\n Để đặt được hàng");
+    } else if (checkInfo.id_user == infoAcc.id) {
+      alert("Đặt hàng thành công");
+      cartCount.innerHTML = 0;
       const order = {
         order_id: `DH000${orderID++}`,
-        details: productDetails,
+        details: productDetails,  
         user_name: infoAcc.user_name,
-        full_name: `${info.lastName} ${info.firstName}`,
-        phone: info.phone,
+        full_name: `${checkInfo.lastName} ${checkInfo.firstName}`,
+        phone: checkInfo.phone,
         order_date: dateOrder,
         address_delivery: "Giao Hàng Nhanh",
         total_price: p,
         isConfirm: "false",
       };
-      console.log(order);
       const orderAll = JSON.parse(localStorage.getItem("orders"));
       orderAll.push(order);
       localStorage.setItem("orders", JSON.stringify(orderAll));
