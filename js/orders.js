@@ -1,5 +1,3 @@
-
-
 const containerTable = document.querySelector(".order__container");
 const table = containerTable.querySelector("table");
 const mess = containerTable.querySelector("h3");
@@ -22,7 +20,7 @@ btnClose.addEventListener("click", () => {
 orderOverlay.addEventListener("click", () => {
   order.click();
 });
-
+let id = 1;
 function renderTableOrders(userCart) {
   if (userCart.length > 0) {
     table.classList.add("show");
@@ -37,16 +35,17 @@ function renderTableOrders(userCart) {
       }
       htmls += `
       <tr>
-        <th scope="row">1</th>
+        <th scope="row">${id++}</th>
         <td>${item.order_id}</td>
         <td class="text-left">${item.details}</td>
         <td>${item.order_date}</td>
         <td class="text-left">GiaoHangNhanh</td>
         <td>${numbertoVND(item.total_price)}</td>
-        <td>${conFirm}</td>
+        <td >${conFirm}</td>
       </tr>
         `;
     });
     tableBody.innerHTML = htmls;
+    
   }
 }
