@@ -1,35 +1,3 @@
-/* usersAccount = [
-  {
-    id: "user1",
-    pw: "123",
-    email: "user1@gmail.com",
-    phone: "0123456789",
-    address: "",
-  },
-  {
-    id: "user2",
-    pw: "123",
-  },
-  {
-    id: "user3",
-    pw: "123",
-  },
-  {
-    id: "user4",
-    pw: "123",
-  },
-  {
-    id: "user5",
-    pw: "123",
-  },
-];
-let adminAccount = [
-  {
-    id: "admin",
-    pw: "admin",
-  },
-]; */
-
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelector.bind(document);
 // su li doi mau chu va them line bottom khi click
@@ -273,10 +241,10 @@ function resetInput(inputs) {
 function checkLength(input, min, max) {
   input.value = input.value.trim();
   if (input.value.length < min) {
-    setErrorMessage(input, `Phải co ít nhất ${min} ký tự`);
+    setErrorMessage(input, `Phải có ít nhất ${min} ký tự`);
     return true;
   } else if (input.value.length > max) {
-    setErrorMessage(input, `Phải co ít nhất ${max} ký tự`);
+    setErrorMessage(input, `Phải có nhiều nhất ${max} ký tự`);
     return true;
   } else {
     setSuccessMessage(input);
@@ -332,6 +300,25 @@ function checkEmail(input) {
     return true;
   }
 }
+/* 
+function validatePhoneNumber(input_str) {
+  var re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+
+  return re.test(input_str);
+} */
+function checkPhone(input) {
+  input.value = input.value.trim();
+  let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+
+  if (!regex.test(input.value)) {
+    setErrorMessage(input, "số điện thoai không hợp lệ");
+    return true;
+  } else {
+    setSuccessMessage(input);
+    return false;
+  }
+}
+
 function setErrorMessage(input, message) {
   input.classList.add("error");
   input.classList.remove("success");
@@ -371,13 +358,4 @@ register.addEventListener("click", () => {
 usersAccount.some((item) => {
   return;
 });
-const btnInfo = document.querySelector(".header__login-info");
-const infoOverlay = document.querySelector(".info__overlay");
-const infoContainer = document.querySelector(".info__container");
-btnInfo.addEventListener("click", () => {
-  infoOverlay.classList.toggle("show");
-  infoContainer.classList.toggle("show");
-});
-infoOverlay.addEventListener("click", () => {
-  btnInfo.click();
-});
+
