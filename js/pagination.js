@@ -25,9 +25,15 @@ function renderData(dataArr) {
     })"  >
                 <img class="card__img" src="${item.srcImg[0]}" />  
                 <div class="card__title">${item.title}</div>
+                <div class="card__footer"> 
+                <div class="card__item__Price">${numbertoVND(
+                  item.price
+                )}</div>
                 <div class="card__item__currentPrice">${numbertoVND(
                   item.currentPrice
                 )}</div>
+                </div>
+                
             </div>
         `;
   });

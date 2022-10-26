@@ -6,9 +6,12 @@ function renderProducts(arrProducts, element, nameCategory) {
       <div class="container__row-card" onclick="showItemDetail(${item.id})">
       <img src="${item.srcImg[0]}" />
       <div class="container__row-card-title">${item.title}</div>
+      <div class="card__footer">
+      <div class="card__item__Price">${numbertoVND(item.price)}</div>
       <div class="container__row-card-price">${numbertoVND(
         item.currentPrice
       )}</div>
+      </div>
     </div>
       `;
     }

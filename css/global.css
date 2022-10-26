@@ -661,6 +661,16 @@ header {
   padding-right: 25px;
   text-align: end;
 }
+.card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card__footer > .card__item__Price {
+  font-size: 14px;
+  color: rgb(0, 0, 0, 0.8);
+  text-decoration: line-through;
+}
 .card__item__currentPrice {
   color: red;
   font-size: 16px;
