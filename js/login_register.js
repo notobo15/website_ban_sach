@@ -191,11 +191,6 @@ registerContent.addEventListener("submit", (e) => {
     isUserLength3 = true;
     isMatchingPW3 = true;
   }
-  console.log(isUserLength0);
-  console.log(isEmail1);
-  console.log(isUserLength2);
-  console.log(isUserLength3);
-  console.log(isMatchingPW3);
   if (
     !isUserLength0 &&
     !isEmail1 &&
@@ -212,7 +207,6 @@ registerContent.addEventListener("submit", (e) => {
       pw: inputs[2].value,
     };
     let data = JSON.parse(localStorage.getItem("registerAccount"));
-    console.log(data);
     if (data == null) {
       // localStorage.setItem("registerAccount", JSON.stringify([]));
       data = [];
@@ -226,7 +220,7 @@ registerContent.addEventListener("submit", (e) => {
     console.log(checkAccountLogin);
     console.log(checkAccountRegister);
     if (checkAccountLogin || checkAccountRegister) {
-      alert("tai khoan da ton tai");
+      alert("Tài khoản đã tồn tại");
       resetInput(inputs);
     } else {
       data.push(user);
