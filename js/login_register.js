@@ -211,17 +211,23 @@ registerContent.addEventListener("submit", (e) => {
       email: inputs[1].value,
       pw: inputs[2].value,
     };
-    let data = localStorage.getItem("registerAccount");
+    let data = JSON.parse(localStorage.getItem("registerAccount"));
+    console.log(data);
     if (data == null) {
-      localStorage.setItem("registerAccount", JSON.stringify([]));
+      // localStorage.setItem("registerAccount", JSON.stringify([]));
       data = [];
     }
-    let checkAccountLogin = adminAccount.some((item) => {
+    let checkAccountLogin = usersAccount.some((item) => {
       return (item.user_name = user.user_name);
     });
-    console.log(user);
-    if (checkAccountLogin) {
+    let checkAccountRegister = data.some((item) => {
+      return (item.user_name = user.user_name);
+    });
+    console.log(checkAccountLogin);
+    console.log(checkAccountRegister);
+    if (checkAccountLogin || checkAccountRegister) {
       alert("tai khoan da ton tai");
+      resetInput(inputs);
     } else {
       data.push(user);
     }
@@ -358,4 +364,3 @@ register.addEventListener("click", () => {
 usersAccount.some((item) => {
   return;
 });
-
