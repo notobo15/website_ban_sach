@@ -35,22 +35,19 @@ if (checkInfo) {
   inputs[1].value = checkInfo.firstName;
   inputs[2].value = checkInfo.phone;
   inputs[3].value = checkInfo.addressHome;
-  selects[0].setAttribute("value", checkInfo.province);
-  selects[1].setAttribute("value", checkInfo.city);
-  selects[2].setAttribute("value", checkInfo.ward);
 
   window.onload = () => {
-    selects[0].value = selects[0].getAttribute("value");
+    selects[0].value = checkInfo.province;
     selects[0].click();
 
     setTimeout(() => {
       console.log(selects[1][1]);
-      selects[1].value = selects[1].getAttribute("value");
+      selects[1].value = checkInfo.city;
       selects[1].click();
       setTimeout(() => {
         console.log(selects[2][1]);
-        selects[2].value = selects[2].getAttribute("value");
-      }, 800);
+        selects[2].value = checkInfo.ward;
+      }, 1000);
     }, 700);
   };
   function selectElement(id, valueToSelect) {
