@@ -30,19 +30,15 @@
   <body>
     <header class="header">
       <div class="header__logo">
-        <img src="./images/fahasa.png" />
+        <a href="." class="">
+          <img src="./images/fahasa.png" />
+        </a>
       </div>
       <div class="header__menu">
         <span></span>
         <span></span>
         <span></span>
       </div>
-      <script>
-        const menu = document.querySelector(".header__menu");
-        menu.addEventListener("click", () => {
-          menu.classList.toggle("active");
-        });
-      </script>
       <div class="header__search">
         <input
           class="header__search__input"
@@ -89,6 +85,78 @@
           <span class="header__login-name">Tài Khoản</span>
         </div>
       </div>
+      <div class="overplay"></div>
+      <ul class="header__menu-list">
+        <li class="header__menu-item">
+          <h3 class="header__menu-title">Menu</h3>
+          <i class="header__menu-item-icon-left fa-solid fa-arrow-left" onclick="closeMenu()"></i>
+        </li>
+        <li class="header__menu-item header__menu-item-underline">
+          <div class="header__menu-item-wrap" onclick="showAccount()">
+            <i class="header__menu-item-icon fa-regular fa-user"></i>
+            <span class="header__menu-name">
+              Tài Khoản
+              <i class="header__menu-item-icon-down fa-solid fa-caret-down"></i>
+            </span>
+          </div>
+  
+          <ul class="header__submenu-list header__submenu-list-account">
+            <li class="header__submenu-item">
+              <i class="header__submenu-item-icon fa-solid fa-user"></i>
+              <span class="header__submenu-name">Đăng Ký</span>
+            </li>
+            <li class="header__submenu-item">
+              <i class="header__submenu-item-icon fa-solid fa-user"></i>
+              <span class="header__submenu-name">Đăng Nhập</span>
+            </li>
+          </ul>
+        </li>
+        <li class="header__menu-item header__menu-item-underline">
+          <div class="header__menu-item-wrap" onclick="showStading()">
+            <i class="header__menu-item-icon fa-regular fa-star"></i>
+            <span class="header__menu-name">
+              Nổi Bậc
+              <i class="header__menu-item-icon-down fa-solid fa-caret-down"></i>
+            </span>
+          </div>
+  
+          <ul class="header__submenu-list header__submenu-list-stading">
+            <li class="header__submenu-item">
+              <i class="header__submenu-item-icon fa-regular fa-bookmark"></i>
+              <span class="header__submenu-name">Sách Mới</span>
+            </li>
+            <li class="header__submenu-item">
+              <i class="header__submenu-item-icon fa-regular fa-bookmark"></i>
+              <span class="header__submenu-name">Sắp Phát Hành</span>
+            </li>
+            <li class="header__submenu-item">
+              <i class="header__submenu-item-icon fa-regular fa-bookmark"></i>
+              <span class="header__submenu-name">Sách Bán Chạy</span>
+            </li>
+            <li class="header__submenu-item">
+              <i class="header__submenu-item-icon fa-regular fa-bookmark"></i>
+              <span class="header__submenu-name">Danh Mục</span>
+            </li>
+          </ul>
+        </li>
+        <li class="header__menu-item header__menu-item-underline">
+          <div class="header__menu-item-wrap" onclick="showFavorite()">
+            <i class="header__menu-item-icon fa-solid fa-heart"></i>
+            <span class="header__menu-name">Yêu Thích
+              <i class="header__menu-item-icon-down fa-solid fa-caret-down"></i>
+            </span>
+          </div>
+          <ul class="header__submenu-list header__submenu-list-favorite">
+            <li class="header__submenu-item">
+              <i class="header__submenu-item-icon fa-solid fa-pen-nib"></i>
+              <span class="header__submenu-name">Việt Nam</span>
+            </li>
+            <li class="header__submenu-item">
+              <i class="header__submenu-item-icon fa-solid fa-pen-nib"></i>
+              <span class="header__submenu-name">Nước Ngoài</span>
+            </li>
+        </li>
+      </ul>
     </header>
 
     <div class="banner">
@@ -192,7 +260,20 @@
           </ul>
         </div>
         <div class="container__imgLarge">
-          <img src="./images/banner/1.jpg" alt="" />
+          <div class="container__imgLarge-wrap">
+            <img src="./images/banner/1.jpg" alt="" class="container__imgLarge-img" />
+            <img src="./Images/banner/2.jpg" alt="" class="container__imgLarge-img">
+            <img src="./Images/banner/3.jpg" alt="" class="container__imgLarge-img">
+            <div class="container__imgLarge-wrap-icon">
+              <i class="container__imgLarge-icon fa-solid fa-circle-left"></i>
+              <i class="container__imgLarge-icon fa-solid fa-circle-right"></i>
+            </div>
+            <div class="container__imgLarge-wrap-circle">
+              <i class="container__imgLarge-icon-circle container__imgLarge-icon-circle active fa-solid fa-circle"></i>
+              <i class="container__imgLarge-icon-circle fa-solid fa-circle"></i>
+              <i class="container__imgLarge-icon-circle fa-solid fa-circle"></i>
+            </div>
+          </div>
           <div class="banner__thumbnail">
             <img src="./images/banner/thumnail_1.jpg" alt="" />
             <img src="./images/banner/thumnail_1.jpg" alt="" />
@@ -609,6 +690,7 @@
   <script src="./js/callAPIProvinces.js"></script>
   <script src="./js/info_user.js"></script>
   <script src="./js/orders.js"></script>
+  <script src="./js/slideBanner.js"></script>
   <!-- <script src="./js/renderData.js" defer></script> -->
   <!-- <script src="./js/login_register.js" defer></script> -->
 </html>
