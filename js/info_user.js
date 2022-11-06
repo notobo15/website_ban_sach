@@ -50,6 +50,7 @@ if (checkInfo) {
       }, 1000);
     }, 700);
   };
+
   function selectElement(id, valueToSelect) {
     let element = document.getElementById(id);
     console.log(element[0]);
