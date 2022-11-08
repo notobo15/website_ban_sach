@@ -1,8 +1,17 @@
+let numberItems = 10;
+
 function renderProducts(arrProducts, element, nameCategory) {
   let htmls = "";
-  arrProducts.forEach((item) => {
-    if (item.category == nameCategory) {
-      htmls += `
+  let i = 1;
+  let filterList = arrProducts.filter((item) => {
+    if (item.category == nameCategory && i < numberItems) {
+      i++;
+      return item;
+    }
+  });
+  filterList.forEach((item) => {
+    //if (item.category == nameCategory) {
+    htmls += `
       <div class="container__row-card" onclick="showItemDetail(${item.id})">
       <img src="${item.srcImg[0]}" />
       <div class="container__row-card-title">${item.title}</div>
@@ -14,7 +23,7 @@ function renderProducts(arrProducts, element, nameCategory) {
       </div>
     </div>
       `;
-    }
+    //}
   });
   function header(str) {
     let heading;
@@ -78,7 +87,6 @@ function showAllProducts(nameCategory) {
   //   pagination.style.display = "none";
   // });
 }
-
 const productContaier = document.querySelectorAll(".container__row");
 renderProducts(books, productContaier[0], "skill_books");
 renderProducts(books, productContaier[1], "economic_books");
