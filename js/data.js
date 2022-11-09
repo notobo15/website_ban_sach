@@ -1,3 +1,6 @@
+const $ = document.querySelector.bind(document);
+const $$ = document.querySelector.bind(document);
+
 var books = [
   {
     id: 1,
@@ -726,59 +729,92 @@ var usersAccount = [
     id: "1",
     user_name: "admin1",
     pw: "123",
-    full_name: "Nguyen Van A",
-    email: "user1@gmail.com",
-    phone: "0123456789",
-    address: "Phường Phước Long A Quận 9 Thành phố Hồ Chí Minh",
-    create_date: "1/1/2022",
     isActive: true,
+    account_type: 2,
+    email: "user1@gmail.com",
   },
   {
     id: "2",
     user_name: "user2",
     pw: "123",
-    full_name: "Nguyen Van B",
-    email: "user1@gmail.com",
-    phone: "0123456789",
-    address: "Phường Phước Long B Quận 9 Thành phố Hồ Chí Minh",
-    create_date: "1/1/2022",
     isActive: true,
+    email: "user1@gmail.com",
+
+    account_type: 1,
   },
   {
     id: "3",
     user_name: "user3",
     pw: "123",
-    full_name: "Nguyen Van C",
-    email: "user1@gmail.com",
-    phone: "0123456789",
-    address: "Phường Phước Long A Quận 9 Thành phố Hồ Chí Minh",
-    create_date: "1/1/2022",
     isActive: true,
+    email: "user1@gmail.com",
+
+    account_type: 1,
   },
   {
     id: "4",
     user_name: "user4",
     pw: "123",
-    full_name: "Nguyen Van D",
-    email: "user1@gmail.com",
-    phone: "0123456789",
-    address: "Phường Phước Long A Quận 9 Thành phố Hồ Chí Minh",
-    create_date: "1/1/2022",
     isActive: true,
+    email: "user1@gmail.com",
+
+    account_type: 1,
   },
   {
     id: "5",
     user_name: "user5",
     pw: "123",
-    full_name: "Nguyen Van E",
+    isActive: true,
+    email: "user1@gmail.com",
+
+    account_type: 1,
+  },
+];
+var infoAccount = [
+  {
+    acc_id: 1,
+    full_name: "Nguyen Van A",
+    phone: "0123456789",
+    address: "Phường Phước Long A Quận 9 Thành phố Hồ Chí Minh",
+    create_date: "1/1/2022",
+  },
+  {
+    acc_id: 2,
+    full_name: "Nguyen Van B",
+    phone: "0123456789",
+    address: "Phường Phước Long B Quận 9 Thành phố Hồ Chí Minh",
+    create_date: "1/1/2022",
+  },
+  {
+    acc_id: 3,
+    full_name: "Nguyen Van C",
     email: "user1@gmail.com",
     phone: "0123456789",
     address: "Phường Phước Long A Quận 9 Thành phố Hồ Chí Minh",
     create_date: "1/1/2022",
-    isActive: true,
+  },
+  {
+    acc_id: 3,
+    full_name: "Nguyen Van D",
+    phone: "0123456789",
+    address: "Phường Phước Long A Quận 9 Thành phố Hồ Chí Minh",
+    create_date: "1/1/2022",
+  },
+  {
+    acc_id: 4,
+    full_name: "Nguyen Van E",
+    phone: "0123456789",
+    address: "Phường Phước Long A Quận 9 Thành phố Hồ Chí Minh",
+    create_date: "1/1/2022",
+  },
+  {
+    acc_id: 4,
+    full_name: "Nguyen Van E",
+    phone: "0123456789",
+    address: "Phường Phước Long A Quận 9 Thành phố Hồ Chí Minh",
+    create_date: "1/1/2022",
   },
 ];
-
 var ordersUsers = [
   {
     order_id: 123,
@@ -803,6 +839,18 @@ var ordersUsers = [
     isConfirm: false,
   },
 ];
+if (localStorage.getItem("books") == null) {
+  localStorage.setItem("books", JSON.stringify(books));
+  books = JSON.parse(localStorage.getItem("books"));
+}
+if (localStorage.getItem("usersAccount") == null) {
+  localStorage.setItem("usersAccount", JSON.stringify(usersAccount));
+  usersAccount = JSON.parse(localStorage.getItem("usersAccount"));
+}
+if (localStorage.getItem("infoAccount") == null) {
+  localStorage.setItem("infoAccount", JSON.stringify(infoAccount));
+  infoAccount = JSON.parse(localStorage.getItem("infoAccount"));
+}
 
 function numberWithCommas(x) {
   var parts = x.toString().split(".");
@@ -812,4 +860,24 @@ function numberWithCommas(x) {
 }
 function numbertoVND(x) {
   return numberWithCommas(x) + " đ";
+}
+function toNonAccentVietnamese(str) {
+  str = str.replace(/A|Á|À|Ã|Ạ|Â|Ấ|Ầ|Ẫ|Ậ|Ă|Ắ|Ằ|Ẵ|Ặ/g, "A");
+  str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+  str = str.replace(/E|É|È|Ẽ|Ẹ|Ê|Ế|Ề|Ễ|Ệ/, "E");
+  str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+  str = str.replace(/I|Í|Ì|Ĩ|Ị/g, "I");
+  str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+  str = str.replace(/O|Ó|Ò|Õ|Ọ|Ô|Ố|Ồ|Ỗ|Ộ|Ơ|Ớ|Ờ|Ỡ|Ợ/g, "O");
+  str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+  str = str.replace(/U|Ú|Ù|Ũ|Ụ|Ư|Ứ|Ừ|Ữ|Ự/g, "U");
+  str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+  str = str.replace(/Y|Ý|Ỳ|Ỹ|Ỵ/g, "Y");
+  str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+  str = str.replace(/Đ/g, "D");
+  str = str.replace(/đ/g, "d");
+  // Some system encode vietnamese combining accent as individual utf-8 characters
+  str = str.replace(/\u0300|\u0301|\u0303|\u0309|\u0323/g, ""); // Huyền sắc hỏi ngã nặng
+  str = str.replace(/\u02C6|\u0306|\u031B/g, ""); // Â, Ê, Ă, Ơ, Ư
+  return str;
 }

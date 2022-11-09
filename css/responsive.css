@@ -50,23 +50,31 @@
     }
     #modal {
         width: 80%;
-        display: block;
-        left: calc(50% - 300px);
+        /* display: block; */
+        /* left: calc(50% - 300px); */
+
+        /* transform: scale(1); */
     }
     .modal-body {
         flex-direction: column;
     }
     .modal-body-left {
-        width: 30%;
+        width: 100%;
         align-self: center;
     }
-    .modal-body-right {
-        /* width: 100%; */
-        align-self: center;
+    .modal-body-left > .card__img {
+        width: 60%;
+        margin: 10px auto;
+        height: inherit;
     }
-    .modal__img-list {
+    .modal-body-left .modal__img-list {
         width: 80%;
     }
+    .modal-body-right {
+        width: 100%;
+        align-self: center;
+    }
+
     .footer-container {
         flex-wrap: wrap;
     }
@@ -84,6 +92,10 @@
     }
     .list__cart {
         width: 70%;
+    }
+    .btn-add-to-cart {
+        /* position: fixed;
+        bottom: 0; */
     }
 }
 @media (max-width: 468px) {

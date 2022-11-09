@@ -26,9 +26,7 @@ function renderData(dataArr) {
                 <img class="card__img" src="${item.srcImg[0]}" />  
                 <div class="card__title">${item.title}</div>
                 <div class="card__footer"> 
-                <div class="card__item__Price">${numbertoVND(
-                  item.price
-                )}</div>
+                <div class="card__item__Price">${numbertoVND(item.price)}</div>
                 <div class="card__item__currentPrice">${numbertoVND(
                   item.currentPrice
                 )}</div>
@@ -121,35 +119,37 @@ function showItemDetail(id) {
           </div>
           </div>
           <div class="card__description">
-          <h3></h3>
+          <h3>Thông tin sản phẩm</h3>
           <table>
-              <thead>Thông tin sản phẩm</thead> 
+             
               <tbody>
                 <tr>
-                  <td>Mã hàng</td>
+                  <td>Mã hàng:</td>
                   <td>${item.id}</td>
                 </tr> 
                 <tr>
-                  <td>Tác giả</td>
+                  <td>Tác giả:</td>
                   <td>${item.author}</td>
                 </tr> 
                 <tr>
-                  <td>NXB</td>
+                  <td>NXB:</td>
                   <td>NXB Phụ Nữ</td>
                 </tr> 
                 <tr>
-                  <td>Năm XB</td>
+                  <td>Năm XB:</td>
                   <td>2019</td>
                 </tr>   
                 <tr>
-                  <td>Số trang</td>
+                  <td>Số trang:</td>
                   <td>199</td>
                 </tr> 
               
               
               </tbody> 
           </table>
+          <p>
           ${item.description}
+          </p>
           </div>
           </div>
           <div class="modal-overlay"></div>
