@@ -58,7 +58,7 @@ function render(arr, eTbody) {
   arr.forEach((item) => {
     htmls += `
     <tr>
-    <td>${item.id}</td>
+    <td>${item.id}</<td>
     <td>
     <img src=".${item.srcImg[0]}" alt=""></td>
     <td>${item.title}</td>
