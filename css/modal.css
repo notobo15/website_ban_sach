@@ -25,10 +25,11 @@
     z-index: 10;
     transform: scale(0);
     overflow-y: scroll;
-    
 }
 #modal.show {
     transform: scale(1);
+    transform: translateX(-50%);
+    left: 50%;
 }
 .modal-header p {
     align-self: end;

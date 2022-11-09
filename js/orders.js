@@ -10,6 +10,13 @@ console.log(table);
 order.addEventListener("click", () => {
   orderOverlay.classList.toggle("show");
   containerTable.classList.toggle("show");
+  let orders = JSON.parse(localStorage.getItem("orders"));
+  let infoAcc = JSON.parse(localStorage.getItem("userLoginCurrent"));
+  let findOrders = orders.filter((item) => {
+    return item.user_name == infoAcc.user_name;
+  });
+  orders = findOrders;
+  renderTableOrders(orders);
 });
 btnClose.addEventListener("click", () => {
   order.click();
@@ -17,36 +24,37 @@ btnClose.addEventListener("click", () => {
 orderOverlay.addEventListener("click", () => {
   order.click();
 });
-function renderTableOrders(userCart, date) {
-  if (userCart.length !== 0) {
+let id = 1;
+function renderTableOrders(userCart) {
+  let infoAcc = JSON.parse(localStorage.getItem("userLoginCurrent"));
+  let result = userCart.filter((item) => {
+    return item.user_name == infoAcc.user_name;
+  });
+  console.log(result);
+  userCart = result;
+  if (userCart.length > 0) {
     table.classList.add("show");
     mess.classList.add("disable");
-
     let htmls = "";
-    let sum = 0;
-    let nameProduct = "";
     userCart.forEach((item) => {
-      sum += item.currentPrice * item.quantity;
-      nameProduct += `
-        ${item.title} (x${item.quantity})<br />
+      let conFirm;
+      if (item.isConfirm == "false") {
+        conFirm = "Đang chờ xác nhận";
+      } else {
+        conFirm = "Đã xác nhận";
+      }
+      htmls += `
+      <tr>
+        <th scope="row">${id++}</th>
+        <td>${item.order_id}</td>
+        <td class="text-left">${item.details}</td>
+        <td>${item.order_date}</td>
+        <td class="text-left">GiaoHangNhanh</td>
+        <td>${numbertoVND(item.total_price)}</td>
+        <td >${conFirm}</td>
+      </tr>
         `;
     });
-
-    htmls = `
-    <tr>
-        <th scope="row">1</th>
-        <td>R45MD0</td>
-        <td class="text-left">
-        ${nameProduct}
-        </td>
-        <td>${date}</td>
-        <td class="text-left">GiaoHangNhanh</td>
-        <td>${sum}</td>
-        <td>Đang chờ xác nhận</td>
-        </tr>
-        `;
-
     tableBody.innerHTML = htmls;
   }
 }
-

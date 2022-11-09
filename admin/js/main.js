@@ -116,9 +116,10 @@ function renderOrders(arr, eTbody) {
       <td>${item.address_delivery}</td>
       <td>${item.order_date}</td>
       <td>${numbertoVND(item.total_price)}</td>
-      <td> <input type="checkbox"></td>
-      
-  </tr>
+      <td> <input class="btnConfirm" value="${
+        item.isConfirm
+      }" type="checkbox"></td>
+    </tr>
     `;
   });
   eTbody.innerHTML = htmls;
@@ -198,3 +199,23 @@ function editById(id) {
 
   // render(books, categoryTbody);
 }
+
+const listConfirm = document.querySelectorAll(".btnConfirm");
+listConfirm.forEach((item, index) => {
+  if (item.getAttribute("value") == "true") {
+    item.setAttribute("checked", "");
+  } else {
+    item.removeAttribute("checked", "");
+  }
+  item.addEventListener("click", () => {
+    console.log(item);
+    if (or[index].isConfirm == "false") {
+      or[index].isConfirm = "true";
+      item.setAttribute("value", "true");
+    } else {
+      or[index].isConfirm = "false";
+      item.setAttribute("value", "false");
+    }
+    localStorage.setItem("orders", JSON.stringify(or));
+  });
+});

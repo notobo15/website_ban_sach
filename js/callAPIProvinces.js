@@ -19,6 +19,7 @@ function handleData(data) {
 }
 
 eProvice.addEventListener("click", () => {
+  // eProvice.setAttribute("value", codeProvince);
   let codeProvince = eProvice.value;
   fetch(url + "d")
     .then((response) => response.json())
@@ -39,6 +40,7 @@ eProvice.addEventListener("click", () => {
   }
   eDivision.addEventListener("click", () => {
     let codeDivision = eDivision.value;
+    // eDivision.setAttribute("value", codeDivision);
     fetch(url + "w")
       .then((response) => response.json())
       .then((data) => {
@@ -56,5 +58,8 @@ eProvice.addEventListener("click", () => {
       });
       eWard.innerHTML = htmls;
     }
+    // eWard.addEventListener("click", () => {
+    // eWard.setAttribute("value", eWard.value);
+    // });
   });
 });

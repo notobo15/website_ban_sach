@@ -2,7 +2,7 @@ const container_content = document.querySelector(".container-content");
 const pagination_element = document.getElementById("pagination");
 
 let current_page = 1;
-let rows = 10;
+let rows =10;
 
 function DisplayList(items, rows_per_page, page) {
   page--;
@@ -25,9 +25,13 @@ function renderData(dataArr) {
     })"  >
                 <img class="card__img" src="${item.srcImg[0]}" />  
                 <div class="card__title">${item.title}</div>
+                <div class="card__footer"> 
+                <div class="card__item__Price">${numbertoVND(item.price)}</div>
                 <div class="card__item__currentPrice">${numbertoVND(
                   item.currentPrice
                 )}</div>
+                </div>
+                
             </div>
         `;
   });
@@ -94,7 +98,9 @@ function showItemDetail(id) {
             <div class="modal-body-right">
             <div class="card__title">${item.title}</div>
               <p class="card__author">Tác giả: ${item.author}</p>
+              
               <div>
+              
                 <div class="card__currentPrice">${numbertoVND(
                   item.currentPrice
                 )}</div>
@@ -111,7 +117,39 @@ function showItemDetail(id) {
                 item.id
               })">Thêm vào giỏ hàng</button>
           </div>
-
+          </div>
+          <div class="card__description">
+          <h3>Thông tin sản phẩm</h3>
+          <table>
+             
+              <tbody>
+                <tr>
+                  <td>Mã hàng:</td>
+                  <td>${item.id}</td>
+                </tr> 
+                <tr>
+                  <td>Tác giả:</td>
+                  <td>${item.author}</td>
+                </tr> 
+                <tr>
+                  <td>NXB:</td>
+                  <td>NXB Phụ Nữ</td>
+                </tr> 
+                <tr>
+                  <td>Năm XB:</td>
+                  <td>2019</td>
+                </tr>   
+                <tr>
+                  <td>Số trang:</td>
+                  <td>199</td>
+                </tr> 
+              
+              
+              </tbody> 
+          </table>
+          <p>
+          ${item.description}
+          </p>
           </div>
           </div>
           <div class="modal-overlay"></div>
@@ -208,58 +246,3 @@ function numbertoVND(x) {
 }
 
 /* ============search range */
-
-const searchData = [];
-const inputSearch = document.querySelector(".header__search__input");
-inputSearch.addEventListener("keydown", (e) => {
-  if (e.keyCode === 13) {
-    btnSearchSubmit.click();
-  }
-});
-const btnSearchSubmit = document.querySelector(".header__search__btn");
-const container_header = document.querySelector(".container-header");
-
-inputSearch.addEventListener("input", (e) => {
-  const inputSearchValue = inputSearch.value;
-  console.log(inputSearchValue);
-  let searchItems = books.filter((item) => {
-    return item.title
-      .toLocaleLowerCase()
-      .includes(inputSearchValue.toLocaleLowerCase());
-  });
-  console.log(searchItems);
-  Banner("disable");
-  products_list("disable");
-
-  if (searchItems.length === 0) {
-    container_content.innerHTML = `
-      <div class="search__no-result-found">
-          <p>Xin lỗi 😔 không có kểt quả với:<h3>${inputSearchValue}</h3></p>
-          <img class="search__no-result-found__img" src="./images/no_result_found.png" alt="">
-      </div>
-    `;
-    pagination_element.style.display = "none";
-    container_header.innerHTML = "";
-  } else {
-    toolbarForm.style.display = "block";
-    const btnSearch = document.querySelector(".toolbar__search-icon");
-
-    btnSearch.style.display = "none";
-    container_header.innerHTML = `Có ${searchItems.length} kết quả tìm kiếm với: <b>${inputSearchValue}</b>`;
-    container_content.style.display = "flex";
-    pagination_element.style.display = "flex";
-    DisplayList(searchItems, rows, current_page);
-    SetupPagination(searchItems, pagination_element, rows);
-
-    const btnB = document.querySelector(".controler");
-    btnB.addEventListener("click", () => {
-      Banner("show");
-      products_list("show");
-      inputSearch.value = "";
-      toolbarForm.style.display = "none";
-      container_content.style.display = "none";
-      pagination_element.style.display = "none";
-      document.querySelector(".container-header").style.display = "none";
-    });
-  }
-});

@@ -1,40 +1,5 @@
-/* usersAccount = [
-  {
-    id: "user1",
-    pw: "123",
-    email: "user1@gmail.com",
-    phone: "0123456789",
-    address: "",
-  },
-  {
-    id: "user2",
-    pw: "123",
-  },
-  {
-    id: "user3",
-    pw: "123",
-  },
-  {
-    id: "user4",
-    pw: "123",
-  },
-  {
-    id: "user5",
-    pw: "123",
-  },
-];
-let adminAccount = [
-  {
-    id: "admin",
-    pw: "admin",
-  },
-]; */
-
-const $ = document.querySelector.bind(document);
-const $$ = document.querySelector.bind(document);
 // su li doi mau chu va them line bottom khi click
 const formTitle = document.querySelectorAll(".login_form_header span");
-console.log(formTitle);
 formTitle.forEach((item) => {
   item.addEventListener("click", () => {
     for (const i of formTitle) {
@@ -62,9 +27,10 @@ const inputPassAll = form.querySelectorAll("input[type='password']");
 const btnLogout = document.querySelector(".header__login-logout");
 const nameUser = document.querySelector(".header__login-name");
 
-const linkAdmin = $(".header__login-go-to-admin");
+const linkAdmin = document.querySelector(".header__login-go-to-admin");
 
 let registerAccount = [];
+
 // LOG OUT
 btnLogout.addEventListener("click", () => {
   if (localStorage.getItem("userLoginCurrent") !== null) {
@@ -88,12 +54,11 @@ function showFormLogin() {
   formOverlay.classList.toggle("show");
   login.click();
 }
-
 // overlay
 formOverlay.addEventListener("click", () => {
   iconForm.click();
 });
-var adminAccount = ["admin1", "admin2", "admin3"];
+//var adminAccount = ["admin1", "admin2", "admin3"];
 
 if (localStorage.getItem("userLoginCurrent") !== null) {
   console.log("da dang nhap");
@@ -106,15 +71,20 @@ if (localStorage.getItem("userLoginCurrent") !== null) {
     localStorage.getItem("userLoginCurrent")
   ).user_name;
   iconForm.removeEventListener("click", showFormLogin);
-  adminAccount.forEach((item) => {
+  console.log(linkAdmin);
+  // show hide link go to admin
+  if (JSON.parse(localStorage.getItem("userLoginCurrent")).account_type == 2) {
+    linkAdmin.classList.add("show");
+  } else {
+    linkAdmin.classList.remove("show");
+  }
+  /* adminAccount.forEach((item) => {
     if (
       item === JSON.parse(localStorage.getItem("userLoginCurrent")).user_name
     ) {
       return linkAdmin.classList.add("show");
     }
-  });
-} else {
-  console.log("chua dang nhap");
+  }); */
 }
 
 /* LOGIN */
@@ -124,66 +94,86 @@ loginContent.addEventListener("submit", (e) => {
   const pass = loginContent.querySelector("input[type='password']");
 
   checkEmptyValue([username, pass]);
-
+  let isUserLength, isPasswordLength;
   if (checkEmptyInput(username) == false) {
-    let isUserLength = checkLength(username, 3, 8);
+    isUserLength = checkLength(username, 3, 8);
   }
   if (checkEmptyInput(pass) == false) {
-    let isUserLength = checkLength(pass, 3, 8);
+    isPasswordLength = checkLength(pass, 3, 8);
   }
-  /* let findAdmin = adminAccount.forEach((item) => {
-    if (item.id === username.value && item.pw === pass.value) {
-      window.location.assign("./admin/index.html");
+  let isAccountSuccess = usersAccount.some((item) => {
+    return item.user_name == username.value && item.pw == pass.value;
+  });
+  let findAccount = usersAccount.find((item) => {
+    return item.user_name == username.value;
+  });
+  if (isAccountSuccess == false) {
+    console.log(findAccount);
+    if (findAccount == undefined) {
+      alert("Tài khoản không tồn tại");
+      resetInput([username, pass]);
+    } else {
+      alert("Bạn đã nhập sai mật khẩu");
+      resetInput([pass]);
     }
-  }); */
-  let getUserRegister = localStorage.getItem("registerAccount");
-  if (getUserRegister === null) {
-    getUserRegister = JSON.stringify([]);
-  }
-  registerAccount = JSON.parse(getUserRegister);
-  console.log(getUserRegister);
-  const findUser = usersAccount.find((item) => {
-    return item.user_name === username.value && item.pw === pass.value;
-  });
-  /*   const findUserByRegister = registerAccount.find((item) => {
-    return item.id === username.value && item.pw === pass.value;
-  });
- */
-  // if (findUser || findUserByRegister) {
-  if (findUser || registerAccount) {
-    localStorage.setItem(
-      "userLoginCurrent",
-      // findUser !== undefined ? JSON.stringify(findUser): JSON.stringify(findUserByRegister);
-      findUser !== undefined
-        ? JSON.stringify(findUser)
-        : JSON.stringify(registerAccount)
-    );
-    console.log(JSON.parse(localStorage.getItem("userLoginCurrent")).user_name);
+  } else {
     alert("Đăng nhập thành công");
-    nameUser.innerText = JSON.parse(
-      localStorage.getItem("userLoginCurrent")
-    ).user_name;
+    localStorage.setItem("userLoginCurrent", JSON.stringify(findAccount));
     iconForm.click();
-    // console.log(iconForm);
-    // iconForm.removeEventListener("click", showFormLogin);
-    // const userInfo = document.querySelector(".header_user_info");
+    location.reload();
+    nameUser.innerText = findAccount.user_name;
     const iconLogin = document.querySelector(".header__login-icon");
     const avatarUser = document.querySelector(".header__login_avatar");
-    /*   iconLogin.style.display = "none";
-    avatarUser.style.display = "inline-block"; */
     avatarUser.classList.add("show");
     iconLogin.classList.remove("show");
-    linkAdmin.classList.remove("show");
-    console.log(linkAdmin);
-    adminAccount.forEach((item) => {
-      if (item === username.value) {
-        return linkAdmin.classList.add("show");
-      }
-    });
-  } else {
-    alert("Đăng nhập khong dung");
-    resetInput([username, pass]);
   }
+  // let getUserRegister = localStorage.getItem("registerAccount");
+  // if (getUserRegister === null) {
+  //   getUserRegister = JSON.stringify([]);
+  // }
+  // registerAccount = JSON.parse(getUserRegister);
+  // console.log(getUserRegister);
+  // const findRegister = registerAccount.find((item) => {
+  //   return item.user_name === username.value && item.pw === pass.value;
+  // });
+  // const findUser = usersAccount.find((item) => {
+  //   return item.user_name === username.value && item.pw === pass.value;
+  // });
+  // console.log(findRegister);
+  // console.log(findUser);
+  // if (
+  //   (findUser != undefined && findRegister == undefined) ||
+  //   (findUser == undefined && findRegister != undefined)
+  // ) {
+  //   localStorage.setItem(
+  //     "userLoginCurrent",
+  //     // findUser !== undefined ? JSON.stringify(findUser): JSON.stringify(findUserByRegister);
+  //     findUser !== undefined
+  //       ? JSON.stringify(findUser)
+  //       : JSON.stringify(findRegister)
+  //   );
+  //   console.log(JSON.parse(localStorage.getItem("userLoginCurrent")).user_name);
+  //   alert("Đăng nhập thành công");
+  //   location.reload();
+  //   nameUser.innerText = JSON.parse(
+  //     localStorage.getItem("userLoginCurrent")
+  //   ).user_name;
+  //   iconForm.click();
+  //   const iconLogin = document.querySelector(".header__login-icon");
+  //   const avatarUser = document.querySelector(".header__login_avatar");
+  //   avatarUser.classList.add("show");
+  //   iconLogin.classList.remove("show");
+  //   linkAdmin.classList.remove("show");
+  //   console.log(linkAdmin);
+  //   adminAccount.forEach((item) => {
+  //     if (item === username.value) {
+  //       return linkAdmin.classList.add("show");
+  //     }
+  //   });
+  // } else {
+  //   alert("Đăng nhập khong dung");
+  //   resetInput([username, pass]);
+  // }
 });
 
 /* REGISTER */
@@ -191,19 +181,32 @@ registerContent.addEventListener("submit", (e) => {
   e.preventDefault();
   const inputs = registerContent.querySelectorAll("input");
   // let isEmpty = checkEmptyValue(inputs);
+  let isUserLength0, isEmail1, isUserLength2, isUserLength3, isMatchingPW3;
   if (checkEmptyInput(inputs[0]) == false) {
-    var isUserLength0 = checkLength(inputs[0], 3, 8);
+    isUserLength0 = checkLength(inputs[0], 3, 8);
+  } else {
+    isUserLength0 = true;
   }
   if (checkEmptyInput(inputs[1]) == false) {
-    var isEmail1 = checkEmail(inputs[1]);
+    isEmail1 = checkEmail(inputs[1]);
+  } else {
+    isEmail1 = true;
   }
   if (checkEmptyInput(inputs[2]) == false) {
-    var isUserLength2 = checkLength(inputs[2], 3, 8);
+    isUserLength2 = checkLength(inputs[2], 3, 8);
+  } else {
+    isUserLength2 = true;
   }
   if (checkEmptyInput(inputs[3]) == false) {
-    var isUserLength3 = checkLength(inputs[3], 3, 8);
-    var isMatchingPW3 = checkMathingPassword(inputs[2], inputs[3]);
+    isUserLength3 = checkLength(inputs[3], 3, 8);
+    isMatchingPW3 = checkMathingPassword(inputs[2], inputs[3]);
+  } else {
+    isUserLength3 = true;
+    isMatchingPW3 = true;
   }
+  let checkAccount = usersAccount.find((item) => {
+    return item.user_name == inputs[0].value;
+  });
   if (
     !isUserLength0 &&
     !isEmail1 &&
@@ -211,6 +214,33 @@ registerContent.addEventListener("submit", (e) => {
     !isUserLength3 &&
     !isMatchingPW3
   ) {
+    if (checkAccount != undefined) {
+      alert("Tai khoản đã tồn tại\nVui lòng chọn tài khoản khác");
+    } else {
+      alert("Đăng kí thành công");
+      iconForm.click();
+      let id = usersAccount.length;
+      let user = {
+        id: ++id,
+        user_name: inputs[0].value,
+        email: inputs[1].value,
+        pw: inputs[2].value,
+        isActive: true,
+      };
+      usersAccount.push(user);
+      localStorage.setItem("usersAccount", JSON.stringify(usersAccount));
+      usersAccount = JSON.parse(localStorage.getItem("usersAccount"));
+    }
+  }
+  /*if (
+    !isUserLength0 &&
+    !isEmail1 &&
+    !isUserLength2 &&
+    !isUserLength3 &&
+    !isMatchingPW3 &&
+    checkAccount
+  ) 
+   {
     iconForm.click();
     let id = 100;
     let user = {
@@ -219,16 +249,28 @@ registerContent.addEventListener("submit", (e) => {
       email: inputs[1].value,
       pw: inputs[2].value,
     };
-    console.log(user);
-    let data = registerAccount;
-    if (data.length !== 0) {
-      let user = localStorage.getItem("registerAccount");
-      data = JSON.parse(user);
+    let data = JSON.parse(localStorage.getItem("registerAccount"));
+    if (data == null) {
+      // localStorage.setItem("registerAccount", JSON.stringify([]));
+      data = [];
     }
-    data.push(user);
-    let json = JSON.stringify(data);
-    localStorage.setItem("registerAccount", json);
-  }
+    let checkAccountLogin = usersAccount.some((item) => {
+      return (item.user_name = user.user_name);
+    });
+    let checkAccountRegister = data.some((item) => {
+      return (item.user_name = user.user_name);
+    });
+    console.log(checkAccountLogin);
+    console.log(checkAccountRegister);
+    if (checkAccountLogin || checkAccountRegister) {
+      alert("Tài khoản đã tồn tại");
+      resetInput(inputs);
+    } else {
+      data.push(user);
+    }
+    console.log(data);
+    localStorage.setItem("registerAccount", JSON.stringify(data));
+  } */
 });
 
 // hàm reset ô input khi login sai thông tin
@@ -242,10 +284,10 @@ function resetInput(inputs) {
 function checkLength(input, min, max) {
   input.value = input.value.trim();
   if (input.value.length < min) {
-    setErrorMessage(input, `Phải co ít nhất ${min} ký tự`);
+    setErrorMessage(input, `Không được dưới ${min} ký tự`);
     return true;
   } else if (input.value.length > max) {
-    setErrorMessage(input, `Phải co ít nhất ${max} ký tự`);
+    setErrorMessage(input, `Không được quá ${max} ký tự`);
     return true;
   } else {
     setSuccessMessage(input);
@@ -301,6 +343,25 @@ function checkEmail(input) {
     return true;
   }
 }
+/* 
+function validatePhoneNumber(input_str) {
+  var re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+
+  return re.test(input_str);
+} */
+function checkPhone(input) {
+  input.value = input.value.trim();
+  let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+
+  if (!regex.test(input.value)) {
+    setErrorMessage(input, "số điện thoai không hợp lệ");
+    return true;
+  } else {
+    setSuccessMessage(input);
+    return false;
+  }
+}
+
 function setErrorMessage(input, message) {
   input.classList.add("error");
   input.classList.remove("success");
@@ -339,14 +400,4 @@ register.addEventListener("click", () => {
 });
 usersAccount.some((item) => {
   return;
-});
-const btnInfo = document.querySelector(".header__login-info");
-const infoOverlay = document.querySelector(".info__overlay");
-const infoContainer = document.querySelector(".info__container");
-btnInfo.addEventListener("click", () => {
-  infoOverlay.classList.toggle("show");
-  infoContainer.classList.toggle("show");
-});
-infoOverlay.addEventListener("click", () => {
-  btnInfo.click();
 });
