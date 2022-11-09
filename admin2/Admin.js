@@ -5,7 +5,7 @@ const btn_donhang = document.querySelector(".btn_Orders");
 const btn_taikhoan = document.querySelector(".btn_User");
 const btn_addSP = document.querySelector(".btn_addSP");
 const pagenumber_SP = document.querySelector(".pagenumber");
-
+//dung ngu
 btn_subSP.addEventListener("click", show);
 
 // prevent FORM form reset
