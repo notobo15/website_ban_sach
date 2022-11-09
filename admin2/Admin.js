@@ -7,7 +7,7 @@ const btn_addSP = document.querySelector(".btn_addSP");
 const pagenumber_SP = document.querySelector(".pagenumber");
 //dung ngu
 btn_subSP.addEventListener("click", show);
-
+//Vinh ngu
 // prevent FORM form reset
 const prevent = (pre_ev) =>{
   pre_ev.preventDefault();
