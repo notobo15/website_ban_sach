@@ -131,6 +131,9 @@ header {
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
 }
+.header__icon-search{
+  display: none;
+}
 .header__menu > span:nth-child(1) {
   top: calc(50% - 7px);
 }

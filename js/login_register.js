@@ -13,7 +13,9 @@ formTitle.forEach((item) => {
 
 const iconForm = document.querySelector(".header__login-btn-login");
 const registerIcon = document.querySelector(".header__login-btn-register");
-
+const control_login_logout = document.querySelectorAll('.header__submenu-item');
+const btnLogin = control_login_logout[0];
+const btnSignup = control_login_logout[1];
 const form = document.querySelector(".login_form_content");
 const login = document.querySelector(".login_form_header-login");
 const register = document.querySelector(".login_form_header-register");
@@ -31,6 +33,18 @@ const linkAdmin = document.querySelector(".header__login-go-to-admin");
 
 let registerAccount = [];
 
+
+btnSignup.onclick = function () {
+  iconForm.click();
+  menuList.style.width = "0";
+  overplay.style.display = "none";
+}
+
+btnLogin.onclick = function () {
+  registerIcon.click();
+  menuList.style.width = "0";
+  overplay.style.display = "none";
+}
 // LOG OUT
 btnLogout.addEventListener("click", () => {
   if (localStorage.getItem("userLoginCurrent") !== null) {
