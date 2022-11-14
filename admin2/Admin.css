@@ -332,11 +332,28 @@ table {
 
 .view_image {
   position: absolute;
-  left: 900px;
+  left: 890px;
   top: 88px;
   border: 1px solid black;
   width: 250px;
   height: 250px;
+}
+
+.add_Img_input{
+  position: absolute;
+  right:  0;
+  top: 340px;
+  display: none;
+}
+.add_Img_input span{
+  color: black;
+}
+.add_Img_input input {
+  width: 180px;
+  color: black;
+}
+.add_Img_input button {
+  color: black;
 }
 
 .btn__addImage_SP {
@@ -344,6 +361,7 @@ table {
   right: 0;
   bottom: 0;
   color: black;
+  
 }
 
 .btn_XacNhan_Add_SP {

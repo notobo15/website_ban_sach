@@ -5,9 +5,7 @@ const btn_donhang = document.querySelector(".btn_Orders");
 const btn_taikhoan = document.querySelector(".btn_User");
 const btn_addSP = document.querySelector(".btn_addSP");
 const pagenumber_SP = document.querySelector(".pagenumber");
-//dung ngu
 btn_subSP.addEventListener("click", show);
-//Vinh ngu
 // prevent FORM form reset
 const prevent = (pre_ev) =>{
   pre_ev.preventDefault();
@@ -65,7 +63,7 @@ function showSP(arr, tBody) {
     <tr>
     <td>${++temp}</td>
     <td>${item.id}</td>
-    <td>${item.title}</td>
+    <td>${item.shortName}</td>
     <td class="text">${item.description}</td>
     <td>${item.currentPrice}đ</td>
     <td>
@@ -198,6 +196,14 @@ const input_TenTG = document.getElementById("input_TenTG")
 const input_GiaSP_bandau = document.getElementById("input_GiaSP_bandau");
 const input_GiaSP_banra = document.getElementById("input_GiaSP_banra");
 const txtArea_ChiTiet = document.getElementById("txtArea_ChiTiet");
+const btn__addImage_SP = document.querySelector(".btn__addImage_SP");
+const div_add_Img_input = document.querySelector(".add_Img_input");
+const input_LinkImg = document.querySelector("#linkImg");
+
+btn__addImage_SP.onclick = function(){
+  div_add_Img_input.style.display = "block";
+  btn__addImage_SP.disabled = true;
+}
 
 function addSP() {
   let list_Books = localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")) : [];
@@ -211,21 +217,25 @@ function addSP() {
     description: txtArea_ChiTiet.value
   })
   localStorage.setItem("list-books", JSON.stringify(list_Books))
-  
 }
 
 function renderSanPham() {
   console.log(books);
   let list_Books = JSON.parse(localStorage.getItem("list-books")) ;
   list_Books.forEach((item) =>{
-    
-    return books.push(item);
+
+    books.push(item);
   })
   console.log(books);
 }
-renderSanPham();
+renderSanPham(); 
+// phải đủ 3 sản phẩm 1 trang thì hệ thống mới render.
+// ví dụ trang đang có 3 sp thứ tự 1 2 3 thì phải thêm  .
+// thì phải thêm sản phẩm thứ tự 4 5 6 thì hệ thống mới render show sản phẩm.
+
 
 btn_XacNhan_Add_SP.onclick = function () {
+  console.log(1);
   addSP();
   renderSanPham();
   document.forms[0].reset();  // setText = "" for all input in form "form_add_sanpham".
