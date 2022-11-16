@@ -10,12 +10,12 @@
     .container__row-card {
         width: calc(25% - 20px);
     }
-
+   
     .header {
         background: rgb(209, 111, 111);
     }
 
-    .header__search {
+    .header__search{
         display: none;
     }
 
@@ -35,6 +35,25 @@
     #modal {
         width: 80%;
     }
+    .toolbar__search {
+        flex-direction: column;
+    }
+    .toolbar__search-icon{
+        font-size: 16px;
+        margin-left: 20px;
+        padding: 12px 24px;
+        background: red;
+        color: #fff;
+        border: none;
+    }
+    .price-range{
+        margin-top: 20px;
+        margin-lefT: 92px;
+    }
+
+    .card{
+        width: calc(25% - 14px);
+    }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -50,23 +69,38 @@
         margin-right: 10px;
     }
 
+    .header__icon-search {
+        display: block;
+    }
+
     .login_form_content {
         width: 50%;
     }
+    
 }
 
 @media (max-width: 767px) {
     header {
         justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;;
     }
-
+    .header__wrapper-menu {
+        margin-left:22px;
+    }
     .header__logo {
-        width: 100%;
+        width: 50%;
     }
 
     .header__logo img {
-        width: 30%;
+        width: 50%;
         margin: 0 auto;
+    }
+    .header__right{
+        margin-right:50px;
+    }
+    .header__icon-search {
+        display: block;
     }
 
     .container__row-card {
@@ -74,7 +108,7 @@
     }
 
     #modal {
-       
+
         /* display: block; */
         /* left: calc(50% - 300px); */
 
@@ -113,9 +147,7 @@
         width: calc(50% - 8px);
     }
 
-    .header__right {
-        margin-right: 10px;
-    }
+   
 
     .header__menu {
         display: block;
@@ -133,6 +165,18 @@
         /* position: fixed;
         bottom: 0; */
     }
+    .card{
+        width: calc(33.3333% - 14px);
+    }
+    .header__right i{
+        font-size:28px;
+    }
+    .cart>span {
+        display:none;
+    }
+    .header__login>span{
+        display:none;
+    }
 }
 
 @media (max-width: 468px) {
@@ -148,9 +192,9 @@
         width: 100%;
     }
 
-    .header__login {
+    /* .header__login {
         display: none;
-    }
+    } */
 
     .login_form_content {
         width: 95%;
@@ -164,5 +208,8 @@
         width: 90%;
         display: block;
         left: calc(50% - 180px);
+    }
+    .card{
+        width: calc(50% - 14px);
     }
 }

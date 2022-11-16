@@ -1,18 +1,30 @@
 const container_content = document.querySelector(".container-content");
 const pagination_element = document.getElementById("pagination");
-
 let current_page = 1;
-let rows =10;
+let rows= 10 ;
+var widthBrowser = document.body.offsetWidth;
+window.addEventListener("resize", function (event) {
+  console.log(document.body.offsetWidth);
+  widthBrowser = document.body.offsetWidth;
+})
+
+if (widthBrowser < 1024) {
+  rows = 8;
+} if (widthBrowser < 767) {
+  rows = 6;
+} if (widthBrowser < 468) {
+  rows = 4;
+}
 
 function DisplayList(items, rows_per_page, page) {
+  console.log(page);
   page--;
   console.log(rows_per_page, page);
-
   let start = rows_per_page * page;
   let end = start + rows_per_page;
   console.log(start, end);
   let paginatedItems = items.slice(start, end);
-
+  console.log(paginatedItems);
   renderData(paginatedItems);
 }
 /* ======================== */
@@ -20,16 +32,15 @@ function renderData(dataArr) {
   const container = document.querySelector(".container-content");
   let htmls = "";
   dataArr.forEach((item) => {
-    htmls += `<div class="card element${item.id}" onclick="showItemDetail(${
-      item.id
-    })"  >
+    htmls += `<div class="card element${item.id}" onclick="showItemDetail(${item.id
+      })"  >
                 <img class="card__img" src="${item.srcImg[0]}" />  
                 <div class="card__title">${item.title}</div>
                 <div class="card__footer"> 
                 <div class="card__item__Price">${numbertoVND(item.price)}</div>
                 <div class="card__item__currentPrice">${numbertoVND(
-                  item.currentPrice
-                )}</div>
+        item.currentPrice
+      )}</div>
                 </div>
                 
             </div>
@@ -39,7 +50,10 @@ function renderData(dataArr) {
 }
 function SetupPagination(items, wrapper, rows_per_page) {
   wrapper.innerHTML = "";
+  console.log(items);
+  console.log(rows_per_page);
   let page_count = Math.ceil(items.length / rows_per_page);
+  console.log(page_count);
   for (let i = 1; i < page_count + 1; i++) {
     let btn = PaginationButton(i, items, rows_per_page);
     console.log(111111);
@@ -56,7 +70,6 @@ function PaginationButton(page, items, rowss) {
   button.addEventListener("click", function () {
     current_page = page;
     DisplayList(items, rowss, current_page);
-
     let current_btn = document.querySelector(".pagenumbers button.active");
     current_btn.classList.remove("active");
 
@@ -102,8 +115,8 @@ function showItemDetail(id) {
               <div>
               
                 <div class="card__currentPrice">${numbertoVND(
-                  item.currentPrice
-                )}</div>
+        item.currentPrice
+      )}</div>
                 <div class="card__price">${numbertoVND(item.price)}</div>
               </div>
               <p>Số Lượng</p>
@@ -113,9 +126,8 @@ function showItemDetail(id) {
               <button class="cart__btn__up"><img src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg" alt="add-icon"></button>
               
               </div>
-              <button class="btn-add-to-cart" onclick="getIdCart(${
-                item.id
-              })">Thêm vào giỏ hàng</button>
+              <button class="btn-add-to-cart" onclick="getIdCart(${item.id
+        })">Thêm vào giỏ hàng</button>
           </div>
           </div>
           <div class="card__description">

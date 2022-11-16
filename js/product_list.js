@@ -58,7 +58,7 @@ function showAllProducts(nameCategory) {
     if (item.getAttribute("value") == nameCategory) item.click();
   });
   window.scrollTo(0, 0);
-
+  
   // const banner = document.querySelector(".banner");
   // const toolbar = document.querySelector(".toolbar__search");
   // const container = document.querySelector(".container-content");
