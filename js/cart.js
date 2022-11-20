@@ -1,6 +1,3 @@
-let userCart = [];
-
-console.log(userCart);
 const itemsCart = document.querySelector(".list__cart");
 const cartBtnClose = document.querySelector(".cart__btnClose");
 const cartOverlay = document.querySelector(".cart__overlay");
@@ -10,6 +7,24 @@ const cartItemList = document.querySelector(".cart__items");
 const noCart = document.querySelector(".cart__noCart");
 const footer = document.querySelector(".cart__footer");
 const cartCount = document.querySelector(".cart__counter");
+let userCart = [];
+
+if (localStorage.getItem("userCart") == null) {
+  localStorage.setItem("userCart", JSON.stringify(userCart));
+  userCart = JSON.parse(localStorage.getItem("userCart"));
+} else {
+  userCart = JSON.parse(localStorage.getItem("userCart"));
+
+  noCart.classList.add("disable");
+  cartItemList.classList.add("show");
+  cartCount.innerHTML = userCart.length;
+  renderCart(userCart);
+}
+if (userCart.length == 0) {
+  noCart.classList.remove("disable");
+  cartItems.classList.remove("show");
+}
+console.log(userCart);
 
 // console.log(itemsCart);
 // console.log(cartBtnClose);
@@ -28,18 +43,22 @@ function handleQuantity(userCart) {
   userCart.forEach((item, index) => {
     btnDown[index].addEventListener("click", () => {
       if (inputQuantity[index].value <= 1) {
-        deleteItem(userCart[index].id);
+        // deleteItem(userCart[index].id);
         inputQuantity[index].value = 1;
       } else {
         inputQuantity[index].value--;
         userCart[index].quantity--;
       }
+      localStorage.setItem("userCart", JSON.stringify(userCart));
+      userCart = JSON.parse(localStorage.getItem("userCart"));
       renderCart(userCart);
     });
     btnUp[index].addEventListener("click", () => {
       userCart[index].quantity++;
       inputQuantity[index].value++;
       console.log(userCart);
+      localStorage.setItem("userCart", JSON.stringify(userCart));
+      userCart = JSON.parse(localStorage.getItem("userCart"));
       renderCart(userCart);
     });
   });
@@ -100,6 +119,9 @@ function getIdCart(id) {
   const modalOverlay = document.querySelector(".modal-overlay");
   modal.classList.remove("show");
   modalOverlay.classList.remove("show");
+  localStorage.setItem("userCart", JSON.stringify(userCart));
+  userCart = JSON.parse(localStorage.getItem("userCart"));
+  renderCart(userCart);
 }
 function handleOrder() {
   let user = localStorage.getItem("userLoginCurrent");
@@ -164,19 +186,23 @@ function deleteItem(id) {
   let confirmDelete = confirm("Bạn có chắc chắn muốn xóa");
   if (confirmDelete === true) {
     // eDelete.parentNode.remove();
-    let index = userCart.forEach((i, indx) => {
+    console.log(id);
+    userCart.forEach((i, indx) => {
+      console.log(i);
       if (i.id === id) {
         console.log(indx);
         userCart.splice(indx, 1);
         cartCount.innerText = userCart.length;
       }
     });
+    localStorage.setItem("userCart", JSON.stringify(userCart));
+    userCart = JSON.parse(localStorage.getItem("userCart"));
     renderCart(userCart);
     // let e = document.querySelector(".cart__total p");
     // e.innerHTML = numbertoVND(renderMoneyCurrent(userCart));
     if (userCart.length === 0) {
       noCart.classList.remove("disable");
-      footer.classList.add("disable");
+      document.querySelector(".cart__footer").style.display = "none";
     }
   }
 }
@@ -191,6 +217,7 @@ function renderMoneyCurrent(list) {
 }
 
 function renderCart(userCart) {
+  cartItemList.innerHTML = "";
   let moneyCount = 0;
   let htmls = "";
   userCart.forEach((item, index) => {
@@ -219,8 +246,8 @@ function renderCart(userCart) {
 
     <div class="cart__item__price"> ${numbertoVND(item.currentPrice)}</div>
     
-    <div class="cart__item__trash" onclick="deleteItem(this, ${item.id})">
-      <i class="fa-solid fa-delete-left"></i>
+    <div class="cart__item__trash" onclick="deleteItem(${item.id})">
+    <i class="fa-solid fa-trash"></i>
     </div>  
     </div>
   `;
@@ -235,6 +262,7 @@ function renderCart(userCart) {
         </div>
         <button onclick="return handleOrder()" class="cart__btnOrder">Đặt Hàng</button>
       `;
+
   cartItemList.innerHTML = htmls + cartFooter;
   handleQuantity(userCart);
 }

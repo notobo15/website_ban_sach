@@ -15,7 +15,7 @@
 
 #modal {
     background-color: #fff;
-    max-width: 800px;
+    width: 75%;
     max-height: 95vh;
     position: absolute;
     border-radius: 5px;

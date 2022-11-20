@@ -2,7 +2,7 @@ let numberItems = 10;
 
 function renderProducts(arrProducts, element, nameCategory) {
   let htmls = "";
-  let i = 1;
+  let i = 0;
   let filterList = arrProducts.filter((item) => {
     if (item.category == nameCategory && i < numberItems) {
       i++;

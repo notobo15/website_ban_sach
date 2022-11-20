@@ -38,7 +38,7 @@
     
     <div class="header__logo">
       <a href="." class="">
-        <img src="./images/fahasa.png" />
+        <img alt="img-logo" src="./images/fahasa.png" />
       </a>
     </div>
 
@@ -51,7 +51,6 @@
     <div class="header__right">
       <div class="cart">
         <i class="fa-sharp fa-solid fa-cart-shopping"></i>
-        <!-- <i class="fa-solid fa-bag-shopping"></i> -->
         <p class="cart__counter">0</p>
         <span>Giỏ Hàng</span>
       </div>
@@ -59,7 +58,7 @@
       <div class="header__login">
         <div class="header__login-img">
           <i class="fa-regular fa-user header__login-icon show"></i>
-          <img class="header__login_avatar" src="./images/avatar_users/2.jpg" />
+          <img  alt="img-avata" class="header__login_avatar" src="./Images/avt_login.png" />
           <ul class="header__login-menu">
             <li>
               <button class="header__login-btn-login">Đăng Nhập</button>
@@ -478,7 +477,9 @@
         <p class="cart__btnClose">
           <i class="fa-solid fa-xmark"></i>
         </p>
-        <div class="cart__heading">Giỏ Hàng</div>
+        <div class="cart__heading">
+          <span>Giỏ Hàng</span>
+        </div>
       </div>
       <div class="cart__noCart">
         Giỏ hàng của bạn đang trống
@@ -531,9 +532,13 @@
   <div class="info">
     <div class="info__overlay"></div>
     <div class="info__container">
-      <h2>THÔNG TIN TÀI KHOẢN</h2>
+      <p class="info__btnClose">
+        <i class="fa-solid fa-xmark"></i>
+      </p>
+      <h3 class="info__containe__heading">THÔNG TIN TÀI KHOẢN</h3>
 
       <form>
+        <div class="info__main">
         <div class="info__user">
           <div class="form_group">
             <label for="">Họ và Tên Đệm</label>
@@ -545,41 +550,48 @@
             <input type="text" placeholder="" required />
             <span class="form_message"></span>
           </div>
+          
           <div class="form_group">
             <label for="">Số điện thoại</label>
-            <input type="text" placeholder="Nhập số diện thoại" />
+            <input type="tel"  pattern="[0-9]{10}" placeholder="0123456789" required />
+            <span class="form_message"></span>
+          </div>
+          <div class="form_group">
+            <label for="">Ngày sinh</label>
+            <input type="date" required/>
             <span class="form_message"></span>
           </div>
         </div>
         <div class="address__user">
           <div class="form_group">
             <label for="">Tỉnh/Thành phố </label>
-            <select required id="region_id" name="region_id" defaultvalue="">
+            <select required id="region_id" name="region_id" value="" required>
               <option>Vui lòng chọn</option>
             </select>
           </div>
           <div class="form_group">
             <label for="">Quận/Huyện</label>
-            <select required id="city_id" name="city_id" defaultvalue="">
-              <!-- <option>Vui lòng chọn</option> -->
+            <select required id="city_id" name="city_id" value="" required>
+              <option>Vui lòng chọn</option>
             </select>
           </div>
           <div class="form_group">
             <label for="">Xã/Phường</label>
-            <select required id="ward_id" name="ward_id" defaultvalue="">
-              <!-- <option>Vui lòng chọn</option> -->
+            <select required id="ward_id" name="ward_id" value="" required>
+              <option>Vui lòng chọn</option>
             </select>
           </div>
           <div class="form_group">
             <label for="">Số Nhà/Đường/Hẽm</label>
             <input type="text" placeholder="Ví dụ: 1 Đường ABC ..." />
             <span class="form_message"></span>
-          </div>
+          </div>    
+        </div>
+      </div>
+        <div class="form__info-btn-save">
+          <button type="submit">Lưu Thông Tin</button>
         </div>
       </form>
-      <div class="form__info-btn-save">
-        <button class="">Lưu</button>
-      </div>
     </div>
   </div>
   <footer>
@@ -635,13 +647,13 @@
   </footer>
 </body>
 
+<script src="./js/callAPIProvinces.js"></script>
 <script src="./js/toolbar_search.js"></script>
 <script src="./js/pagination.js"></script>
 <script src="./js/product_list.js"></script>
 <script src="./js/slider.js"></script>
 <script src="./js/cart.js"></script>
 <script src="./js/login_register.js"></script>
-<script src="./js/callAPIProvinces.js"></script>
 <script src="./js/info_user.js"></script>
 <script src="./js/orders.js"></script>
 <script src="./js/search.js"></script>

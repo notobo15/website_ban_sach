@@ -1,6 +1,8 @@
 const btnInfo = document.querySelector(".header__login-info");
 const infoOverlay = document.querySelector(".info__overlay");
 const infoContainer = document.querySelector(".info__container");
+const btnInfoClose = document.querySelector(".info__btnClose");
+console.log(btnInfoClose);
 btnInfo.addEventListener("click", () => {
   infoOverlay.classList.toggle("show");
   infoContainer.classList.toggle("show");
@@ -8,121 +10,80 @@ btnInfo.addEventListener("click", () => {
 infoOverlay.addEventListener("click", () => {
   btnInfo.click();
 });
+btnInfoClose.addEventListener("click", () => {
+  btnInfo.click();
+});
+
 const formInfo = document.querySelector(".info__container > form");
 const inputs = formInfo.querySelectorAll("input");
+console.log(inputs);
 const btnSave = document.querySelector(".form__info-btn-save > button");
 const selects = formInfo.querySelectorAll("select");
 
-let infoAcc = JSON.parse(localStorage.getItem("userLoginCurrent"));
-let info = JSON.parse(localStorage.getItem("info"));
+let userLoginCurrent = JSON.parse(localStorage.getItem("userLoginCurrent"));
 
-if (info == null) {
-  localStorage.setItem("info", JSON.stringify([]));
+if (userLoginCurrent) {
+  inputs[0].value = userLoginCurrent.last_name;
+  inputs[1].value = userLoginCurrent.first_name;
+  inputs[2].value = userLoginCurrent.phone;
+  inputs[3].value = userLoginCurrent.birth_date;
+  inputs[4].value = userLoginCurrent.address_details;
 }
-let checkInfo;
-if (infoAcc != null) {
-  checkInfo = info.find((item) => {
-    return item.id_user == infoAcc.id;
-  });
-}
-console.log(selects[0].value);
-console.log(selects[1].value);
-console.log(selects[2].value);
+window.onload = () => {
+  selects[0].value = userLoginCurrent.address_province;
+  selects[0].click();
 
-if (checkInfo) {
-  // let user = JSON.parse(localStorage.getItem("info"));
-  inputs[0].value = checkInfo.lastName;
-  inputs[1].value = checkInfo.firstName;
-  inputs[2].value = checkInfo.phone;
-  inputs[3].value = checkInfo.addressHome;
-
-  window.onload = () => {
-    selects[0].value = checkInfo.province;
-    selects[0].click();
-
+  setTimeout(() => {
+    selects[1].value = userLoginCurrent.address_district;
+    selects[1].click();
     setTimeout(() => {
-      console.log(selects[1][1]);
-      selects[1].value = checkInfo.city;
-      selects[1].click();
-      setTimeout(() => {
-        console.log(selects[2][1]);
-        selects[2].value = checkInfo.ward;
-      }, 1000);
-    }, 700);
-  };
+      selects[2].value = userLoginCurrent.address_ward;
+    }, 1000);
+  }, 800);
+};
 
-  function selectElement(id, valueToSelect) {
-    let element = document.getElementById(id);
-    console.log(element[0]);
-    element.value = valueToSelect;
-  }
-}
-btnSave.addEventListener("click", () => {
-  //   console.log($("#region_id option:selected").text());
-  const select = formInfo.querySelectorAll("select option:checked");
-  /* select.forEach((item) => {
-    console.log(item);
-    item.createAttribute("selected");
-  }); */
-  let id_user = JSON.parse(localStorage.getItem("userLoginCurrent")).id;
-  let isUserLastName, isUserFirstName, isUserPhone;
-  if (checkEmptyInput(inputs[0]) == false) {
-    isUserLastName = checkLength(inputs[0], 1, 26);
-  } else {
-    isUserLastName = true;
-  }
-  if (checkEmptyInput(inputs[1]) == false) {
-    isUserFirstName = checkLength(inputs[1], 3, 8);
-  } else {
-    isUserFirstName = true;
-  }
-  if (checkEmptyInput(inputs[2]) == false) {
-    isUserPhone = checkPhone(inputs[2]);
-  } else {
-    isUserPhone = true;
-  }
+formInfo.addEventListener("submit", (e) => {
+  e.preventDefault();
+  // let isUserLastName, isUserFirstName, isUserPhone;
+  // if (checkEmptyInput(inputs[0]) == false) {
+  //   isUserLastName = checkLength(inputs[0], 1, 26);
+  // } else {
+  //   isUserLastName = true;
+  // }
+  // if (checkEmptyInput(inputs[1]) == false) {
+  //   isUserFirstName = checkLength(inputs[1], 3, 8);
+  // } else {
+  //   isUserFirstName = true;
+  // }
+  // if (checkEmptyInput(inputs[2]) == false) {
+  //   isUserPhone = checkPhone(inputs[2]);
+  // } else {
+  //   isUserPhone = true;
+  // }
 
-  if (!isUserLastName && !isUserFirstName && !isUserPhone) {
-    // var is = checkLength(inputs[1], 3, 8);
-    user = {
-      id_user: id_user,
-      lastName: inputs[0].value,
-      firstName: inputs[1].value,
-      phone: inputs[2].value,
-      province: select[0].value,
-      city: select[1].value,
-      ward: select[2].value,
-      addressHome: inputs[3].value,
-    };
-
-    let checkDouble = info.some((item) => {
-      return item.id_user == user.id_user;
-    });
-
-    if (checkDouble == false) {
-      user = {
-        id_user: id_user,
-        lastName: inputs[0].value,
-        firstName: inputs[1].value,
-        phone: inputs[2].value,
-        province: select[0].value,
-        city: select[1].value,
-        ward: select[2].value,
-        addressHome: inputs[3].value,
-      };
-    } else {
-      info.forEach((item, index) => {
-        if (item.id_user == user.id_user) {
-          info[index] = user;
-        }
-      });
+  // if (!isUserLastName && !isUserFirstName && !isUserPhone) {
+  // }
+  userLoginCurrent.last_name = inputs[0].value;
+  userLoginCurrent.first_name = inputs[1].value;
+  userLoginCurrent.phone = inputs[2].value;
+  userLoginCurrent.birth_date = inputs[3].value;
+  userLoginCurrent.address_details = inputs[4].value;
+  userLoginCurrent.address_province = selects[0].value;
+  userLoginCurrent.address_district = selects[1].value;
+  userLoginCurrent.address_ward = selects[2].value;
+  console.log(userLoginCurrent);
+  localStorage.setItem("userLoginCurrent", JSON.stringify(userLoginCurrent));
+  for (let i = 0; i < usersAccount.length; i++) {
+    if (userLoginCurrent.id == userLoginCurrent.id) {
+      usersAccount[i].last_name = inputs[0].value;
+      usersAccount[i].first_name = inputs[1].value;
+      usersAccount[i].phone = inputs[2].value;
+      usersAccount[i].birth_date = inputs[3].value;
+      usersAccount[i].address_details = inputs[4].value;
+      usersAccount[i].address_province = selects[0].value;
+      usersAccount[i].address_district = selects[1].value;
+      usersAccount[i].address_ward = selects[2].value;
     }
-
-    if (info.length == 0 || checkDouble == false) {
-      info.push(user);
-    }
-    infoOverlay.click();
-  } else {
   }
-  localStorage.setItem("info", JSON.stringify(info));
+  localStorage.setItem("usersAccount", JSON.stringify(usersAccount));
 });
