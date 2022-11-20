@@ -238,6 +238,16 @@ registerContent.addEventListener("submit", (e) => {
         email: inputs[1].value,
         pw: inputs[2].value,
         isActive: true,
+        first_name: "",
+        last_name: "",
+        phone: "0123456789",
+        birth_date: "",
+        address_province: "",
+        address_district: "",
+        address_ward: "",
+        address_details: "",
+        create_date: "1/1/2022",
+        account_type: 1,
       };
       usersAccount.push(user);
       localStorage.setItem("usersAccount", JSON.stringify(usersAccount));
