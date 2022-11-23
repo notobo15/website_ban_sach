@@ -38,8 +38,8 @@ window.onload = () => {
     selects[1].click();
     setTimeout(() => {
       selects[2].value = userLoginCurrent.address_ward;
-    }, 1000);
-  }, 800);
+    }, 3000);
+  }, 2000);
 };
 
 formInfo.addEventListener("submit", (e) => {

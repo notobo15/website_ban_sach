@@ -497,10 +497,14 @@
       <span class="order__container-btn-close">
         <i class="fa-solid fa-xmark"></i>
       </span>
-      <h1 style="text-align: center; padding: 14px 0 10px 0">
+      <h2 class="order__container__header">
         Đơn hàng đã mua
-      </h1>
-      <h3>Ban chua them gio hang</h3>
+      </h2>
+      <div class="order__content">
+        <h3 class="order__container__heading">Bạn chưa từng đặt hàng</h3>
+        <img class="order__container__img" src="https://bengo.vn/static/version1650994791/frontend/MageBig/martfury_layout01/vi_VN/images/empty-cart.svg" alt="">
+
+      </div>
       <table class="table">
         <thead>
           <tr>
@@ -536,7 +540,7 @@
         <i class="fa-solid fa-xmark"></i>
       </p>
       <h3 class="info__containe__heading">THÔNG TIN TÀI KHOẢN</h3>
-
+      
       <form>
         <div class="info__main">
         <div class="info__user">
@@ -553,7 +557,7 @@
           
           <div class="form_group">
             <label for="">Số điện thoại</label>
-            <input type="tel"  pattern="[0-9]{10}" placeholder="0123456789" required />
+            <input type="tel"  pattern="[0-9]{10}" placeholder="ex: 0123456789" required />
             <span class="form_message"></span>
           </div>
           <div class="form_group">

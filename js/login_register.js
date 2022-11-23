@@ -231,6 +231,10 @@ registerContent.addEventListener("submit", (e) => {
     } else {
       alert("Đăng kí thành công");
       iconForm.click();
+      let date = new Date();
+      let currentDate = `${date.getDate()}/${
+        date.getMonth() + 1
+      }/${date.getFullYear()}`;
       let id = usersAccount.length;
       let user = {
         id: ++id,
@@ -240,15 +244,17 @@ registerContent.addEventListener("submit", (e) => {
         isActive: true,
         first_name: "",
         last_name: "",
-        phone: "0123456789",
+        phone: "",
         birth_date: "",
         address_province: "",
         address_district: "",
         address_ward: "",
         address_details: "",
-        create_date: "1/1/2022",
+        create_date: currentDate,
         account_type: 1,
       };
+      console.log(user);
+
       usersAccount.push(user);
       localStorage.setItem("usersAccount", JSON.stringify(usersAccount));
       usersAccount = JSON.parse(localStorage.getItem("usersAccount"));
