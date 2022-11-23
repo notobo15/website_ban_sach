@@ -63,13 +63,15 @@ function showSP(arr, tBody) {
     <tr>
     <td>${++temp}</td>
     <td>${item.id}</td>
-    <td>${item.shortName}</td>
+    <td>${item.title}</td>
     <td class="text">${item.description}</td>
     <td>${item.currentPrice}đ</td>
     <td>
         <ul class="content_btn">
           <li class="btn_Sua"><img src="./img/btn_Sua.png" alt=""></li>
-          <li class="btn_Xoa"><img src="./img/btn_xoa.png" alt=""></li>
+          <li class="btn_Xoa"   onclick="return getIDSanPham(${
+            item.id
+          })"><img src="./img/btn_xoa.png" alt=""></li>
         </ul>
     </td>
     </tr>
@@ -239,4 +241,22 @@ btn_XacNhan_Add_SP.onclick = function () {
   addSP();
   renderSanPham();
   document.forms[0].reset();  // setText = "" for all input in form "form_add_sanpham".
+}
+//Xóa sản phẩm.
+const btn_XoaSP = document.querySelector(".btn_Xoa");
+console.log(btn_XoaSP);
+
+function getIDSanPham(id) {
+  console.log(id);
+  console.log(books);
+  let isConfirm = confirm("YES");
+  if (isConfirm == true) {
+    console.log(isConfirm);
+    const temp = books.filter((item) => {
+      return item.id != id;
+    });
+    books = temp;
+    console.log(books)
+  }
+  localStorage.setItem("list-books", JSON.stringify(books));
 }

@@ -36,9 +36,11 @@
     #modal {
         width: 80%;
     }
+
     .toolbar__search {
         flex-direction: column;
     }
+
     .toolbar__search-icon {
         font-size: 16px;
         margin-left: 20px;
@@ -47,6 +49,7 @@
         color: #fff;
         border: none;
     }
+
     .price-range {
         margin-top: 20px;
         margin-left: 92px;
@@ -89,9 +92,13 @@
         align-items: center;
         flex-wrap: nowrap;
     }
+    .price-range {
+        margin: 20px auto;
+    }
     .header__wrapper-menu {
         margin-left: 22px;
     }
+
     .header__logo {
         width: 50%;
     }
@@ -100,9 +107,11 @@
         width: 50%;
         margin: 0 auto;
     }
+
     .header__right {
         margin-right: 50px;
     }
+
     .header__icon-search {
         display: block;
     }
@@ -117,7 +126,9 @@
 
         /* transform: scale(1); */
     }
-
+    .price-range input {
+        max-width: 100px;
+    }
     .modal-body {
         flex-direction: column;
     }
@@ -127,7 +138,7 @@
         align-self: center;
     }
 
-    .modal-body-left > .card__img {
+    .modal-body-left>.card__img {
         width: 60%;
         margin: 10px auto;
         height: inherit;
@@ -146,7 +157,7 @@
         flex-wrap: wrap;
     }
 
-    .footer-container > div {
+    .footer-container>div {
         width: calc(50% - 8px);
     }
 
@@ -166,18 +177,35 @@
         /* position: fixed;
         bottom: 0; */
     }
+
     .card {
         width: calc(33.3333% - 14px);
     }
+
     .header__right i {
         font-size: 28px;
     }
-    .cart > span {
+
+    .cart>span {
         display: none;
     }
-    .header__login > span {
+
+    .header__login>span {
         display: none;
     }
+
+    .toolbar__search-range-title,
+    .toolbar__search-filter-title {
+        min-width: 130px;
+    }
+    .toolbar__search-title {
+        display:none;
+    }
+    .toolbar__search-icon {
+        padding:0 16px;
+    }
+
+
 }
 
 @media (max-width: 468px) {
@@ -189,7 +217,7 @@
         flex-direction: column;
     }
 
-    .footer-container > div {
+    .footer-container>div {
         width: 100%;
     }
 
@@ -210,6 +238,7 @@
         display: block;
         left: calc(50% - 180px);
     }
+
     .card {
         width: calc(50% - 14px);
     }
@@ -219,4 +248,5 @@
         padding: 10px;
         z-index: 999;
     }
+
 }
