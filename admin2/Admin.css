@@ -89,6 +89,8 @@ nav ul ul li a {
   width: 10px;
 }
 ::-webkit-scrollbar .Content_SP {
+  background-color: rgb(210, 243, 243);
+  width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
