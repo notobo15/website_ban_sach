@@ -13,6 +13,9 @@ function renderProducts(arrProducts, element, nameCategory) {
     //if (item.category == nameCategory) {
     htmls += `
       <div class="container__row-card" onclick="showItemDetail(${item.id})">
+      <div class="product__price--percent"><p>${Math.floor(
+        ((item.price - item.currentPrice) * 100) / item.price
+      )}%<p></div>
       <img src="${item.srcImg[0]}" />
       <div class="container__row-card-title">${item.title}</div>
       <div class="card__footer">
@@ -58,7 +61,7 @@ function showAllProducts(nameCategory) {
     if (item.getAttribute("value") == nameCategory) item.click();
   });
   window.scrollTo(0, 0);
-  
+
   // const banner = document.querySelector(".banner");
   // const toolbar = document.querySelector(".toolbar__search");
   // const container = document.querySelector(".container-content");

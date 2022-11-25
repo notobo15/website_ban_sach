@@ -10,16 +10,23 @@
     .container__row-card {
         width: calc(25% - 20px);
     }
-
+    .header__logo__img {
+        width: 100%;
+    }
     .header {
         background: rgb(209, 111, 111);
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
     }
 
     .header__search {
-        display: none;
+        /* display: none; */
+        width: 100%;
     }
-
+    .header__content {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
     .header__wrapper-menu {
         display: flex;
     }
@@ -84,6 +91,20 @@
     .login_form_content {
         width: 50%;
     }
+    .footer-container_right .footer_item:nth-child(1),
+    .footer-container_right .footer_item:nth-child(2) {
+        width: 50%;
+    }
+
+    .footer-container_right .footer_item:nth-child(3) {
+        width: 100%;
+        /* background: red; */
+    }
+
+    .footer-container_left,
+    .footer-container_right {
+        width: 50%;
+    }
 }
 
 @media (max-width: 767px) {
@@ -138,7 +159,7 @@
         align-self: center;
     }
 
-    .modal-body-left>.card__img {
+    .modal-body-left > .card__img {
         width: 60%;
         margin: 10px auto;
         height: inherit;
@@ -151,14 +172,6 @@
     .modal-body-right {
         width: 100%;
         align-self: center;
-    }
-
-    .footer-container {
-        flex-wrap: wrap;
-    }
-
-    .footer-container>div {
-        width: calc(50% - 8px);
     }
 
     .header__menu {
@@ -186,11 +199,11 @@
         font-size: 28px;
     }
 
-    .cart>span {
+    .cart > span {
         display: none;
     }
 
-    .header__login>span {
+    .header__login > span {
         display: none;
     }
 
@@ -199,26 +212,28 @@
         min-width: 130px;
     }
     .toolbar__search-title {
-        display:none;
+        display: none;
     }
     .toolbar__search-icon {
-        padding:0 16px;
-    }
-
-
-}
-
-@media (max-width: 468px) {
-    .container__row-card {
-        width: calc(50% - 20px);
+        padding: 0 16px;
     }
 
     .footer-container {
         flex-direction: column;
     }
-
-    .footer-container>div {
+    .footer-container_left {
         width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    }
+    .footer-container_right {
+        width: 100%;
+    }
+}
+
+@media (max-width: 468px) {
+    .container__row-card {
+        width: calc(50% - 20px);
     }
 
     /* .header__login {
@@ -249,4 +264,12 @@
         z-index: 999;
     }
 
+    .footer-container_right {
+        flex-direction: column;
+    }
+    .footer-container_right .footer_item {
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
 }
