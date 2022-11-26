@@ -251,24 +251,16 @@ function addSP() {
 }
 
 function renderSanPham() {
-  // console.log(books);
-  const temp = [];
+  const tempbooks = [];
   let list_Books = localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")) : [];
   // Đổ hai mảng vào 2 mảng tạm
   list_Books.forEach((item) => {
-    temp.push(item);
+    tempbooks.push(item);
   })
-  books = temp;
+  books = tempbooks;
   console.log(books);
   showSP(books, SPTbody);
 }
-
-
-
-// phải đủ 3 sản phẩm 1 trang thì hệ thống mới render.
-// ví dụ trang đang có 3 sp thứ tự 1 2 3 thì phải thêm  .
-// thì phải thêm sản phẩm thứ tự 4 5 6 thì hệ thống mới render show sản phẩm.
-
 
 btn_XacNhan_Add_SP.onclick = function () {
   // console.log(books);
@@ -279,36 +271,7 @@ btn_XacNhan_Add_SP.onclick = function () {
 // Xóa sản phẩm.
 const btn_XoaSP = document.querySelector(".btn_Xoa");
 console.log(btn_XoaSP);
-//f5 là làm mới và không mất những gì đã xóa
-// function getIDSanPham(id) {
-//   console.log(id);
-//   let list_Books =  localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")) : [];
-//   var temp_needDelete = [];
-//   var _deleted = [];
 
-//   books.forEach((item) =>{
-//     temp_needDelete.push(item);
-//   });
-//   list_Books.forEach((item) => {
-//     temp_needDelete.push(item);
-//   });
-
-//   let isConfirm = confirm("YES");
-//   if (isConfirm == true) {
-//     console.log(isConfirm);
-//     temp_needDelete.forEach((item)=>{
-//       if(item.id != id){
-//         console.log(id);
-//         _deleted.push(item);
-//       }
-//     });
-//     console.log(temp_needDelete);
-//     console.log(_deleted);
-//     showSP(_deleted,SPTbody);
-//   }
-// }
-
-//F5 là làm mới và mất những gì đã xóa
 function xoaSPtheoID(id) {
   const tempDelete = []; // mảng tạm chuẩn bị xóa 
   const tempDeleted = [];// mảng tạm đã xóa
