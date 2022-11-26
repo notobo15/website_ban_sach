@@ -253,7 +253,7 @@ function addSP() {
 function renderSanPham() {
   const tempbooks = [];
   let list_Books = localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")) : [];
-  // Đổ hai mảng vào 2 mảng tạm
+  // Đổ hai mảng vào mảng tạm
   list_Books.forEach((item) => {
     tempbooks.push(item);
   })
