@@ -281,7 +281,7 @@ function xoaSPtheoID(id) {
     tempDelete.push(item);
   });
   // nếu đồng ý xóa thì thực hiện 
-  let isConfirm = confirm("YES");
+  let isConfirm = confirm("Đồng ý xóa sản phẩm " +id+ " không ?");
   if (isConfirm == true) {
    tempDelete.forEach((item) => {
       if(item.id != id){
