@@ -12,8 +12,6 @@ var books = [
     srcImg: [
       "./images/skill_books/1.jpg",
       "./images/skill_books/1_1.jpg",
-      "./images/skill_books/1_2.jpg",
-      "./images/skill_books/1_3.jpg",
     ],
     description:
       "Ngữ pháp và từ vựng là hai mảng không thể thiếu trong quá trình học ngoại ngữ nói chung và học tiếng Anh nói riêng. Hai phạm trù này sẽ góp phần giúp chúng ta đạt được sự thành thạo về ngôn ngữ. Nếu như ngữ pháp có các quy tắc, có cấu trúc để tuân theo thì từ vựng lại không có bất cứ quy tắc nào",
@@ -43,13 +41,9 @@ var books = [
     title:
       "Muốn Thành Công Nói Không Với Trì Hoãn – 21 Nguyên Tắc Vàng Đập Tan Sự Trì Hoãn",
     shortName: "muon thanh cong noi khong voi tri hoan",
-    srcImg: [
-      "./images/skill_books/3.jpg",
-      "./images/skill_books/4.jpg",
-      "./images/skill_books/4.jpg",
-    ],
+    srcImg: ["./images/skill_books/3.jpg", "./images/skill_books/4.jpg"],
     price: 85200,
-    currentPrice: 30000,
+    currentPrice: 30000,  
     description:
       "Ngữ pháp và từ vựng là hai mảng không thể thiếu trong quá trình học ngoại ngữ nói chung và học tiếng Anh nói riêng. Hai phạm trù này sẽ góp phần giúp chúng ta đạt được sự thành thạo về ngôn ngữ. Nếu như ngữ pháp có các quy tắc, có cấu trúc để tuân theo thì từ vựng lại không có bất cứ quy tắc nào",
   },

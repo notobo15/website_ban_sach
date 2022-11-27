@@ -13,7 +13,10 @@ order.addEventListener("click", () => {
   containerTable.classList.toggle("show");
   let orders = JSON.parse(localStorage.getItem("orders"));
   // headerMenu.style.display = "none";
-  renderTableOrders(orders);
+  let tam = orders.filter((item) => {
+    return item.buyer_id == userLoginCurrent.id;
+  });
+  renderTableOrders(tam);
 });
 btnClose.addEventListener("click", () => {
   order.click();
@@ -21,15 +24,16 @@ btnClose.addEventListener("click", () => {
 orderOverlay.addEventListener("click", () => {
   order.click();
 });
+if (localStorage.getItem("orders") != null) {
+  let orders = JSON.parse(localStorage.getItem("orders"));
+  // headerMenu.style.display = "none";
+  let tam = orders.filter((item) => {
+    return item.buyer_id == userLoginCurrent.id;
+  });
+  renderTableOrders(tam);
+}
 function renderTableOrders(userCart) {
-  orders.forEach((item) => {
-    if(userLoginCurrent.user_name == item.buyer_id) {
-
-    }
-  
-
-  })
-  if (userCart.length > 0) {
+  if (userCart.length != 0) {
     table.classList.add("show");
     orderContent.classList.remove("show");
     let htmls = "";
@@ -55,5 +59,8 @@ function renderTableOrders(userCart) {
         `;
     });
     tableBody.innerHTML = htmls;
+  } else {
+    orderContent.classList.add("show");
+    // document.querySelector(".order__content").display = "block";
   }
 }

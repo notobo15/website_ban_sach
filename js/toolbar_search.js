@@ -92,16 +92,21 @@ btnSearchSubmit.addEventListener("click", () => {
     // toolbar.style.display = "flex";
   }
 });
+inputSearch.addEventListener("keypress", (e) => {
+  if (e.key == "Enter") {
+    btnSearchSubmit.click();
+  }
+});
 btnBack.addEventListener("click", () => {
   Banner("show");
   products_list("show");
   btnBack.classList.remove("show");
-
+  document.querySelector(".container-header").display = "none";
   inputSearch.value = "";
   toolbarForm.style.display = "none";
   container_content.style.display = "none";
   pagination_element.style.display = "none";
-  document.querySelector(".w").style.display = "none";
+  document.querySelector(".container-header").style.display = "none";
 });
 const categoryList = document.querySelectorAll(".toolbar__search-range-item");
 categoryList.forEach((item) => {
