@@ -92,11 +92,16 @@ btnSearchSubmit.addEventListener("click", () => {
     // toolbar.style.display = "flex";
   }
 });
+inputSearch.addEventListener("keypress", (e) => {
+  if (e.key == "Enter") {
+    btnSearchSubmit.click();
+  }
+});
 btnBack.addEventListener("click", () => {
   Banner("show");
   products_list("show");
   btnBack.classList.remove("show");
-
+  document.querySelector(".container-header").display = "none";
   inputSearch.value = "";
   toolbarForm.style.display = "none";
   container_content.style.display = "none";

@@ -76,7 +76,7 @@ overplay.onclick = function() {
     overplay.style.display = "none";
 }
 function showMenu() {
-    menuList.style.width = "350px";
+    menuList.style.width = "270px";
 }
 
 

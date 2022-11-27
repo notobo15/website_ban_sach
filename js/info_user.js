@@ -71,10 +71,9 @@ formInfo.addEventListener("submit", (e) => {
   userLoginCurrent.address_province = selects[0].value;
   userLoginCurrent.address_district = selects[1].value;
   userLoginCurrent.address_ward = selects[2].value;
-  console.log(userLoginCurrent);
   localStorage.setItem("userLoginCurrent", JSON.stringify(userLoginCurrent));
-  for (let i = 0; i < usersAccount.length; i++) {
-    if (userLoginCurrent.id == userLoginCurrent.id) {
+  for (let i = 0; i < usersAccount.length; i++) { 
+    if (userLoginCurrent.id == usersAccount[i].id) {
       usersAccount[i].last_name = inputs[0].value;
       usersAccount[i].first_name = inputs[1].value;
       usersAccount[i].phone = inputs[2].value;
@@ -83,6 +82,8 @@ formInfo.addEventListener("submit", (e) => {
       usersAccount[i].address_province = selects[0].value;
       usersAccount[i].address_district = selects[1].value;
       usersAccount[i].address_ward = selects[2].value;
+      alert("Thay đổi thông tin thành công !");
+      btnInfoClose.click();
     }
   }
   localStorage.setItem("usersAccount", JSON.stringify(usersAccount));

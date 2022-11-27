@@ -78,7 +78,7 @@ function PaginationButton(page, items, rowss) {
     DisplayList(items, rowss, current_page);
     let current_btn = document.querySelector(".pagenumbers button.active");
     current_btn.classList.remove("active");
-
+    window.scrollTo(0, 0);
     button.classList.add("active");
   });
 
@@ -124,8 +124,11 @@ function showItemDetail(id) {
                   item.currentPrice
                 )}</div>
                 <div class="card__price">${numbertoVND(item.price)}</div>
+                <span class="card__price__persent">-${Math.floor(
+                  ((item.price - item.currentPrice) * 100) / item.price
+                )}%</span>
               </div>
-              <p>Số Lượng</p>
+              <p class="card__quantity__label">Số Lượng</p>
               <div class="card__quantityInput" >
               <button class="cart__btn__down"><img src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg" alt="remove-icon"></button>
               <input type="text" class="cart__input__quantity" value="1">

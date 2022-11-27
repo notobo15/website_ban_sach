@@ -142,13 +142,6 @@ const OrderTbody = document.querySelector(".Content_Orders table tbody");
 // }
 //temp Do du lieu SP
 function showSP(arr, tBody) {
-  let list_Books = localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")) : [];
-  if (localStorage.getItem("list-books") == null) {
-    books.forEach((item) => {
-      list_Books.push(item);
-    });
-    localStorage.setItem("list-books", JSON.stringify(list_Books));
-  }
   let htmls = "";
   arr.forEach((item, indx) => {
     htmls += `
@@ -171,9 +164,7 @@ function showSP(arr, tBody) {
   });
   tBody.innerHTML = htmls;
 }
-
-showSP(books, SPTbody)
-
+showSP(books, SPTbody);
 // đổ dữ liệu User
 function showUser(arr, tBody) {
   let htmls = "";
@@ -250,26 +241,39 @@ function addSP() {
     shortName: input_TenSP.value,
     price: input_GiaSP_bandau.value,
     currentPrice: input_GiaSP_banra.value,
-
-    description: txtArea_ChiTiet.value
-
+    description: txtArea_ChiTiet.value,
   });
   localStorage.setItem("list-books", JSON.stringify(list_Books));
 }
 
 function renderSanPham() {
-
-  const tempbooks = [];
-  let list_Books = localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")) : [];
-  // Đổ hai mảng vào mảng tạm
+  tempOfBooks = [];
+  var tempOfLocalStorage_listBooks = [];
+  var merge_Added = [];
+  // console.log(books);
+  let list_Books = localStorage.getItem("list-books")
+    ? JSON.parse(localStorage.getItem("list-books"))
+    : [];
+  // Đổ hai mảng vào 2 mảng tạm
   list_Books.forEach((item) => {
-    tempbooks.push(item);
-  })
-  books = tempbooks;
-  console.log(books);
-  showSP(books, SPTbody);
+    tempOfLocalStorage_listBooks.push(item);
+  });
+  books.forEach((item) => {
+    tempOfBooks.push(item);
+  });
+  tempOfBooks.forEach((item) => {
+    merge_Added.push(item);
+  });
+  tempOfLocalStorage_listBooks.forEach((item) => {
+    merge_Added.push(item);
+  });
+  showSP(merge_Added, SPTbody);
 }
+renderSanPham();
 
+// phải đủ 3 sản phẩm 1 trang thì hệ thống mới render.
+// ví dụ trang đang có 3 sp thứ tự 1 2 3 thì phải thêm  .
+// thì phải thêm sản phẩm thứ tự 4 5 6 thì hệ thống mới render show sản phẩm.
 
 btn_XacNhan_Add_SP.onclick = function () {
   // console.log(books);
@@ -280,28 +284,77 @@ btn_XacNhan_Add_SP.onclick = function () {
 // Xóa sản phẩm.
 const btn_XoaSP = document.querySelector(".btn_Xoa");
 console.log(btn_XoaSP);
+//f5 là làm mới và không mất những gì đã xóa
+// function getIDSanPham(id) {
+//   console.log(id);
+//   let list_Books =  localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")) : [];
+//   var temp_needDelete = [];
+//   var _deleted = [];
 
+//   books.forEach((item) =>{
+//     temp_needDelete.push(item);
+//   });
+//   list_Books.forEach((item) => {
+//     temp_needDelete.push(item);
+//   });
+
+//   let isConfirm = confirm("YES");
+//   if (isConfirm == true) {
+//     console.log(isConfirm);
+//     temp_needDelete.forEach((item)=>{
+//       if(item.id != id){
+//         console.log(id);
+//         _deleted.push(item);
+//       }
+//     });
+//     console.log(temp_needDelete);
+//     console.log(_deleted);
+//     showSP(_deleted,SPTbody);
+//   }
+// }
+
+//F5 là làm mới và mất những gì đã xóa
 function xoaSPtheoID(id) {
-  const tempDelete = []; // mảng tạm chuẩn bị xóa 
-  const tempDeleted = [];// mảng tạm đã xóa
   console.log(id);
+  let list_Books = localStorage.getItem("list-books")
+    ? JSON.parse(localStorage.getItem("list-books"))
+    : [];
+  var temp_needDelete = [];
+  var temp_needDelete__LS = [];
+  var _deleted_LS = [];
+  var _deleted = [];
+  // đổ 2 data vào 2 mảng tạm
 
-  let list_Books = localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")) : [];
-  list_Books.forEach((item)=>{
-    tempDelete.push(item);
+  books.forEach((item) => {
+    temp_needDelete.push(item);
   });
-  // nếu đồng ý xóa thì thực hiện 
-  let isConfirm = confirm("Đồng ý xóa sản phẩm " +id+ " không ?");
+  list_Books.forEach((item) => {
+    temp_needDelete__LS.push(item);
+  });
+  // nếu đồng ý xóa thì thực hiện
+  let isConfirm = confirm("YES");
   if (isConfirm == true) {
-   tempDelete.forEach((item) => {
-      if(item.id != id){
-        tempDeleted.push(item);
+    // console.log(isConfirm);
+    //xóa ở mảng books
+    temp_needDelete.forEach((item) => {
+      if (item.id != id) {
+        _deleted.push(item);
       }
-   })
-   books = tempDeleted;
-   showSP(books, SPTbody);
-   //đổ dữ liệu đã xóa lên ls
-   localStorage.setItem("list-books", JSON.stringify(tempDeleted));
-
+    });
+    //xóa ở mảng được đổ từ list-books trên local storage
+    temp_needDelete__LS.forEach((item) => {
+      if (item.id != id) {
+        _deleted_LS.push(item);
+      }
+    });
+    //gộp 2 mảng tạm
+    _deleted_LS.forEach((item) => {
+      _deleted.push(item);
+    });
+    //đẩy mảng đã xóa lên local
+    localStorage.setItem("list-books", JSON.stringify(_deleted_LS));
+    // console.log(temp_needDelete);
+    // console.log(_deleted);
+    showSP(_deleted, SPTbody);
   }
 }

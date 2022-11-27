@@ -14,13 +14,18 @@
         width: 100%;
     }
     .header {
-        background: rgb(209, 111, 111);
         flex-wrap: wrap;
+        padding-bottom: 5px;
     }
 
     .header__search {
         /* display: none; */
         width: 100%;
+    }
+
+    .header__logo__img .header__logo {
+        text-align: center;
+        margin: 0 auto;
     }
     .header__content {
         display: flex;
@@ -112,7 +117,9 @@
         justify-content: space-between;
         align-items: center;
         flex-wrap: nowrap;
+        padding: 0;
     }
+
     .price-range {
         margin: 20px auto;
     }
@@ -130,7 +137,7 @@
     }
 
     .header__right {
-        margin-right: 50px;
+        /* margin-right: 50px; */
     }
 
     .header__icon-search {
@@ -163,19 +170,30 @@
         width: 60%;
         margin: 10px auto;
         height: inherit;
+        height: 240px;
     }
 
     .modal-body-left .modal__img-list {
-        width: 80%;
+        /* width: 80%; */
     }
-
+    .card__title {
+        text-align: justify;
+    }
     .modal-body-right {
         width: 100%;
         align-self: center;
     }
-
+    .card__quantity__label {
+        margin-left: 20px;
+    }
+    .card__quantityInput {
+        margin-left: 20px;
+    }
     .header__menu {
         display: block;
+    }
+    .card__description {
+        padding: 0 10px;
     }
 
     .login_form_content {
@@ -183,7 +201,7 @@
     }
 
     .list__cart {
-        width: 70%;
+        width: 96%;
     }
 
     .btn-add-to-cart {
@@ -191,10 +209,26 @@
         bottom: 0; */
     }
 
+    .cart__item_content {
+        flex-direction: column;
+
+        /* width: 60%; */
+    }
+    /* .cart__item__title {
+        width: 100%;
+    } */
+    .cart__item__title {
+        width: 100%;
+    }
+    .cart__item__quantity {
+        margin: 20px 0;
+    }
     .card {
         width: calc(33.3333% - 14px);
     }
-
+    .order__container {
+        width: 100%;
+    }
     .header__right i {
         font-size: 28px;
     }
@@ -235,7 +269,9 @@
     .container__row-card {
         width: calc(50% - 20px);
     }
-
+    .header__right {
+        margin-right: 10px;
+    }
     /* .header__login {
         display: none;
     } */
@@ -257,13 +293,18 @@
     .card {
         width: calc(50% - 14px);
     }
-
+    .order__container {
+        width: 100%;
+        overflow: scroll;
+    }
     .info__container {
         width: 90%;
         padding: 10px;
         z-index: 999;
     }
-
+    .order__container {
+        width: 100%;
+    }
     .footer-container_right {
         flex-direction: column;
     }
