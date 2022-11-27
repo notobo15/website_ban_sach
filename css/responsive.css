@@ -22,6 +22,13 @@
         /* display: none; */
         width: 100%;
     }
+    .header__logo__img {
+        height: 50px;
+    }
+    .header__logo__img .header__logo {
+        text-align: center;
+        margin: 0 auto;
+    }
     .header__content {
         display: flex;
         width: 100%;
@@ -112,7 +119,9 @@
         justify-content: space-between;
         align-items: center;
         flex-wrap: nowrap;
+        padding: 0;
     }
+
     .price-range {
         margin: 20px auto;
     }
@@ -127,10 +136,10 @@
     .header__logo img {
         width: 50%;
         margin: 0 auto;
-    }
+    }   
 
     .header__right {
-        margin-right: 50px;
+        /* margin-right: 50px; */
     }
 
     .header__icon-search {
@@ -235,7 +244,9 @@
     .container__row-card {
         width: calc(50% - 20px);
     }
-
+    .header__right {
+        margin-right: 10px;
+    }
     /* .header__login {
         display: none;
     } */

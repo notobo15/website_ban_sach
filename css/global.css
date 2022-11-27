@@ -114,12 +114,14 @@ body {
 header {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
   align-self: center;
   margin: 0 auto;
-  background: rgb(209, 111, 111);
+  background: #f8f9f9;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px 1px;
+  /* box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px; */
   padding: 4px 30px;
-  }
+}
 
 .header__logo {
   width: 10rem;
@@ -130,9 +132,7 @@ header {
   justify-content: space-between;
   width: 80%;
 }
-.header__search {
-  width: 80%;
-}
+
 .header__menu {
   background-color: transparent;
   display: inline-block;
@@ -212,7 +212,7 @@ header {
 .header__search {
   margin: 0 20px;
   background: #fff;
-  width: 50%;
+  width: 80%;
   align-self: center;
   height: 44px;
   border: 1px solid rgba(0, 0, 0, 0.8);
@@ -221,7 +221,9 @@ header {
   display: flex;
   justify-content: space-between;
 }
-
+.header__logo__img {
+  align-self: center;
+}
 .header__search input {
   border: 1px solid rgba(0, 0, 0, 0.3);
   outline: none;
@@ -423,6 +425,7 @@ header {
 .header__right {
   display: flex;
   align-items: center;
+  margin-right: 20px;
 }
 
 .header__right i {
@@ -448,7 +451,7 @@ header {
   position: fixed;
   list-style: none;
   padding-left: 0;
-  background-color: black;
+  background-color: #fff;
   width: 0;
   height: 100%;
   left: 0;
@@ -461,7 +464,7 @@ header {
 
 .header__menu-item {
   position: relative;
-  color: white !important;
+  color: #000;
   padding: 12px 20px;
 }
 
@@ -480,15 +483,15 @@ header {
 }
 
 .header__menu-title {
-  font-size: 2rem;
-  color: white;
+  font-size: 26px;
+  color: #000;
   text-align: center;
   border-bottom: 2px solid red;
   padding: 10px 0;
 }
 
 .header__menu-name {
-  font-size: 2rem;
+  font-size: 18px;
   position: relative;
   display: block;
   margin-left: 8px;
@@ -503,14 +506,14 @@ header {
   margin-right: 8px;
   position: absolute;
   left: 0;
-  top: 28px;
+  top: 16px;
 }
 
 .header__menu-item-icon-left {
   position: absolute;
-  right: 30px;
-  top: 20%;
-  font-size: 2rem;
+  right: 20px;
+  top: 12%;
+  font-size: 24px;
   color: red;
 }
 
@@ -542,9 +545,9 @@ header {
 }
 
 .header__submenu-item {
-  font-size: 1.4rem;
+  font-size: 16px;
   padding: 10px 0;
-  color: white;
+  color: #000;
 }
 
 .header__submenu-item:hover {
@@ -664,6 +667,7 @@ header {
 /* =============== */
 .cart {
   position: relative;
+  width: 50px;
 }
 
 .cart__counter {
@@ -993,7 +997,13 @@ header {
   padding-right: 25px;
   text-align: end;
 }
-
+.card__price__persent {
+  background: red;
+  padding:8px;
+  font-size: 16px;
+  border-radius: 10px;
+  color: #fff;
+}
 .card__footer {
   display: flex;
   justify-content: space-between;

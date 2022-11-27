@@ -101,7 +101,7 @@ btnBack.addEventListener("click", () => {
   toolbarForm.style.display = "none";
   container_content.style.display = "none";
   pagination_element.style.display = "none";
-  document.querySelector(".container-header").style.display = "none";
+  document.querySelector(".w").style.display = "none";
 });
 const categoryList = document.querySelectorAll(".toolbar__search-range-item");
 categoryList.forEach((item) => {

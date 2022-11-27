@@ -124,6 +124,9 @@ function showItemDetail(id) {
                   item.currentPrice
                 )}</div>
                 <div class="card__price">${numbertoVND(item.price)}</div>
+                <span class="card__price__persent">-${Math.floor(
+                  ((item.price - item.currentPrice) * 100) / item.price
+                )}%</span>
               </div>
               <p>Số Lượng</p>
               <div class="card__quantityInput" >

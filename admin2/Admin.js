@@ -9,8 +9,7 @@ btn_subSP.addEventListener("click", show);
 // prevent FORM form reset
 const prevent = (pre_ev) => {
   pre_ev.preventDefault();
-}
-
+};
 function show() {
   show_sanpham.classList.toggle("show");
 }
@@ -49,7 +48,7 @@ const OrderTbody = document.querySelector(".Content_Orders table tbody");
 // let countPageNumber = 1;
 // let StartPageNumber = 1;
 // let EndPageNumber = 0;
-// // đổ dữ liệu Sản Phẩm 
+// // đổ dữ liệu Sản Phẩm
 // function showSP(arr, tBody) {
 //   let htmls = "";
 //   var i = 0;
@@ -145,8 +144,7 @@ const OrderTbody = document.querySelector(".Content_Orders table tbody");
 function showSP(arr, tBody) {
   let htmls = "";
   arr.forEach((item, indx) => {
-    htmls +=
-      `
+    htmls += `
       <tr>
       <td>${++indx}</td>
       <td>${item.id}</td>
@@ -156,38 +154,39 @@ function showSP(arr, tBody) {
       <td>
           <ul class="content_btn">
             <li class="btn_Sua"><img src="./img/btn_Sua.png" alt=""></li>
-            <li class="btn_Xoa" onclick="return xoaSPtheoID(${item.id})"><img src="./img/btn_xoa.png" alt=""></li>
+            <li class="btn_Xoa" onclick="return xoaSPtheoID(${
+              item.id
+            })"><img src="./img/btn_xoa.png" alt=""></li>
           </ul>
       </td>
       </tr>
     `;
-  })
+  });
   tBody.innerHTML = htmls;
 }
-showSP(books,SPTbody)
+showSP(books, SPTbody);
 // đổ dữ liệu User
 function showUser(arr, tBody) {
   let htmls = "";
   arr.forEach((item, indx) => {
-    htmls +=
-      `
+    htmls += `
     <tr>
       <td>${++indx}</td>
       <td>${item.id}</td>
       <td>${item.user_name}</td>
       <td>${item.pw}</td>
-      <td>${item.full_name}</td>
+      <td>${item.last_name} ${item.first_name}</td>
       <td>${item.email}</td>
       <td>${item.phone}</td>
       <td>${item.address}</td>
-      <td>${item.create_date}</td>
-      <td>${item.isActive}</td>
+      <td>${item.birth_date}</td>
+      <td>${item.isActive}</td> 
     </tr>
     `;
-  })
+  });
   tBody.innerHTML = htmls;
 }
-showUser(usersAccount, UserTbody);
+showUser(JSON.parse(localStorage.getItem("usersAccount")), UserTbody);
 //Đổ dữ liệu Đơn Hàng
 function showOrder(_arr, tBody) {
   let htmls = "";
@@ -203,7 +202,9 @@ function showOrder(_arr, tBody) {
     <td>${item.address_delivery}</td>
     <td>${item.order_date}</td>
     <td>${item.total_price}đ</td>
-    <td><input type="checkbox" name="confirm" ${(item.isConfirm == true) ? "checked" : ""} </td>
+    <td><input type="checkbox" name="confirm" ${
+      item.isConfirm == true ? "checked" : ""
+    } </td>
     </tr>
   `;
   });
@@ -216,7 +217,7 @@ const btn_XacNhan_Add_SP = document.getElementById("btn_XacNhan_Add_SP");
 const input_MaSP = document.getElementById("input_MaSP");
 const input_LoaiSP = document.getElementById("input_LoaiSP");
 const input_TenSP = document.getElementById("input_TenSP");
-const input_TenTG = document.getElementById("input_TenTG")
+const input_TenTG = document.getElementById("input_TenTG");
 const input_GiaSP_bandau = document.getElementById("input_GiaSP_bandau");
 const input_GiaSP_banra = document.getElementById("input_GiaSP_banra");
 const txtArea_ChiTiet = document.getElementById("txtArea_ChiTiet");
@@ -227,10 +228,12 @@ const input_LinkImg = document.querySelector("#linkImg");
 btn__addImage_SP.onclick = function () {
   div_add_Img_input.style.display = "block";
   btn__addImage_SP.disabled = true;
-}
+};
 
 function addSP() {
-  let list_Books = localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")) : [];
+  let list_Books = localStorage.getItem("list-books")
+    ? JSON.parse(localStorage.getItem("list-books"))
+    : [];
   list_Books.push({
     id: input_MaSP.value,
     category: input_LoaiSP.value,
@@ -238,47 +241,46 @@ function addSP() {
     shortName: input_TenSP.value,
     price: input_GiaSP_bandau.value,
     currentPrice: input_GiaSP_banra.value,
-    description: txtArea_ChiTiet.value
-  })
+    description: txtArea_ChiTiet.value,
+  });
   localStorage.setItem("list-books", JSON.stringify(list_Books));
-
 }
 
 function renderSanPham() {
-   tempOfBooks = [];
+  tempOfBooks = [];
   var tempOfLocalStorage_listBooks = [];
   var merge_Added = [];
   // console.log(books);
-  let list_Books = localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")) : [];
+  let list_Books = localStorage.getItem("list-books")
+    ? JSON.parse(localStorage.getItem("list-books"))
+    : [];
   // Đổ hai mảng vào 2 mảng tạm
   list_Books.forEach((item) => {
     tempOfLocalStorage_listBooks.push(item);
   });
-  books.forEach((item) =>{
+  books.forEach((item) => {
     tempOfBooks.push(item);
   });
-  tempOfBooks.forEach((item)=>{
+  tempOfBooks.forEach((item) => {
     merge_Added.push(item);
   });
-  tempOfLocalStorage_listBooks.forEach((item)=>{
+  tempOfLocalStorage_listBooks.forEach((item) => {
     merge_Added.push(item);
   });
   showSP(merge_Added, SPTbody);
 }
 renderSanPham();
 
-
 // phải đủ 3 sản phẩm 1 trang thì hệ thống mới render.
 // ví dụ trang đang có 3 sp thứ tự 1 2 3 thì phải thêm  .
 // thì phải thêm sản phẩm thứ tự 4 5 6 thì hệ thống mới render show sản phẩm.
-
 
 btn_XacNhan_Add_SP.onclick = function () {
   // console.log(books);
   addSP();
   renderSanPham();
-  document.forms[0].reset();  // setText = "" for all input in form "form_add_sanpham".
-}
+  document.forms[0].reset(); // setText = "" for all input in form "form_add_sanpham".
+};
 // Xóa sản phẩm.
 const btn_XoaSP = document.querySelector(".btn_Xoa");
 console.log(btn_XoaSP);
@@ -314,42 +316,45 @@ console.log(btn_XoaSP);
 //F5 là làm mới và mất những gì đã xóa
 function xoaSPtheoID(id) {
   console.log(id);
-  let list_Books =  localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")) : [];
+  let list_Books = localStorage.getItem("list-books")
+    ? JSON.parse(localStorage.getItem("list-books"))
+    : [];
   var temp_needDelete = [];
   var temp_needDelete__LS = [];
   var _deleted_LS = [];
   var _deleted = [];
   // đổ 2 data vào 2 mảng tạm
-  books.forEach((item) =>{
+
+  books.forEach((item) => {
     temp_needDelete.push(item);
   });
   list_Books.forEach((item) => {
     temp_needDelete__LS.push(item);
   });
-  // nếu đồng ý xóa thì thực hiện 
+  // nếu đồng ý xóa thì thực hiện
   let isConfirm = confirm("YES");
   if (isConfirm == true) {
     // console.log(isConfirm);
     //xóa ở mảng books
-    temp_needDelete.forEach((item)=>{
-      if(item.id != id){
+    temp_needDelete.forEach((item) => {
+      if (item.id != id) {
         _deleted.push(item);
       }
     });
     //xóa ở mảng được đổ từ list-books trên local storage
-    temp_needDelete__LS.forEach((item)=>{
-      if(item.id != id){
+    temp_needDelete__LS.forEach((item) => {
+      if (item.id != id) {
         _deleted_LS.push(item);
       }
     });
     //gộp 2 mảng tạm
-    _deleted_LS.forEach((item)=>{
+    _deleted_LS.forEach((item) => {
       _deleted.push(item);
-    })
+    });
     //đẩy mảng đã xóa lên local
-    localStorage.setItem("list-books",JSON.stringify(_deleted_LS));
+    localStorage.setItem("list-books", JSON.stringify(_deleted_LS));
     // console.log(temp_needDelete);
     // console.log(_deleted);
-    showSP(_deleted,SPTbody);
+    showSP(_deleted, SPTbody);
   }
 }
