@@ -257,6 +257,18 @@ function addSP() {
   localStorage.setItem("list-books", JSON.stringify(list_Books));
 }
 
+// function renderSanPham() {
+//   const tempbooks = [];
+//   let list_Books = localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")) : [];
+//   list_Books.forEach((item) => {
+//     tempbooks.push(item);
+//   })
+//   books = tempbooks;
+//   console.log(books);
+//   showSP(books, SPTbody);
+// }
+
+
 btn_XacNhan_Add_SP.onclick = function () {
   // console.log(books);
   addSP();
@@ -332,6 +344,7 @@ function thaydoiThongTinSP (){
   const index = list_Books.findIndex(item => item.id == document.getElementById("maSP_ChinhSua").value);
   console.log(index);
   list_Books[index] = {
+    id : document.getElementById("maSP_ChinhSua").value,
     category : document.getElementById("book_type_seleted").value,
     title : document.getElementById("tenSP_ChinhSua").value,
     author : document.getElementById("tacgiaSP_ChinhSua").value,
@@ -339,10 +352,15 @@ function thaydoiThongTinSP (){
     currentPrice : document.getElementById("giabanraSP_ChinhSua").value,
     description : document.getElementById("txtArea_ChiTiet_ChinhSua").value
   }
+  overplay_ChinhSuaSP.style.display = "none";
   localStorage.setItem("list-books", JSON.stringify(list_Books));
 }
 
 btn_confirm_ChinhSua.onclick = function(){
- thaydoiThongTinSP();
-  showSP(books, SPTbody);
+  const id = document.getElementById("maSP_ChinhSua").value;
+  let isConfirm = confirm("Chấp nhận thay đổi chỉnh sửa của mã sản phẩm: "+id+" ?");
+  if(isConfirm == true){
+    thaydoiThongTinSP();
+    showSP(books,SPTbody);
+  }
 }
