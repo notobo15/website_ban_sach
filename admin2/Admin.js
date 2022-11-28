@@ -164,7 +164,7 @@ function showSP(arr, tBody) {
       <td>${item.currentPrice}đ</td>
       <td>
           <ul class="content_btn">
-            <li class="btn_Sua" onclick = "return ChinhSuaSPtheoID(${item.id})"><img src="./img/btn_Sua.png" alt=""></li>
+            <li class="btn_Sua" onclick = "return xemThongTinSPtheoID(${item.id})"><img src="./img/btn_Sua.png" alt=""></li>
             <li class="btn_Xoa" onclick="return xoaSPtheoID(${item.id})"><img src="./img/btn_xoa.png" alt=""></li>
           </ul>
       </td>
@@ -249,7 +249,7 @@ function addSP() {
     id: input_MaSP.value,
     category: input_LoaiSP.value,
     author: input_TenTG.value,
-    shortName: input_TenSP.value,
+    title: input_TenSP.value,
     price: input_GiaSP_bandau.value,
     currentPrice: input_GiaSP_banra.value,
     description: txtArea_ChiTiet.value
@@ -257,6 +257,7 @@ function addSP() {
   localStorage.setItem("list-books", JSON.stringify(list_Books));
 }
 
+<<<<<<< Updated upstream
 // function renderSanPham() {
 //   const tempbooks = [];
 //   let list_Books = localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")) : [];
@@ -266,6 +267,19 @@ function addSP() {
 //   })
 //   showSP(tempbooks, SPTbody);
 // }
+=======
+function renderSanPham() {
+  const tempbooks = [];
+  let list_Books = localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")) : [];
+  list_Books.forEach((item) => {
+    tempbooks.push(item);
+  })
+  books = tempbooks;
+  console.log(books);
+  showSP(books, SPTbody);
+}
+
+>>>>>>> Stashed changes
 
 btn_XacNhan_Add_SP.onclick = function () {
   // console.log(books);
@@ -305,6 +319,7 @@ function xoaSPtheoID(id) {
 const overplay_ChinhSuaSP = document.querySelector(".overplay_ChinhSuaSP");
 const form__ChinhSuaSP = document.querySelector(".form__ChinhSuaSP");
 const overplay__behind_ChinhSuaSP = document.querySelector(".overplay__behind_ChinhSuaSP")
+const btn_confirm_ChinhSua = document.querySelector(".btn_confirm_ChinhSua");
 // const tenSP_ChinhSua = document.querySelector("#tenSP_ChinhSua");
 // const tacgiaSP_ChinhSua = document.querySelector("#tacgiaSP_ChinhSua");
 // const giabandauSP_ChinhSua = document.querySelector("#giabandauSP_ChinhSua");
@@ -314,10 +329,8 @@ overplay__behind_ChinhSuaSP.onclick =  function(){
   overplay_ChinhSuaSP.style.display = "none";
 }
 console.log(overplay_ChinhSuaSP);
-function ChinhSuaSPtheoID(id){
-  console.log(id)
+function xemThongTinSPtheoID(id){
   overplay_ChinhSuaSP.style.display = "block";
-  document.forms[1].reset();
   let list_Books = localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")): [];
   list_Books.forEach((item)=>{
     if(item.id == id){
@@ -337,4 +350,23 @@ function ChinhSuaSPtheoID(id){
       document.getElementById("book_type_seleted").value = category;
     } 
   })
+}
+function thaydoiThongTinSP (){
+  let list_Books = localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")) : [];
+  const index = list_Books.findIndex(item => item.id == document.getElementById("maSP_ChinhSua").value);
+  console.log(index);
+  list_Books[index] = {
+    category : document.getElementById("book_type_seleted").value,
+    title : document.getElementById("tenSP_ChinhSua").value,
+    author : document.getElementById("tacgiaSP_ChinhSua").value,
+    price : document.getElementById("giabandauSP_ChinhSua").value,
+    currentPrice : document.getElementById("giabanraSP_ChinhSua").value,
+    description : document.getElementById("txtArea_ChiTiet_ChinhSua").value
+  }
+  localStorage.setItem("list-books", JSON.stringify(list_Books));
+}
+
+btn_confirm_ChinhSua.onclick = function(){
+ thaydoiThongTinSP();
+  renderSanPham();
 }
