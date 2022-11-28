@@ -47,7 +47,7 @@ const UserTbody = document.querySelector(".Content_User table tbody ");
 const OrderTbody = document.querySelector(".Content_Orders table tbody");
 // Tạo biến Page
 let currentPage = 1;
-let perPage = 3;
+let perPage = 5;
 let totalPage = 0;
 let perBooks = [];
 let countPageNumber = 1;
@@ -68,6 +68,7 @@ function renderPageNumber(arr) {
   else {
     totalPage = arr.length / perPage + 1;
   }
+  //Start - Chặn không cho vượt quá totalPage
   if (totalPage >= 5 && (StartPageNumber + 4) < totalPage) {
     countPageNumber = StartPageNumber;
     for (let i = countPageNumber; i <= (countPageNumber + 4); i++) {
@@ -76,7 +77,7 @@ function renderPageNumber(arr) {
       <a href="#" class="pagenumber_item_link">${i}</a>
     </li>
     `;
-      EndPageNumber = i;
+      EndPageNumber = i; //Lát thay thế cho StartPageNumber
     }
   }
   else {
@@ -89,6 +90,7 @@ function renderPageNumber(arr) {
     `
     }
   }
+  //End - 
   htmls += `
     <li class="pagenumber_item" onclick="nextRenderPageNumber()">
       <a href="#" class="pagenumber_item_link fa fa-angle-right" id="angle_right"></a>
@@ -112,8 +114,8 @@ function backRenderPageNumber(arr) {
 }
 //Đổ dữ liệu từng trang
 function handlePageNumber(num) {
-  currentPage = num
-  perBooks = books.slice(
+  currentPage = num //2
+  perBooks = books.slice( //start,end
     (currentPage - 1) * perPage,
     (currentPage - 1) * perPage + perPage
   )
