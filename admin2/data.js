@@ -2,7 +2,7 @@ var books = [
   {
     id: 1,
     category: "skill_books",
-    author: "",
+    author: "Damon Zahariades",
     title:
       "Muốn Thành Công Nói Không Với Trì Hoãn – 21 Nguyên Tắc Vàng Đập Tan Sự Trì Hoãn",
     shortName: "muon thanh cong noi khong voi tri hoan",

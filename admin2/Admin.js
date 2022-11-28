@@ -160,10 +160,8 @@ function showSP(arr, tBody) {
       <td>${item.currentPrice}đ</td>
       <td>
           <ul class="content_btn">
-            <li class="btn_Sua"><img src="./img/btn_Sua.png" alt=""></li>
-            <li class="btn_Xoa" onclick="return xoaSPtheoID(${
-              item.id
-            })"><img src="./img/btn_xoa.png" alt=""></li>
+            <li class="btn_Sua" onclick = "return ChinhSuaSPtheoID(${item.id})"><img src="./img/btn_Sua.png" alt=""></li>
+            <li class="btn_Xoa" onclick="return xoaSPtheoID(${item.id})"><img src="./img/btn_xoa.png" alt=""></li>
           </ul>
       </td>
       </tr>
@@ -250,9 +248,7 @@ function addSP() {
     shortName: input_TenSP.value,
     price: input_GiaSP_bandau.value,
     currentPrice: input_GiaSP_banra.value,
-
     description: txtArea_ChiTiet.value
-
   });
   localStorage.setItem("list-books", JSON.stringify(list_Books));
 }
@@ -302,6 +298,43 @@ function xoaSPtheoID(id) {
    showSP(books, SPTbody);
    //đổ dữ liệu đã xóa lên ls
    localStorage.setItem("list-books", JSON.stringify(tempDeleted));
-
   }
+}
+
+//Chỉnh sửa sản phẩm
+const overplay_ChinhSuaSP = document.querySelector(".overplay_ChinhSuaSP");
+const form__ChinhSuaSP = document.querySelector(".form__ChinhSuaSP");
+const overplay__behind_ChinhSuaSP = document.querySelector(".overplay__behind_ChinhSuaSP")
+// const tenSP_ChinhSua = document.querySelector("#tenSP_ChinhSua");
+// const tacgiaSP_ChinhSua = document.querySelector("#tacgiaSP_ChinhSua");
+// const giabandauSP_ChinhSua = document.querySelector("#giabandauSP_ChinhSua");
+// const giabanraSP_ChinhSua = document.querySelector("#giabanraSP_ChinhSua");
+// const txtArea_ChiTiet_ChinhSua = document.querySelector("txtArea_ChiTiet_ChinhSua");
+overplay__behind_ChinhSuaSP.onclick =  function(){
+  overplay_ChinhSuaSP.style.display = "none";
+}
+console.log(overplay_ChinhSuaSP);
+function ChinhSuaSPtheoID(id){
+  console.log(id)
+  overplay_ChinhSuaSP.style.display = "block";
+  document.forms[1].reset();
+  let list_Books = localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")): [];
+  list_Books.forEach((item)=>{
+    if(item.id == id){
+      let id = item.id;
+      let category = item.category;
+      let title = item.title;
+      let author = item.author;
+      let price = item.price;
+      let currentPrice = item.currentPrice;
+      let description = item.description.toString();
+      document.getElementById("maSP_ChinhSua").value = id;
+      document.getElementById("tenSP_ChinhSua").value = title;
+      document.getElementById("tacgiaSP_ChinhSua").value = author;
+      document.getElementById("giabandauSP_ChinhSua").value = price;
+      document.getElementById("giabanraSP_ChinhSua").value = currentPrice;
+      document.getElementById("txtArea_ChiTiet_ChinhSua").value = description;
+      document.getElementById("book_type_seleted").value = category;
+    } 
+  })
 }
