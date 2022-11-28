@@ -257,30 +257,6 @@ function addSP() {
   localStorage.setItem("list-books", JSON.stringify(list_Books));
 }
 
-<<<<<<< Updated upstream
-// function renderSanPham() {
-//   const tempbooks = [];
-//   let list_Books = localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")) : [];
-//   // Đổ hai mảng vào mảng tạm
-//   list_Books.forEach((item) => {
-//     tempbooks.push(item);
-//   })
-//   showSP(tempbooks, SPTbody);
-// }
-=======
-function renderSanPham() {
-  const tempbooks = [];
-  let list_Books = localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")) : [];
-  list_Books.forEach((item) => {
-    tempbooks.push(item);
-  })
-  books = tempbooks;
-  console.log(books);
-  showSP(books, SPTbody);
-}
-
->>>>>>> Stashed changes
-
 btn_XacNhan_Add_SP.onclick = function () {
   // console.log(books);
   addSP();
@@ -368,5 +344,5 @@ function thaydoiThongTinSP (){
 
 btn_confirm_ChinhSua.onclick = function(){
  thaydoiThongTinSP();
-  renderSanPham();
+  showSP(books, SPTbody);
 }
