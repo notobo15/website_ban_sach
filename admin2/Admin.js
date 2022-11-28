@@ -5,6 +5,8 @@ const btn_donhang = document.querySelector(".btn_Orders");
 const btn_taikhoan = document.querySelector(".btn_User");
 const btn_addSP = document.querySelector(".btn_addSP");
 const pagenumber_SP = document.querySelector(".pagenumber");
+const btn_doanhthu = document.querySelector(".btn_doanhthu");
+console.log(btn_doanhthu);
 btn_subSP.addEventListener("click", show);
 // prevent FORM form reset
 const prevent = (pre_ev) => {
@@ -26,6 +28,9 @@ btn_sanpham.addEventListener("click", () => {
 btn_taikhoan.addEventListener("click", () => {
   headerShow("Content_User");
 });
+btn_doanhthu.addEventListener("click", () => {
+  headerShow("Content_DoanhThu");
+});
 
 function headerShow(name) {
   const listTable = document.querySelectorAll(".header_content");
@@ -40,107 +45,80 @@ function headerShow(name) {
 const SPTbody = document.querySelector(".Content_SP table tbody");
 const UserTbody = document.querySelector(".Content_User table tbody ");
 const OrderTbody = document.querySelector(".Content_Orders table tbody");
-// // Tạo biến Page
-// let currentPage = 1;
-// let perPage = 3;
-// let totalPage = 0;
-// let perBooks = [];
-// let countPageNumber = 1;
-// let StartPageNumber = 1;
-// let EndPageNumber = 0;
-// // đổ dữ liệu Sản Phẩm
-// function showSP(arr, tBody) {
-//   let htmls = "";
-//   var i = 0;
-//   perBooks = books.slice(
-//     (currentPage - 1) * perPage,
-//     (currentPage - 1) * perPage + perPage
-//   )
-//   var temp = (currentPage - 1) * perPage;
-//   perBooks.forEach((item) => {
-//     htmls += `
-//     <tr>
-//     <td>${++temp}</td>
-//     <td>${item.id}</td>
-//     <td>${item.title}</td>
-//     <td class="text">${item.description}</td>
-//     <td>${item.currentPrice}đ</td>
-//     <td>
-//         <ul class="content_btn">
-//           <li class="btn_Sua"><img src="./img/btn_Sua.png" alt=""></li>
-//           <li class="btn_Xoa" onclick="return getIDSanPham(${item.id})"><img src="./img/btn_xoa.png" alt=""></li>
-//         </ul>
-//     </td>
-//     </tr>
-//   `;
-//   });
-//   htmls += `<br></br><br></br>`;
-//   tBody.innerHTML = htmls;
-// }
-// showSP(books, SPTbody);
-
-// //Tạo số trang
-// function renderPageNumber(arr) {
-//   let htmls = "";
-//   htmls += `
-//   <li class="pagenumber_item" onclick="backRenderPageNumber()">
-//       <a href="#" class="pagenumber_item_link fa fa-angle-left"></a>
-//   </li>
-//   `;
-//   totalPage = arr.length / perPage;
-//   if (totalPage >= 5 && (StartPageNumber + 4) < totalPage) {
-//     countPageNumber = StartPageNumber;
-//     for (let i = countPageNumber; i <= (countPageNumber + 4); i++) {
-//       htmls += `
-//     <li class="pagenumber_item" onclick="handlePageNumber(${i})">
-//       <a href="#" class="pagenumber_item_link">${i}</a>
-//     </li>
-//     `;
-//       EndPageNumber = i;
-//     }
-//   }
-//   else {
-//     countPageNumber = StartPageNumber;
-//     for (let i = countPageNumber; i <= totalPage; i++) {
-//       htmls += `
-//     <li class="pagenumber_item" onclick="handlePageNumber(${i})">
-//       <a href="#" class="pagenumber_item_link">${i}</a>
-//     </li>
-//     `
-//     }
-//   }
-//   htmls += `
-//     <li class="pagenumber_item" onclick="nextRenderPageNumber()">
-//       <a href="#" class="pagenumber_item_link fa fa-angle-right" id="angle_right"></a>
-//     </li>
-//   `;
-//   pagenumber_SP.innerHTML = htmls;
-// }
-// renderPageNumber(books);
-// //Set angle button
-// function nextRenderPageNumber(arr) {
-//   StartPageNumber = EndPageNumber;
-//   renderPageNumber(books);
-// }
-// function backRenderPageNumber(arr) {
-//   if (StartPageNumber >= 5) {
-//     StartPageNumber -= 4;
-//   }
-//   else {
-//     StartPageNumber = 1;
-//   }
-//   renderPageNumber(books);
-// }
-// //Đổ dữ liệu từng trang
-// function handlePageNumber(num) {
-//   currentPage = num
-//   perBooks = books.slice(
-//     (currentPage - 1) * perPage,
-//     (currentPage - 1) * perPage + perPage
-//   )
-//   showSP(books, SPTbody);
-// }
-//temp Do du lieu SP
+// Tạo biến Page
+let currentPage = 1;
+let perPage = 3;
+let totalPage = 0;
+let perBooks = [];
+let countPageNumber = 1;
+let StartPageNumber = 1;
+let EndPageNumber = 0;
+//Tạo số trang
+function renderPageNumber(arr) {
+  let htmls = "";
+  books = arr;
+  htmls += `
+  <li class="pagenumber_item" onclick="backRenderPageNumber()">
+      <a href="#" class="pagenumber_item_link fa fa-angle-left"></a>
+  </li>
+  `;
+  if((arr.length%perPage)==0){
+    totalPage = arr.length / perPage; 
+  }
+  else {
+    totalPage = arr.length / perPage + 1;
+  }
+  if (totalPage >= 5 && (StartPageNumber + 4) < totalPage) {
+    countPageNumber = StartPageNumber;
+    for (let i = countPageNumber; i <= (countPageNumber + 4); i++) {
+      htmls += `
+    <li class="pagenumber_item" onclick="handlePageNumber(${i})">
+      <a href="#" class="pagenumber_item_link">${i}</a>
+    </li>
+    `;
+      EndPageNumber = i;
+    }
+  }
+  else {
+    countPageNumber = StartPageNumber;
+    for (let i = countPageNumber; i <= totalPage; i++) {
+      htmls += `
+    <li class="pagenumber_item" onclick="handlePageNumber(${i})">
+      <a href="#" class="pagenumber_item_link">${i}</a>
+    </li>
+    `
+    }
+  }
+  htmls += `
+    <li class="pagenumber_item" onclick="nextRenderPageNumber()">
+      <a href="#" class="pagenumber_item_link fa fa-angle-right" id="angle_right"></a>
+    </li>
+  `;
+  pagenumber_SP.innerHTML = htmls;
+}
+//Set angle button
+function nextRenderPageNumber(arr) {
+  StartPageNumber = EndPageNumber;
+  renderPageNumber(books);
+}
+function backRenderPageNumber(arr) {
+  if (StartPageNumber >= 5) {
+    StartPageNumber -= 4;
+  }
+  else {
+    StartPageNumber = 1;
+  }
+  renderPageNumber(books);
+}
+//Đổ dữ liệu từng trang
+function handlePageNumber(num) {
+  currentPage = num
+  perBooks = books.slice(
+    (currentPage - 1) * perPage,
+    (currentPage - 1) * perPage + perPage
+  )
+  showSP(books, SPTbody);
+}
 function showSP(arr, tBody) {
   let list_Books = localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")) : [];
   if (localStorage.getItem("list-books") == null) {
@@ -153,8 +131,12 @@ function showSP(arr, tBody) {
   list_Books.forEach((item) => {
     tempbooks.push(item);
   })
+  perBooks = tempbooks.slice(
+    (currentPage - 1) * perPage,
+    (currentPage - 1) * perPage + perPage
+  )
   let htmls = "";
-  tempbooks.forEach((item, indx) => {
+  perBooks.forEach((item, indx) => {
     htmls += `
       <tr>
       <td>${++indx}</td>
@@ -172,14 +154,26 @@ function showSP(arr, tBody) {
     `;
   });
   tBody.innerHTML = htmls;
+  renderPageNumber(tempbooks);
 }
 
 showSP(books, SPTbody)
 
 // đổ dữ liệu User
 function showUser(arr, tBody) {
+  let list_Users = localStorage.getItem("list-users") ? JSON.parse(localStorage.getItem("list-users")) : [];
+  if (localStorage.getItem("list-users") == null) {
+    arr.forEach((item) => {
+      list_Users.push(item);
+    });
+    localStorage.setItem("list-users", JSON.stringify(list_Users));
+  }
+  const tempusers = [];
+  list_Users.forEach((item) => {
+    tempusers.push(item);
+  })
   let htmls = "";
-  arr.forEach((item, indx) => {
+  tempusers.forEach((item, indx) => {
     htmls += `
     <tr>
       <td>${++indx}</td>
@@ -197,31 +191,43 @@ function showUser(arr, tBody) {
   });
   tBody.innerHTML = htmls;
 }
+showUser(usersAccount,UserTbody);
 // showUser(JSON.parse(localStorage.getItem("usersAccount")), UserTbody);
-// //Đổ dữ liệu Đơn Hàng
-// function showOrder(_arr, tBody) {
-//   let htmls = "";
-//   ordersUsers.forEach((item, indx) => {
-//     htmls += `
-//     <tr>
-//     <td>${++indx}</td>
-//     <td>${item.order_id}</td>
-//     <td>${item.user_name}</td>
-//     <td>${item.full_name}</td>
-//     <td>${item.phone}</td>
-//     <td class="text">${item.details}</td>
-//     <td>${item.address_delivery}</td>
-//     <td>${item.order_date}</td>
-//     <td>${item.total_price}đ</td>
-//     <td><input type="checkbox" name="confirm" ${
-//       item.isConfirm == true ? "checked" : ""
-//     } </td>
-//     </tr>
-//   `;
-//   });
-//   tBody.innerHTML = htmls;
-// }
-// showOrder(ordersUsers, OrderTbody);
+//Đổ dữ liệu Đơn Hàng
+function showOrder(arr, tBody) {
+  let list_Orders = localStorage.getItem("list-orders") ? JSON.parse(localStorage.getItem("list-orders")) : [];
+  if (localStorage.getItem("list-orders") == null) {
+    arr.forEach((item) => {
+      list_Orders.push(item);
+    });
+    localStorage.setItem("list-orders", JSON.stringify(list_Orders));
+  }
+  const temporders = [];
+  list_Orders.forEach((item) => {
+    temporders.push(item);
+  })
+  let htmls = "";
+  temporders.forEach((item, indx) => {
+    htmls += `
+    <tr>
+    <td>${++indx}</td>
+    <td>${item.order_id}</td>
+    <td>${item.user_name}</td>
+    <td>${item.full_name}</td>
+    <td>${item.phone}</td>
+    <td class="text">${item.details}</td>
+    <td>${item.address_delivery}</td>
+    <td>${item.order_date}</td>
+    <td>${item.total_price}đ</td>
+    <td><input type="checkbox" name="confirm" ${
+      item.isConfirm == true ? "checked" : ""
+    } onclick="return checkedOrder(${item.order_id})"></td>
+    </tr>
+  `;
+  });
+  tBody.innerHTML = htmls;
+}
+showOrder(ordersUsers, OrderTbody);
 
 //thêm sản phẩm
 const btn_XacNhan_Add_SP = document.getElementById("btn_XacNhan_Add_SP");
@@ -354,6 +360,20 @@ function thaydoiThongTinSP (){
   }
   overplay_ChinhSuaSP.style.display = "none";
   localStorage.setItem("list-books", JSON.stringify(list_Books));
+}
+function checkedOrder (id){
+  let list_Orders = localStorage.getItem("list-orders") ? JSON.parse(localStorage.getItem("list-orders")) : [];
+  list_Orders.forEach((item)=>{
+    if(item.order_id == id){
+      if(item.isConfirm == true){
+        item.isConfirm = false;
+      }
+      else {
+        item.isConfirm = true;
+      }
+    }
+  })
+  localStorage.setItem("list-orders", JSON.stringify(list_Orders));
 }
 
 btn_confirm_ChinhSua.onclick = function(){
