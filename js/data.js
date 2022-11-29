@@ -9,10 +9,7 @@ var books = [
     title:
       "Muốn Thành Công Nói Không Với Trì Hoãn – 21 Nguyên Tắc Vàng Đập Tan Sự Trì Hoãn",
     shortName: "muon thanh cong noi khong voi tri hoan",
-    srcImg: [
-      "./images/skill_books/1.jpg",
-      "./images/skill_books/1_1.jpg",
-    ],
+    srcImg: ["./images/skill_books/1.jpg", "./images/skill_books/1_1.jpg"],
     description:
       "Ngữ pháp và từ vựng là hai mảng không thể thiếu trong quá trình học ngoại ngữ nói chung và học tiếng Anh nói riêng. Hai phạm trù này sẽ góp phần giúp chúng ta đạt được sự thành thạo về ngôn ngữ. Nếu như ngữ pháp có các quy tắc, có cấu trúc để tuân theo thì từ vựng lại không có bất cứ quy tắc nào",
     price: 85200,
@@ -43,7 +40,7 @@ var books = [
     shortName: "muon thanh cong noi khong voi tri hoan",
     srcImg: ["./images/skill_books/3.jpg", "./images/skill_books/4.jpg"],
     price: 85200,
-    currentPrice: 30000,  
+    currentPrice: 30000,
     description:
       "Ngữ pháp và từ vựng là hai mảng không thể thiếu trong quá trình học ngoại ngữ nói chung và học tiếng Anh nói riêng. Hai phạm trù này sẽ góp phần giúp chúng ta đạt được sự thành thạo về ngôn ngữ. Nếu như ngữ pháp có các quy tắc, có cấu trúc để tuân theo thì từ vựng lại không có bất cứ quy tắc nào",
   },
@@ -730,6 +727,7 @@ var usersAccount = [
     address_province: 1,
     address_district: 1,
     address_ward: 1,
+    address_full: "Thành phố Hà Nội, Quận Tây Hồ, Phường Nhật Tân",
     address_details: "134/A",
     create_date: "1/1/2022",
     account_type: 2,
@@ -747,6 +745,7 @@ var usersAccount = [
     address_province: 79,
     address_district: 769,
     address_ward: 26851,
+    address_full: "Thành phố Hà Nội, Quận Tây Hồ, Phường Nhật Tân",
     address_details: "123A/4",
     create_date: "1/1/2022",
     account_type: 1,

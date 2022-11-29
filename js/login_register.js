@@ -258,6 +258,7 @@ registerContent.addEventListener("submit", (e) => {
         address_district: "",
         address_ward: "",
         address_details: "",
+        address_full: "",
         create_date: currentDate,
         account_type: 1,
       };
