@@ -5,7 +5,8 @@ const eWard = document.querySelector("#ward_id");
 var arrProvice;
 var arrDivision;
 var arrWard;
-
+var address_full = [];
+var addressName;
 fetch(url)
   .then((response) => response.json())
   .then((data) => {
@@ -21,7 +22,7 @@ fetch(url)
       let htmls = `<option>Vui lòng chọn</option>`;
       data.forEach((item) => {
         htmls += `
-          <option value="${item.code}" title="${item.name}">${item.name}</option>
+          <option value="${item.code}-${item.name}" title="${item.name}">${item.name}</option>
           `;
       });
       if (eProvice != null) {
@@ -44,17 +45,22 @@ fetch(url + "d")
   })
   .then(() => {
     eProvice.onclick = () => {
-      let codeProvince = eProvice.value;
+      console.log(eProvice.value);
+      let tam = eProvice.value.split("-");
+      let codeProvince = +tam[0];
+      console.log(codeProvince);
+      address_full[0] = tam[1];
       handleDivision(arrDivision);
 
       function handleDivision(data) {
         const arr = data.filter((item) => {
           return item.province_code == codeProvince;
         });
+        console.log(arr);
         let htmls = `<option>Vui lòng chọn</option>`;
         arr.forEach((item) => {
           htmls += `
-              <option value="${item.code}" title="${item.name}">${item.name}</option>
+              <option value="${item.code}-${item.name}" title="${item.name}">${item.name}</option>
               `;
         });
         if (eDivision) {
@@ -76,7 +82,10 @@ fetch(url + "w")
   })
   .then(() => {
     eDivision.onclick = () => {
-      let codeDivision = eDivision.value;
+      let tam = eDivision.value.split("-");
+      let codeDivision = tam[0];
+      address_full[1] = tam[1];
+
       handleWard(arrWard);
       function handleWard(data) {
         const arr = data.filter((item) => {
@@ -85,11 +94,21 @@ fetch(url + "w")
         let htmls = `<option>Vui lòng chọn</option>`;
         arr.forEach((item) => {
           htmls += `
-          <option value="${item.code}" title="${item.name}">${item.name}</option>
+          <option value="${item.code}-${item.name}" title="${item.name}">${item.name}</option>
           `;
         });
         eWard.innerHTML = htmls;
       }
+    };
+  })
+  .then(() => {
+    eWard.onclick = () => {
+      let tam = eWard.value.split("-");
+      let codeWard = tam[0];
+      address_full[2] = tam[1];
+      addressName = address_full.join(", ");
+      console.log(address_full);
+      console.log(addressName);
     };
   });
 

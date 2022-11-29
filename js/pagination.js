@@ -90,6 +90,7 @@ function changeImg(srcImg) {
   imgPath.setAttribute("src", srcImg);
 }
 function showItemDetail(id) {
+  let books = JSON.parse(localStorage.getItem("books"));
   books.forEach((item) => {
     if (item.id === id) {
       const e = document.querySelector(".element" + id);

@@ -6,43 +6,111 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
+    rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Trang Admin</title>
     <link rel="stylesheet" href="./Admin.css">
 </head>
 
 <body>
+    
     <div class="Menu">
         <nav class="sidebar">
             <div class="Header">
+< !╌ 
+                <img src="../Images/logo_home_red.png" , width=200px></img>
+                <div class="header__account"></div>
+╌>
                 <img src="" , height=30px></img>
                 ADMIN CENTER
+
             </div>
             <ul>
                 <li>
-                    <a href="#" class="btn_sanpham">Sản Phẩm</a>
+                    <a href="#" class="btn_sanpham"><i class="fa-solid fa-book"></i>Sản Phẩm</a>
                     <ul class="show_sanpham">
                         <li class="btn_SP"><a href="#">Quản Lý Sản Phẩm</a></li>
                         <li><a href="#" class="btn_addSP">Thêm Sản Phẩm</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" class="btn_Orders">Quản Lý Đơn Hàng</a>
+                    <a href="#" class="btn_Orders"><i class="fa-solid fa-clipboard-list"></i>Quản Lý Đơn Hàng</a>
                 </li>
+< !╌ 
+                <li ><a href="#" class="btn__users btn_User"> <i class="fa-solid fa-users"></i>Quản Lý User</a></li>
+                <li><a href="#"><i class="fa-solid fa-chart-pie"></i>Doanh Thu</a></li>
+                <li ><a href="#" class="btn__backHomePage btn_Back"><i class="fa-solid fa-left-long"></i>Quay Lại Trang Chủ</a></li>
+                <li ><a href="#" class="btn__logout btn_LogOut"><i class="fa-solid fa-right-from-bracket"></i>Đăng Xuất</a></li>
+╌>
                 <li ><a href="#" class="btn__users btn_User">Quản Lý User</a></li>
                 <li><a href="#" class="btn_doanhthu">Doanh Thu</a></li>
                 <li ><a href="#" class="btn__backHomePage btn_Back">Quay Lại Trang Bán Hàng</a></li>
                 <li ><a href="#" class="btn__logout btn_LogOut">Đăng Xuất</a></li>
+
             </ul>
         </nav>
     </div>
+    <header >
+        <div class="header__search">
+            <form class="header__search__form">
+                <input type="text" placeholder="search ...">
+                <button type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+    </div>
+
+        <div class="header__account">
+            <img src="../Images/avt_login.png" alt="">
+            <p class="header__account__name">admin</p>
+        </div>
+    </header>
     <div class="Content">
+        <div class="form__container">
+            <div class="form__overlay"></div>
+        <div class="form__edit">
+            <div class="form__edit__header">
+                <p class="form__edit__btnClose">
+                    <i class="fa-solid fa-xmark"></i>
+                  </p>
+                <h2>Sửa thông tin</h2>
+            </div>
+            <div class="form_group">
+                <label for="name">Tên sách mới </label>
+                <textarea name="name" id= "name" rows="3" ></textarea>
+            </div>
+           
+            <div class="form_group">
+                <label for="author">Tác giả</label>
+                <input id="author" type="text" >
+            </div>
+            <div class="form_group">
+
+                <label for="price">Giá gốc</label>
+                <input id="price" type="text" >
+            </div>
+            
+            <div class="form_group">
+                    <label for="current-price">Giá đã giảm</label>
+                    <input id="current-price" type="text" >
+                </div>
+                <div class="form_group">
+                    <label for="desc">Mô tả</label>
+                    <textarea name="desc" id= "desc" rows="5"></textarea>
+                </div>
+                <div class="form_group">
+                    <button class="form__edit__btn" type="submit">Xác Nhận</button>
+                </div>
+            </div>
+    </div>
         <div class="Content_SP header_content">
             <table>
                 <thead>
                     <tr>
-                        <th class="column5">STT</th>
-                        <th class="column10">Mã Sản Phẩm</th>
-                        <th class="column25">Tên Sản Phẩm</th>
+                        <th class="column5">Mã SP</th>
+                        <th class="column10">Hình Ảnh SP</th>
+                        <th class="column25">Tên SP</th>
                         <th class="column40">Chi Tiết</th>
                         <th class="column10">Giá</th>
                         <th class="column10">Thao Tác</th>
@@ -193,11 +261,15 @@
                     <button class="yes">yes</button>
                 </div>
                 <div class="tittle_add_SP"><h1>THÊM SẢN PHẨM</h1></div>
-                <div class="form__item">
+                <!-- <div class="form__item">
                     <span class="labelDetail_SP">MÃ SẢN PHẨM: </span>
                     <input type="text" class="input_SP" id="input_MaSP">
+                </div> -->
+                <div class="form__item">
+                    <span class="labelDetail_SP">TÊN SẢN PHẨM: </span>
+                    <input type="text" class="input_SP" id="input_TenSP">
                 </div>
-                <div class="form_item">
+                <div class="form__item">
                     <span class="labelDetail_SP">LOẠI SÁCH: </span>
                     <select name="" id="input_LoaiSP" class="input_SP select_books">
                         <option value="NONE">CHỌN</option>
@@ -206,10 +278,7 @@
                         <option value="children_books">TRẺ EM</option>
                     </select>
                 </div>
-                <div class="form__item">
-                    <span class="labelDetail_SP">TÊN SẢN PHẨM: </span>
-                    <input type="text" class="input_SP" id="input_TenSP">
-                </div>
+               
                 <div class="form__item">
                     <span class="labelDetail_SP">TÁC GIẢ: </span>
                     <input type="text" class="input_SP" id="input_TenTG">
@@ -318,6 +387,7 @@
          </form>
          <!-- form chi tiet don hang end -->
     </div>
+    <script src="../js/callAPIProvinces.js"></script>
     <script src="./data.js"></script>
     <script src="./Admin.js"></script>
     <script src="./js/admin.js"></script>
