@@ -187,13 +187,29 @@ function showUser(arr, tBody) {
       <td>${item.phone}</td>
       <td>${item.address}</td>
       <td>${item.birth_date}</td>
-      <td>${item.isActive}</td> 
+      <td><input type="checkbox" name="confirm_user" ${
+        item.isActive == true ? "checked" : ""
+      } onclick="return checkedUser(${item.id})"></td>
     </tr>
     `;
   });
   tBody.innerHTML = htmls;
 }
 showUser(usersAccount,UserTbody);
+function checkedUser(id){
+  let list_Users = localStorage.getItem("list-users") ? JSON.parse(localStorage.getItem("list-users")) : [];
+  list_Users.forEach((item)=>{
+    if(item.id == id){
+      if(item.isActive == true){
+        item.isActive = false;
+      }
+      else {
+        item.isActive = true;
+      }
+    }
+  })
+  localStorage.setItem("list-users", JSON.stringify(list_Users));
+}
 // showUser(JSON.parse(localStorage.getItem("usersAccount")), UserTbody);
 //Đổ dữ liệu Đơn Hàng
 function showOrder(arr, tBody) {
@@ -386,3 +402,110 @@ btn_confirm_ChinhSua.onclick = function(){
     showSP(books,SPTbody);
   }
 }
+//Lấy địa chỉ Body Table Thống Kê
+const table_TK = document.querySelector(".TK_Data");
+function showThongKe(nam){
+  let list_Orders = localStorage.getItem("list-orders") ? JSON.parse(localStorage.getItem("list-orders")) : [];
+  // Tạo 1 nùi biến tạm
+  let tempnam=0;
+  let tempthang=0;
+  let tempdonhang=0;
+  let temptongtien=0;
+  let htmls="";
+  //Chạy mảng data đơn hàng
+  list_Orders.forEach((item)=>{
+    //Lấy năm từ đơn hàng
+      tempnam = item.order_date.slice(
+        item.order_date.lastIndexOf("/") + 1,
+        item.order_date.lastIndexOf("/") + 5
+      )
+    //Lấy tháng từ đơn hàng
+      tempthang = item.order_date.slice(
+        item.order_date.indexOf("/") + 1,
+        item.order_date.indexOf("/") + 3
+      )
+      //Xét năm đơn hàng với năm được chọn
+      if(tempnam == nam) {
+        //Lấy địa chỉ của tr td theo tháng.
+        const Thang_TK = table_TK.getElementsByTagName("tr")[tempthang - 1];
+        const value_donhang = Thang_TK.getElementsByTagName("td")[1];
+        const value_tongtien = Thang_TK.getElementsByTagName("td")[2];
+        //Lấy data của td và tính toán theo đơn hàng
+        tempdonhang = value_donhang.innerText;
+        temptongtien = parseInt(value_tongtien.innerText);
+        tempdonhang++;
+        temptongtien += item.total_price;
+        //set lại td
+        htmls = `<td>${tempdonhang}</td>`;
+        value_donhang.innerHTML = htmls;
+        htmls = `<td>${temptongtien}</td>`;
+        value_tongtien.innerHTML = htmls; 
+      }
+  })
+}
+showThongKe(2022);
+const cb_thongke = document.querySelector(".cb_thongke");
+ cb_thongke.onclick = function() {
+    htmls =`<tr>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>2</td>
+    <td>0</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>5</td>
+    <td>0</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>6</td>
+    <td>0</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>7</td>
+    <td>0</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>8</td>
+    <td>0</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>9</td>
+    <td>0</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>10</td>
+    <td>0</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>11</td>
+    <td>0</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>12</td>
+    <td>0</td>
+    <td>0</td>
+</tr>`;
+    table_TK.innerHTML = htmls;
+    showThongKe(cb_thongke.value);
+ }

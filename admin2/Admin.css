@@ -474,7 +474,19 @@ table {
 .header_DoanhThu {
   text-align: center;
   align-items: center;
-  font-size: 50px;
+  font-size: 30px;
   color: black;
-  margin: 25px;
+  margin: 15px;
+}
+.header_content span {
+  font-size: 30px;
+  color: black;
+}
+.cb_thongke{
+  color: black;
+  font-size: 25px;
+}
+.cb_thongke option{
+  color: black;
+  font-size: 25px;
 }
