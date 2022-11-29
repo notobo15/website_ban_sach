@@ -56,13 +56,10 @@ function renderData(dataArr) {
 }
 function SetupPagination(items, wrapper, rows_per_page) {
   wrapper.innerHTML = "";
-  console.log(items);
-  console.log(rows_per_page);
   let page_count = Math.ceil(items.length / rows_per_page);
   console.log(page_count);
   for (let i = 1; i < page_count + 1; i++) {
     let btn = PaginationButton(i, items, rows_per_page);
-    console.log(111111);
     wrapper.appendChild(btn);
   }
 }
@@ -88,13 +85,12 @@ function PaginationButton(page, items, rowss) {
 /* goi ham */
 /* DisplayList(books, rows, current_page);
 SetupPagination(books, pagination_element, rows); */
-
-//
 function changeImg(srcImg) {
   let imgPath = document.querySelector(".modal-body-left .card__img");
   imgPath.setAttribute("src", srcImg);
 }
 function showItemDetail(id) {
+  let books = JSON.parse(localStorage.getItem("books"));
   books.forEach((item) => {
     if (item.id === id) {
       const e = document.querySelector(".element" + id);

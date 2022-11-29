@@ -5,6 +5,9 @@ const btn_donhang = document.querySelector(".btn_Orders");
 const btn_taikhoan = document.querySelector(".btn_User");
 const btn_addSP = document.querySelector(".btn_addSP");
 const pagenumber_SP = document.querySelector(".pagenumber");
+
+//let userLoginCurrent = JSON.parse(localStorage.getItem("userLoginCurrent"));
+
 const btn_doanhthu = document.querySelector(".btn_doanhthu");
 const image_input = document.querySelector(".btn_addImage_SP");
 var uploaded_image = "";
@@ -30,6 +33,7 @@ btn_addSP.addEventListener("click", () => {
 });
 btn_donhang.addEventListener("click", () => {
   headerShow("Content_Orders");
+  showOrder(JSON.parse(localStorage.getItem("orders")), OrderTbody);
 });
 btn_sanpham.addEventListener("click", () => {
   headerShow("Content_SP");
@@ -50,6 +54,7 @@ function headerShow(name) {
     }
   });
 }
+
 // ĐỔ DỮ LIỆU TỪ DATA.JS
 const SPTbody = document.querySelector(".Content_SP table tbody");
 const UserTbody = document.querySelector(".Content_User table tbody ");
@@ -131,7 +136,9 @@ function handlePageNumber(num) {
   showSP(books, SPTbody);
 }
 function showSP(arr, tBody) {
-  let list_Books = localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")) : [];
+  let list_Books = localStorage.getItem("list-books")
+    ? JSON.parse(localStorage.getItem("list-books"))
+    : [];
   if (localStorage.getItem("list-books") == null) {
     arr.forEach((item) => {
       list_Books.push(item);
@@ -147,19 +154,35 @@ function showSP(arr, tBody) {
     (currentPage - 1) * perPage + perPage
   )
   let htmls = "";
+
+  //arr.forEach((item, indx) => {
+    // <td>${++indx}</td>
+
   perBooks.forEach((item, indx) => {
+
     htmls += `
-      <tr>
-      <td>${++indx}</td>
+    <tr>
       <td>${item.id}</td>
+      <td>
+        <img src="../${item.srcImg[0]}" width="100%">
+      </td>
       <td>${item.title}</td>
       <td ><img src=".${item.srcImg[0]}" height="95" width="95" alt=""></td>
       <td class="text">${item.description}</td>
-      <td>${item.currentPrice}đ</td>
+      <td>${numbertoVND(item.currentPrice)}</td>
       <td>
           <ul class="content_btn">
+
+           // <li class="btn_Sua" onclick="return handleEdit(${
+             // item.id
+            //})"><img src="./img/btn_Sua.png" alt=""></li>
+            //<li class="btn_Xoa" onclick="return xoaSPtheoID(${
+             // item.id
+      //      })"><img src="./img/btn_xoa.png" alt=""></li>
+
             <li class="btn_Sua" onclick = "return xemThongTinSPtheoID(${item.id})"><img src="./img/btn_Sua.png" alt=""></li>
             <li class="btn_Xoa" onclick="return xoaSPtheoID(${item.id})"><img src="./img/btn_xoa.png" alt=""></li>
+
           </ul>
       </td>
       </tr>
@@ -169,7 +192,7 @@ function showSP(arr, tBody) {
   renderPageNumber(tempbooks);
 }
 
-showSP(books, SPTbody)
+showSP(books, SPTbody);
 
 // đổ dữ liệu User
 function showUser(arr, tBody) {
@@ -195,11 +218,17 @@ function showUser(arr, tBody) {
       <td>${item.last_name} ${item.first_name}</td>
       <td>${item.email}</td>
       <td>${item.phone}</td>
-      <td>${item.address}</td>
+      <td>${item.address_full}</td>
       <td>${item.birth_date}</td>
+
+      //<td><input ${
+        //item.isActive == true ? "checked" : ""
+      //} type="checkbox"></td> 
+
       <td><input type="checkbox" name="confirm_user" ${
         item.isActive == true ? "checked" : ""
       } onclick="return checkedUser(${item.id})"></td>
+
     </tr>
     `;
   });
@@ -222,6 +251,15 @@ function checkedUser(id){
 }
 // showUser(JSON.parse(localStorage.getItem("usersAccount")), UserTbody);
 //Đổ dữ liệu Đơn Hàng
+
+//function showOrder(_arr, tBody) {
+  //if (_arr.length == 0) {
+  //  alert("Danh sách rỗng ..");
+  //}
+  //let htmls = "";
+  //console.log(_arr);
+  //_arr.forEach((item, indx) => {
+
 function showOrder(arr, tBody) {
   let list_Orders = localStorage.getItem("list-orders") ? JSON.parse(localStorage.getItem("list-orders")) : [];
   if (localStorage.getItem("list-orders") == null) {
@@ -236,26 +274,28 @@ function showOrder(arr, tBody) {
   })
   let htmls = "";
   temporders.forEach((item, indx) => {
+
     htmls += `
     <tr>
     <td>${++indx}</td>
     <td>${item.order_id}</td>
-    <td>${item.user_name}</td>
+    
     <td>${item.full_name}</td>
     <td>${item.phone}</td>
-    <td class="text">${item.details}</td>
     <td>${item.address_delivery}</td>
     <td>${item.order_date}</td>
-    <td>${item.total_price}đ</td>
-    <td><input type="checkbox" name="confirm" ${
+    <td>${numbertoVND(item.total_price)}</td>
+    <td ><input value="${
+      item.isConfirm
+    }" class="btnConfirm" type="checkbox" name="confirm" ${
       item.isConfirm == true ? "checked" : ""
     } onclick="return checkedOrder(${item.order_id})"></td>
+    <td class = "btn__Order_Detail" onclick = "return showDetailOfOrder(${item.order_id})"><img src="./img/Data-View-Details-icon.png" alt=""></td>
     </tr>
   `;
   });
   tBody.innerHTML = htmls;
 }
-showOrder(ordersUsers, OrderTbody);
 
 //thêm sản phẩm
 const btn_XacNhan_Add_SP = document.getElementById("btn_XacNhan_Add_SP");
@@ -274,10 +314,30 @@ function addSP() {
   let list_Books = localStorage.getItem("list-books")
     ? JSON.parse(localStorage.getItem("list-books"))
     : [];
+  let id = 0;
+  id = list_Books[list_Books.length - 1].id;
+  // tam = tam.replace(/^\D+/g, "");
   list_Books.push({
-    id: input_MaSP.value,
+    id: ++id,
+    title: input_TenSP.value,
     category: input_LoaiSP.value,
     author: input_TenTG.value,
+/*
+    srcImg: [],
+    price: input_GiaSP_bandau.value,
+    currentPrice: input_GiaSP_banra.value,
+    description: txtArea_ChiTiet.value,
+  });
+  console.log({
+    id: id,
+    title: input_TenSP.value,
+    category: input_LoaiSP.value,
+    author: input_TenTG.value,
+    srcImg: [],
+    price: input_GiaSP_bandau.value,
+    currentPrice: input_GiaSP_banra.value,
+    description: txtArea_ChiTiet.value,
+*/
     title: input_TenSP.value,
     price: input_GiaSP_bandau.value,
     currentPrice: input_GiaSP_banra.value,
@@ -286,6 +346,21 @@ function addSP() {
   localStorage.setItem("list-books", JSON.stringify(list_Books));
 }
 
+/*
+function renderSanPham() {
+  const tempbooks = [];
+  let list_Books = localStorage.getItem("list-books")
+    ? JSON.parse(localStorage.getItem("list-books"))
+    : [];
+  // Đổ hai mảng vào mảng tạm
+  list_Books.forEach((item) => {
+    tempbooks.push(item);
+  });
+  books = tempbooks;
+  console.log(books);
+  showSP(books, SPTbody);
+}
+*/
 // function renderSanPham() {
 //   const tempbooks = [];
 //   let list_Books = localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")) : [];
@@ -298,7 +373,8 @@ function addSP() {
 // }
 
 
-btn_XacNhan_Add_SP.onclick = function () {
+btn_XacNhan_Add_SP.onclick = function (e) {
+  e.preventDefault();
   // console.log(books);
   addSP();
   showSP(books, SPTbody);
@@ -308,21 +384,31 @@ btn_XacNhan_Add_SP.onclick = function () {
 const btn_XoaSP = document.querySelector(".btn_Xoa");
 
 function xoaSPtheoID(id) {
-  const tempDelete = []; // mảng tạm chuẩn bị xóa 
-  const tempDeleted = [];// mảng tạm đã xóa
+  const tempDelete = []; // mảng tạm chuẩn bị xóa
+  const tempDeleted = []; // mảng tạm đã xóa
   console.log(id);
 
-  let list_Books = localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")) : [];
-  list_Books.forEach((item)=>{
+  let list_Books = localStorage.getItem("list-books")
+    ? JSON.parse(localStorage.getItem("list-books"))
+    : [];
+  list_Books.forEach((item) => {
     tempDelete.push(item);
   });
-  // nếu đồng ý xóa thì thực hiện 
-  let isConfirm = confirm("Đồng ý xóa sản phẩm " +id+ " không ?");
+  // nếu đồng ý xóa thì thực hiện
+  let isConfirm = confirm("Đồng ý xóa sản phẩm " + id + " không ?");
   if (isConfirm == true) {
-   tempDelete.forEach((item) => {
-      if(item.id != id){
+    tempDelete.forEach((item) => {
+      if (item.id != id) {
         tempDeleted.push(item);
       }
+
+/*
+    });
+    books = tempDeleted;
+    showSP(books, SPTbody);
+    //đổ dữ liệu đã xóa lên ls
+    localStorage.setItem("list-books", JSON.stringify(tempDeleted));
+   */
    })
    //đổ dữ liệu đã xóa lên ls
    localStorage.setItem("list-books", JSON.stringify(tempDeleted));
@@ -378,6 +464,7 @@ function thaydoiThongTinSP (){
     price : document.getElementById("giabandauSP_ChinhSua").value,
     currentPrice : document.getElementById("giabanraSP_ChinhSua").value,
     description : document.getElementById("txtArea_ChiTiet_ChinhSua").value
+
   }
   overplay_ChinhSuaSP.style.display = "none";
   localStorage.setItem("list-books", JSON.stringify(list_Books));
@@ -396,6 +483,100 @@ function checkedOrder (id){
   })
   localStorage.setItem("list-orders", JSON.stringify(list_Orders));
 }
+/*
+const listConfirm = document.querySelectorAll(".btnConfirm");
+console.log(listConfirm);
+listConfirm.forEach((item, index) => {
+  if (item.getAttribute("value") == "true") {
+    item.setAttribute("checked", "");
+  } else {
+    item.removeAttribute("checked", "");
+  }
+  let or = JSON.parse(localStorage.getItem("orders"));
+  item.addEventListener("click", () => {
+    if (or[index].isConfirm == "false") {
+      or[index].isConfirm = "true";
+      item.setAttribute("value", "true");
+    } else {
+      or[index].isConfirm = "false";
+      item.setAttribute("value", "false");
+    }
+    localStorage.setItem("orders", JSON.stringify(or));
+  });
+});
+// inputsFormEdit.forEach((item) => {
+//   item.addEventListener("");
+// });
+// const
+const btnEdit = document.querySelectorAll(".btn_Sua");
+const formEdit = document.querySelector(".form__edit");
+const formEditOverlay = document.querySelector(".form__overlay");
+const formEditBtnCLose = document.querySelector(".form__edit__btnClose");
+const formEditBtnSubmit = document.querySelector(".form__edit__btn");
+const content = document.querySelector(".Content");
+formEditBtnCLose.addEventListener("click", () => {
+  formEditOverlay.click();
+});
+console.log(btnEdit);
+btnEdit.forEach((item) => {
+  item.addEventListener("click", () => {
+    formEdit.classList.add("show");
+    if (formEdit.classList.contains("show")) {
+      formEdit.classList.remove("show");
+    }
+  });
+});
+
+formEditOverlay.addEventListener("click", () => {
+  formEditOverlay.classList.remove("show");
+  formEdit.classList.remove("show");
+});
+const contentDiv = document.querySelector(".Content");
+// formEditOverlay.addEventListener("scroll", () => {
+//   formEdit.style.top = 15 + contentDiv.scrollTop + "px";
+// });
+function handleEdit(id) {
+  formEdit.classList.add("show");
+  formEditOverlay.classList.add("show");
+  console.log(window.pageYOffset);
+  formEdit.style.top = 15 + contentDiv.scrollTop + "px";
+
+  const inputsFormEdit = formEdit.querySelectorAll("input");
+  const title = document.querySelector("textarea[id='name']");
+  const desc = document.querySelector("textarea[id='desc']");
+  let books = JSON.parse(localStorage.getItem("books"));
+  let result = books.find((item) => {
+    return item.id == id;
+  });
+  title.value = result.title;
+  desc.value = result.description;
+  inputsFormEdit[0].value = result.author;
+  inputsFormEdit[1].value = result.price;
+  inputsFormEdit[2].value = result.currentPrice;
+  // inputsFormEdit[0].setAttribute("value", "11111");
+  // inputsFormEdit[1].setAttribute("value", result.description);
+  // inputsFormEdit[2].setAttribute("value", result.description);
+  formEditBtnSubmit.addEventListener("click", () => {
+    books.forEach((item) => {
+      if (id == item.id) {
+        item.title = title.value;
+        item.desc = desc.value;
+        item.author = inputsFormEdit[0].value;
+        item.price = inputsFormEdit[1].value;
+        item.currentPrice = inputsFormEdit[2].value;
+        alert("Cập nhật thành công ");
+        formEditOverlay.click();
+      }
+    });
+    localStorage.setItem("books", JSON.stringify(books));
+    books = JSON.parse(localStorage.getItem("books"));
+    //container__row - card - price;
+  });
+}
+
+document.querySelector(".header__account__name").innerHTML =
+  userLoginCurrent.user_name;
+*/
 
 btn_confirm_ChinhSua.onclick = function(){
   const id = document.getElementById("maSP_ChinhSua").value;
@@ -512,3 +693,30 @@ const cb_thongke = document.querySelector(".cb_thongke");
     table_TK.innerHTML = htmls;
     showThongKe(cb_thongke.value);
  }
+
+ //số chi tiết đơn hàng.
+ const overplay_OrderDetail = document.querySelector(".overplay_OrderDetail");
+ const overplay__behind_OrderDetail = document.querySelector(".overplay__behind_OrderDetail");
+overplay__behind_OrderDetail.onclick = function(){
+  overplay_OrderDetail.style.display = "none";
+}
+ function showDetailOfOrder(order_id){
+  console.log(order_id);
+  overplay_OrderDetail.style.display = "block";
+  let list_Orders = localStorage.getItem("list-orders") 
+  ? JSON.parse(localStorage.getItem("list-orders")) 
+  : [];
+  
+  list_Orders.forEach((item)=>{
+    if(item.order_id == order_id){
+      document.querySelector("#maDonHang").innerHTML = item.order_id;
+      document.querySelector("#tenNguoidat").innerHTML = item.full_name;
+      document.querySelector("#sdtNguoidat").innerHTML = item.phone;
+      document.querySelector("#diaChiGiaohang").innerHTML = item.address_delivery;
+      document.querySelector("#chitietDonHang").innerHTML = item.details;
+      let total_price = item.total_price+" VND";
+      document.querySelector("#tongtien").innerHTML = total_price;
+    }
+  })
+ }
+

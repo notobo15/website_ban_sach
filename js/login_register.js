@@ -105,7 +105,7 @@ loginContent.addEventListener("submit", (e) => {
   e.preventDefault();
   const username = loginContent.querySelector("input[type='text']");
   const pass = loginContent.querySelector("input[type='password']");
-
+  usersAccount = JSON.parse(localStorage.getItem("usersAccount"));
   checkEmptyValue([username, pass]);
   let isUserLength, isPasswordLength;
   if (checkEmptyInput(username) == false) {
@@ -239,7 +239,7 @@ registerContent.addEventListener("submit", (e) => {
         date.getMonth() + 1
       }/${date.getFullYear()}`;
       let id = 0;
-      if (orders.length > 0) {
+      if (usersAccount.length > 0) {
         let tam = usersAccount[usersAccount.length - 1].id;
         tam = tam.replace(/^\D+/g, "");
         id = +tam + 1;
@@ -258,6 +258,7 @@ registerContent.addEventListener("submit", (e) => {
         address_district: "",
         address_ward: "",
         address_details: "",
+        address_full: "",
         create_date: currentDate,
         account_type: 1,
       };
