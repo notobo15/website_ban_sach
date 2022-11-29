@@ -403,7 +403,6 @@ function checkPhone(input) {
 function setErrorMessage(input, message) {
   input.classList.add("error");
   input.classList.remove("success");
-
   input.nextElementSibling.innerText = message;
   input.nextElementSibling.classList.add("show");
 }

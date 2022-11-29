@@ -159,6 +159,7 @@ header {
   background-color: rgb(210, 243, 243);
   width: 10px;
 }
+
 ::-webkit-scrollbar .Content_SP {
   background-color: rgb(210, 243, 243);
   width: 10px;
@@ -168,24 +169,28 @@ header {
   background-color: grey;
   border-radius: 4px;
 }
+
 .pagenumber {
   display: flex;
   align-items: center;
   justify-content: center;
   list-style: none;
 }
-.pagenumber_item {
-}
+
+.pagenumber_item {}
+
 .content_btn {
   display: flex;
   list-style: none;
   justify-content: center;
 }
+
 .btn_Sua {
   margin: 5px;
   align-items: center;
   color: #1b1b1b;
 }
+
 .btn_Xoa {
   margin: 5px;
   align-items: center;
@@ -204,10 +209,12 @@ header {
   background-color: #1b1b1b;
   display: block;
 }
+
 .pagenumber_item_link:hover {
   color: cyan;
   border: 1px solid cyan;
 }
+
 .Content_SP {
   position: relative;
   margin: 20px;
@@ -228,7 +235,12 @@ header {
   color: black;
   display: none;
 }
-
+.Content_DoanhThu {
+  position: relative;
+  margin: 20px;
+  color: black;
+  display: none;
+}
 .header_content {
   transition: all 0.2s ease;
 }
@@ -236,6 +248,7 @@ header {
 .Content_SP.show,
 .Content_Orders.show,
 .Content_User.show,
+.Content_DoanhThu.show,
 .form_add_sanpham.show {
   display: block;
 }
@@ -350,6 +363,7 @@ table {
   height: 100%;
   display: none;
 }
+
 .Content_form__add_SanPham {
   color: black;
   position: relative;
@@ -379,19 +393,31 @@ table {
 }
 
 .input_SP {
+/*
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   padding: 12px;
+*/
+  border: 0.1 solid black;
+  border-radius: 10px;
+  padding: 2px;
+
   margin: 10px;
   color: black;
   font-size: 18px;
   width: 600px;
 }
+
 .select_books {
   position: relative;
+/*
   /* left: 65px; */
   padding: 10px 0;
+*/
+  left: 15px;
+
 }
+
 .select_books option {
   color: #1b1b1b;
   text-align: center;
@@ -407,6 +433,7 @@ table {
   font-size: 25px;
   color: black;
   resize: none;
+  border-radius: 10px;
 }
 
 .view_image {
@@ -424,14 +451,17 @@ table {
   top: 340px;
   display: none;
 }
+
 .add_Img_input span {
   color: black;
 }
+
 .add_Img_input input {
   width: 180px;
   color: black;
   padding: 10px;
 }
+
 .add_Img_input button {
   color: black;
 }
@@ -441,6 +471,7 @@ table {
   right: 0;
   bottom: 0;
   color: black;
+
 }
 
 .btn_XacNhan_Add_SP {
@@ -452,6 +483,8 @@ table {
   height: 60px;
   border-radius: 10px;
 }
+/*
+
 .form__overlay {
   position: fixed;
   z-index: 1;
@@ -536,3 +569,163 @@ table {
   font-size: 16px;
   margin-top: 20px;
 }
+*/
+
+.overplay_ChinhSuaSP {
+  display: none;
+}
+
+.overplay__behind_ChinhSuaSP {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+
+}
+
+.form__ChinhSuaSP {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  border: 2px solid cyan;
+  border-radius: 10px;
+  background-color: white;
+  width: 80%;
+  height: 550px;
+  color: black;
+}
+
+.form__item_ChinhSua {
+  display: flex;
+}
+.form__item_ChinhSua select {
+  color: black;
+}
+.form__item_ChinhSua textarea {
+  width: 77%;
+  height: 100px;
+  resize: none;
+  border-radius: 10px;
+  color: black;
+}
+
+.main_title {
+  font-size: 30px;
+  font-weight: 1000;
+  text-align: center;
+  margin: 20px;
+  color: black;
+}
+
+.lableDetail__ChinhSua {
+  width: 250px;
+  color: black;
+  font-size: 30px;
+  margin: 5px;
+
+}
+
+
+.input_ChinhSua {
+  flex: 1;
+  padding: 10px;
+  margin: 5px;
+  color: black;
+  border-radius: 10px;
+}
+
+
+.btn_confirm_ChinhSua {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  width: 120px;
+  height: 50px;
+  color: black;
+}
+
+.header_DoanhThu {
+  text-align: center;
+  align-items: center;
+  font-size: 30px;
+  color: black;
+  margin: 15px;
+}
+.header_content span {
+  font-size: 30px;
+  color: black;
+}
+.cb_thongke{
+  color: black;
+  font-size: 25px;
+}
+.cb_thongke option{
+  color: black;
+  font-size: 25px;
+}
+
+.overplay_OrderDetail {
+  display: none;
+}
+.overplay__behind_OrderDetail {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+.form_OrdersDetail {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  border: 2px solid cyan;
+  border-radius: 10px;
+  background-color: white;
+  width: 50%;
+  height: 600px;
+  color: black;
+}
+.form_OrderDetail_item {
+  display: flex;
+}
+.form_OrderDetail_item div span {
+  color: #1b1b1b;
+}
+.input_OrderDetail {
+  flex: 1;
+  color: black;
+  text-align:left;
+  font-size: 25px;
+  margin: 20px;
+  /* background-color: black; */
+}
+.title_OrderDetail{
+  color: black;
+  font-size: 40px;
+  font-weight: 1000;
+  text-align: center;
+  margin: 15px;
+}
+.lableDetail__OrderDetail{
+  color: black;
+  margin: 20px;
+  font-size: 25px;
+}
+.btn_X{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border: 2px solid red;
+  background-color: red;
+  border-radius: 10px;
+  color: black;
+  font-size: 20px;
+  padding: 5px;
+  
+}
+

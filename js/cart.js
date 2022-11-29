@@ -11,7 +11,7 @@ let userCart = [];
 
 if (localStorage.getItem("userCart") == null) {
   localStorage.setItem("userCart", JSON.stringify(userCart));
-  userCart = JSON.parse(localStorage.getItem("userCart"));
+  userCazrt = JSON.parse(localStorage.getItem("userCart"));
 } else {
   userCart = JSON.parse(localStorage.getItem("userCart"));
 
@@ -231,9 +231,8 @@ function handleOrder() {
   // }
   orders = JSON.parse(localStorage.getItem("orders"));
   let date = new Date();
-  let dateOrder = `${date.getDate()}/${
-    date.getMonth() + 1
-  }/${date.getFullYear()}:${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+  let dateOrder = `${date.getDate()}/${date.getMonth() + 1
+    }/${date.getFullYear()}:${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
   // chi tiet don hang
   let productDetails = "";
   userCart.forEach((item) => {
