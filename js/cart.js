@@ -166,32 +166,35 @@ function renderCart(userCart) {
     moneyCount += item.currentPrice * item.quantity;
     htmls += `
     <div class="cart__item">
-    <img class="cart__item__img" src="${item.srcImg[0]}" alt="" />
-    <div class="cart__item__title">
-    ${item.title}
-    </div>
-    <div class="cart__item__quantity">
-      <button class="cart__btn-down">
-        <img
-          src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg"
-          alt="remove-icon"
-        />
-      </button>
-      <input type="text" class="cart__input" value="${item.quantity}" />
-      <button class="cart__btn-up">
-        <img
-          src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg"
-          alt="add-icon"
-        />
-      </button>
-    </div>
-
-    <div class="cart__item__price"> ${numbertoVND(item.currentPrice)}</div>
+      <img class="cart__item__img" src="${item.srcImg[0]}" alt="" />
+      <div class="cart__item_content"> 
+      <div class="cart__item__title">
+        ${item.title}
+      </div >
+        <div class="cart__item__quantity">
+          <button class="cart__btn-down">
+            <img
+              src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg"
+              alt="remove-icon"
+            />
+          </button>
+          <input type="text" class="cart__input" value="${item.quantity}" />
+          <button class="cart__btn-up">
+            <img
+              src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg"
+              alt="add-icon"
+            />
+          </button>
+        </div>
+        
+      <div class="cart__item__price"> ${numbertoVND(item.currentPrice)}</div>
     
-    <div class="cart__item__trash" onclick="deleteItem(${item.id})">
-    <i class="fa-solid fa-trash"></i>
-    </div>  
+      </div> 
+      <div class="cart__item__trash" onclick="deleteItem(${item.id})">
+        <i class="fa-solid fa-trash"></i>
+      </div> 
     </div>
+    
   `;
 
     //  itemsCart.style.top = 15 + pageYOffset + "px";
@@ -210,18 +213,22 @@ function renderCart(userCart) {
 }
 var orders;
 function handleOrder() {
-  if (
-    userLoginCurrent.first_name == "" ||
-    userLoginCurrent.last_name == "" ||
-    userLoginCurrent.phone == "" ||
-    userLoginCurrent.address_province == "" ||
-    userLoginCurrent.address_district == "" ||
-    userLoginCurrent.address_details == "" ||
-    userLoginCurrent.birth_date == ""
-  ) {
-    alert("Bạn cần bổ sung thông tin");
+  let userLoginCurrent = JSON.parse(localStorage.getItem("userLoginCurrent"));
+  if (userLoginCurrent == null) {
+    alert("Bạn cần phải đăng nhập để đặt hàng !");
+    cartBtnClose.click();
     return 0;
   }
+  // if (
+  //   userLoginCurrent.first_name == "" ||
+  //   userLoginCurrent.last_name == "" ||
+  //   userLoginCurrent.phone == "" ||
+  //   userLoginCurrent.address_province == "" ||
+  //   userLoginCurrent.address_district == "" ||
+  //   userLoginCurrent.address_details == "" ||
+  //   userLoginCurrent.birth_date == ""
+  // ) {
+  // }
   orders = JSON.parse(localStorage.getItem("orders"));
   let date = new Date();
   let dateOrder = `${date.getDate()}/${date.getMonth() + 1

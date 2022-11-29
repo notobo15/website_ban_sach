@@ -8,31 +8,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Admin</title>
     <link rel="stylesheet" href="./Admin.css">
-
 </head>
 
 <body>
     <div class="Menu">
         <nav class="sidebar">
             <div class="Header">
-                <img src="./img/admin-icon.png" , height=30px></img>
+                <img src="" , height=30px></img>
                 ADMIN CENTER
             </div>
             <ul>
                 <li>
                     <a href="#" class="btn_sanpham">Sản Phẩm</a>
                     <ul class="show_sanpham">
-                        <li class="btn_SP"><a href="#" class="btnQLSP">Quản Lý Sản Phẩm</a></li>
+                        <li class="btn_SP"><a href="#">Quản Lý Sản Phẩm</a></li>
                         <li><a href="#" class="btn_addSP">Thêm Sản Phẩm</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#" class="btn_Orders">Quản Lý Đơn Hàng</a>
                 </li>
-                <li><a href="#" class="btn_User">Quản Lý User</a></li>
-                <li><a href="#">Doanh Thu</a></li>
-                <li><a href="#" class="btn_Back">Quay Lại Trang Bán Hàng</a></li>
-                <li><a href="#" class="btn_LogOut">Đăng Xuất</a></li>
+                <li ><a href="#" class="btn__users btn_User">Quản Lý User</a></li>
+                <li><a href="#" class="btn_doanhthu">Doanh Thu</a></li>
+                <li ><a href="#" class="btn__backHomePage btn_Back">Quay Lại Trang Bán Hàng</a></li>
+                <li ><a href="#" class="btn__logout btn_LogOut">Đăng Xuất</a></li>
             </ul>
         </nav>
     </div>
@@ -97,6 +96,91 @@
                 </thead>
             </table>
         </div>
+        <div class="Content_DoanhThu header_content">
+            <div class="header_DoanhThu">Thống kê doanh số bán hàng</div>
+            <div class="header_DoanhThu">
+                <span>Năm:</span>
+                <select type="combobox" class="cb_thongke">
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                </select>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="column5">Tháng</th>
+                        <th class="column10">Số đơn hàng</th>
+                        <th class="column25">Tổng tiền</th>
+                    </tr>
+                <tbody class="TK_Data">
+                    <tr>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                </tbody>
+            </thead>
+            </table>
+            <ul class="pagenumber">
+            </ul>
+        </nav> 
+        </div>
         <!-- Form add SanPham begin-->
         <form action="" class="form_add_sanpham header_content">
             <div class="Content_form__add_SanPham">
@@ -146,9 +230,58 @@
             </div>
                 <!-- form add SanPham end -->
          </form>
+         <!-- form chinh sua thong tin san pham start-->
+         <form action="">
+            <div class="overplay_ChinhSuaSP">
+                <div class="overplay__behind_ChinhSuaSP"></div>
+                    <div class="form__ChinhSuaSP">
+                        <div class="main_title">THÔNG TIN SẢN PHẨM</div>
+                        <div class="form__item_ChinhSua">
+                            <div class="form__item_ChinhSua">
+                                <span class="lableDetail__ChinhSua">LOẠI SÁCH: </span>
+                                <select name="" id="book_type_seleted" class="input_ChinhSua select_books">
+                                    <option value="skill_books">KỸ NĂNG</option>
+                                    <option value="foreign_books">NƯỚC NGOÀI</option>
+                                    <option value="children_books">TRẺ EM</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form__item_ChinhSua">
+                            <span class="lableDetail__ChinhSua">MÃ SẢN PHẨM: </span>
+                            <input type="text" class="input_ChinhSua" id="maSP_ChinhSua" disabled >
+                        </div>
+                            <div class="form__item_ChinhSua">
+                                <span class="lableDetail__ChinhSua">TÊN SP: </span>
+                                <input type="text" class="input_ChinhSua" id="tenSP_ChinhSua">
+                            </div>
+                            <div class="form__item_ChinhSua">
+                                <span class="lableDetail__ChinhSua">TÁC GIẢ: </span>
+                                <input type="text" class="input_ChinhSua" id="tacgiaSP_ChinhSua">
+                            </div>
+                            <div class="form__item_ChinhSua">
+                                <span class="lableDetail__ChinhSua">GIÁ BAN ĐẦU: </span>
+                                <input type="number" class="input_ChinhSua" id="giabandauSP_ChinhSua">
+                            </div>
+                            <div class="form__item_ChinhSua">
+                                <span class="lableDetail__ChinhSua">GIÁ BÁN RA: </span>
+                                <input type="number" class="input_ChinhSua" id="giabanraSP_ChinhSua">
+                            </div>
+                            <div class="form__item_ChinhSua">
+                                <span class="lableDetail__ChinhSua">CHI TIẾT: </span>
+                                <textarea name="" class="txtArea_ChiTiet_ChinhSua" id="txtArea_ChiTiet_ChinhSua" cols="30" rows="10"></textarea>
+                            </div>
+                            <div class="form__item_ChinhSua">
+                                <button class="btn_confirm_ChinhSua">XÁC NHẬN</button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+         </form>
+         <!-- form chinh sua thong tin san pham end-->
     </div>
     <script src="./data.js"></script>
     <script src="./Admin.js"></script>
+    <script src="./js/admin.js"></script>
 </body>
 
 </html>

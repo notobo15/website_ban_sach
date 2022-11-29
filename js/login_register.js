@@ -216,6 +216,7 @@ registerContent.addEventListener("submit", (e) => {
     isUserLength3 = true;
     isMatchingPW3 = true;
   }
+  let usersAccount = JSON.parse(localStorage.getItem("usersAccount"));
   let checkAccount = usersAccount.find((item) => {
     return item.user_name == inputs[0].value;
   });
@@ -228,6 +229,8 @@ registerContent.addEventListener("submit", (e) => {
   ) {
     if (checkAccount != undefined) {
       alert("Tai khoản đã tồn tại\nVui lòng chọn tài khoản khác");
+      resetInput([inputs[0]]);
+      return;
     } else {
       alert("Đăng kí thành công");
       iconForm.click();
@@ -235,9 +238,14 @@ registerContent.addEventListener("submit", (e) => {
       let currentDate = `${date.getDate()}/${
         date.getMonth() + 1
       }/${date.getFullYear()}`;
-      let id = usersAccount.length;
+      let id = 0;
+      if (orders.length > 0) {
+        let tam = usersAccount[usersAccount.length - 1].id;
+        tam = tam.replace(/^\D+/g, "");
+        id = +tam + 1;
+      }
       let user = {
-        id: ++id,
+        id: id,
         user_name: inputs[0].value,
         email: inputs[1].value,
         pw: inputs[2].value,
@@ -258,6 +266,7 @@ registerContent.addEventListener("submit", (e) => {
       usersAccount.push(user);
       localStorage.setItem("usersAccount", JSON.stringify(usersAccount));
       usersAccount = JSON.parse(localStorage.getItem("usersAccount"));
+      resetInput(inputs);
     }
   }
   /*if (

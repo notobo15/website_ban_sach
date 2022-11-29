@@ -1,18 +1,20 @@
 const container_content = document.querySelector(".container-content");
 const pagination_element = document.getElementById("pagination");
 let current_page = 1;
-let rows= 10 ;
+let rows = 10;
 var widthBrowser = document.body.offsetWidth;
 window.addEventListener("resize", function (event) {
   console.log(document.body.offsetWidth);
   widthBrowser = document.body.offsetWidth;
-})
+});
 
 if (widthBrowser < 1024) {
   rows = 8;
-} if (widthBrowser < 767) {
+}
+if (widthBrowser < 767) {
   rows = 6;
-} if (widthBrowser < 468) {
+}
+if (widthBrowser < 468) {
   rows = 4;
 }
 
@@ -32,15 +34,19 @@ function renderData(dataArr) {
   const container = document.querySelector(".container-content");
   let htmls = "";
   dataArr.forEach((item) => {
-    htmls += `<div class="card element${item.id}" onclick="showItemDetail(${item.id
-      })"  >
+    htmls += `<div class="container__row-card" onclick="showItemDetail(${
+      item.id
+    })"  >
+    <div class="product__price--percent"><p>${Math.floor(
+      ((item.price - item.currentPrice) * 100) / item.price
+    )}%<p></div>
                 <img class="card__img" src="${item.srcImg[0]}" />  
                 <div class="card__title">${item.title}</div>
                 <div class="card__footer"> 
                 <div class="card__item__Price">${numbertoVND(item.price)}</div>
                 <div class="card__item__currentPrice">${numbertoVND(
-        item.currentPrice
-      )}</div>
+                  item.currentPrice
+                )}</div>
                 </div>
                 
             </div>
@@ -72,7 +78,7 @@ function PaginationButton(page, items, rowss) {
     DisplayList(items, rowss, current_page);
     let current_btn = document.querySelector(".pagenumbers button.active");
     current_btn.classList.remove("active");
-
+    window.scrollTo(0, 0);
     button.classList.add("active");
   });
 
@@ -115,19 +121,23 @@ function showItemDetail(id) {
               <div>
               
                 <div class="card__currentPrice">${numbertoVND(
-        item.currentPrice
-      )}</div>
+                  item.currentPrice
+                )}</div>
                 <div class="card__price">${numbertoVND(item.price)}</div>
+                <span class="card__price__persent">-${Math.floor(
+                  ((item.price - item.currentPrice) * 100) / item.price
+                )}%</span>
               </div>
-              <p>Số Lượng</p>
+              <p class="card__quantity__label">Số Lượng</p>
               <div class="card__quantityInput" >
               <button class="cart__btn__down"><img src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg" alt="remove-icon"></button>
               <input type="text" class="cart__input__quantity" value="1">
               <button class="cart__btn__up"><img src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg" alt="add-icon"></button>
               
               </div>
-              <button class="btn-add-to-cart" onclick="getIdCart(${item.id
-        })">Thêm vào giỏ hàng</button>
+              <button class="btn-add-to-cart" onclick="getIdCart(${
+                item.id
+              })">Thêm vào giỏ hàng</button>
           </div>
           </div>
           <div class="card__description">

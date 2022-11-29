@@ -13,14 +13,17 @@ function renderProducts(arrProducts, element, nameCategory) {
     //if (item.category == nameCategory) {
     htmls += `
       <div class="container__row-card" onclick="showItemDetail(${item.id})">
-      <img src="${item.srcImg[0]}" />
-      <div class="container__row-card-title">${item.title}</div>
-      <div class="card__footer">
-      <div class="card__item__Price">${numbertoVND(item.price)}</div>
-      <div class="container__row-card-price">${numbertoVND(
-        item.currentPrice
-      )}</div>
-      </div>
+        <div class="product__price--percent"><p>${Math.floor(
+          ((item.price - item.currentPrice) * 100) / item.price
+        )}%<p></div>
+        <img src="${item.srcImg[0]}" />
+        <div class="container__row-card-title">${item.title}</div>
+        <div class="card__footer">
+          <div class="card__item__Price">${numbertoVND(item.price)}</div>
+          <div class="container__row-card-price">${numbertoVND(
+            item.currentPrice
+          )}</div>
+        </div>
     </div>
       `;
     //}
@@ -53,39 +56,10 @@ function renderProducts(arrProducts, element, nameCategory) {
 }
 function showAllProducts(nameCategory) {
   btnSearchSubmit.click();
-  console.log(categoryList);
   categoryList.forEach((item) => {
     if (item.getAttribute("value") == nameCategory) item.click();
   });
   window.scrollTo(0, 0);
-  
-  // const banner = document.querySelector(".banner");
-  // const toolbar = document.querySelector(".toolbar__search");
-  // const container = document.querySelector(".container-content");
-  // const pagination_element = document.getElementById("pagination");
-  // const productContainer = document.querySelector(".product__container");
-  // const btnBack = document.querySelector(".controler");
-  // banner.style.display = "none";
-  // productContainer.style.display = "none";
-  // container.style.display = "flex";
-  // toolbar.style.display = "flex";
-  // pagination.style.display = "flex";
-  // window.scrollTo(0, 0);
-  // let current_page = 1;
-  // let rows = 5;
-
-  // //   DisplayList(books1, item, currentPage);
-  // //   SetupPagination(books1, pagination, item);
-  // // DisplayList(books1, rows, current_page);
-  // // SetupPagination(books1, pagination_element, rows, current_page);
-
-  // btnBack.addEventListener("click", () => {
-  //   banner.style.display = "block";
-  //   productContainer.style.display = "block";
-  //   container.style.display = "none";
-  //   toolbar.style.display = "none";
-  //   pagination.style.display = "none";
-  // });
 }
 const productContaier = document.querySelectorAll(".container__row");
 renderProducts(books, productContaier[0], "skill_books");

@@ -2,9 +2,9 @@ let url = "https://provinces.open-api.vn/api/";
 const eProvice = document.querySelector("#region_id");
 const eDivision = document.querySelector("#city_id");
 const eWard = document.querySelector("#ward_id");
-let arrProvice;
-let arrDivision;
-let arrWard;
+var arrProvice;
+var arrDivision;
+var arrWard;
 
 fetch(url)
   .then((response) => response.json())
@@ -24,7 +24,9 @@ fetch(url)
           <option value="${item.code}" title="${item.name}">${item.name}</option>
           `;
       });
-      eProvice.innerHTML = htmls;
+      if (eProvice != null) {
+        eProvice.innerHTML = htmls;
+      }
     }
     handleData(arrProvice);
   });
@@ -55,7 +57,9 @@ fetch(url + "d")
               <option value="${item.code}" title="${item.name}">${item.name}</option>
               `;
         });
-        eDivision.innerHTML = htmls;
+        if (eDivision) {
+          eDivision.innerHTML = htmls;
+        }
       }
     };
   });
