@@ -6,7 +6,16 @@ const btn_taikhoan = document.querySelector(".btn_User");
 const btn_addSP = document.querySelector(".btn_addSP");
 const pagenumber_SP = document.querySelector(".pagenumber");
 const btn_doanhthu = document.querySelector(".btn_doanhthu");
-console.log(btn_doanhthu);
+const image_input = document.querySelector(".btn_addImage_SP");
+var uploaded_image = "";
+image_input.addEventListener("change", function(){
+  const render = new FileReader();
+  render.addEventListener("load", ()=>{
+    uploaded_image = render.result;
+    document.querySelector(".view_image").style.backgroundImage = `url(${uploaded_image})`;
+  })
+  render.readAsDataURL(this.files[0]);
+})
 btn_subSP.addEventListener("click", show);
 // prevent FORM form reset
 const prevent = (pre_ev) => {
@@ -144,6 +153,7 @@ function showSP(arr, tBody) {
       <td>${++indx}</td>
       <td>${item.id}</td>
       <td>${item.title}</td>
+      <td ><img src=".${item.srcImg[0]}" height="95" width="95" alt=""></td>
       <td class="text">${item.description}</td>
       <td>${item.currentPrice}đ</td>
       <td>
@@ -260,11 +270,6 @@ const btn__addImage_SP = document.querySelector(".btn__addImage_SP");
 const div_add_Img_input = document.querySelector(".add_Img_input");
 const input_LinkImg = document.querySelector("#linkImg");
 
-btn__addImage_SP.onclick = function () {
-  div_add_Img_input.style.display = "block";
-  btn__addImage_SP.disabled = true;
-};
-
 function addSP() {
   let list_Books = localStorage.getItem("list-books")
     ? JSON.parse(localStorage.getItem("list-books"))
@@ -301,7 +306,6 @@ btn_XacNhan_Add_SP.onclick = function () {
 };
 // Xóa sản phẩm.
 const btn_XoaSP = document.querySelector(".btn_Xoa");
-console.log(btn_XoaSP);
 
 function xoaSPtheoID(id) {
   const tempDelete = []; // mảng tạm chuẩn bị xóa 
@@ -340,7 +344,6 @@ const btn_confirm_ChinhSua = document.querySelector(".btn_confirm_ChinhSua");
 overplay__behind_ChinhSuaSP.onclick =  function(){
   overplay_ChinhSuaSP.style.display = "none";
 }
-console.log(overplay_ChinhSuaSP);
 function xemThongTinSPtheoID(id){
   overplay_ChinhSuaSP.style.display = "block";
   let list_Books = localStorage.getItem("list-books") ? JSON.parse(localStorage.getItem("list-books")): [];

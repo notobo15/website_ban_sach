@@ -356,6 +356,8 @@ table {
   border: 1px solid black;
   width: 250px;
   height: 250px;
+  background-position: center;
+  background-size: cover;
 }
 
 .add_Img_input {
@@ -489,4 +491,7 @@ table {
 .cb_thongke option{
   color: black;
   font-size: 25px;
+}
+.img_SP{
+  background-color:mediumturquoise;
 }
