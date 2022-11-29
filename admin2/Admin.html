@@ -83,13 +83,13 @@
                         <th class="column5">STT</th>
                         <th class="column5">Mã đơn hàng</th>
                         <th class="column10">Tên tài khoản người đặt</th>
-                        <th class="column10">Tên người đặt</th>
                         <th class="column10">SĐT người đặt</th>
-                        <th class="column20">Chi tiết</th>
                         <th class="column15">Địa chỉ giao hàng</th>
                         <th class="column10">Ngày đặt hàng</th>
-                        <th class="column10">Giá</th>
+                        <th class="column10">Tổng tiền</th>
                         <th class="column5">Xác nhận</th>
+                        <th class="column5">Chi tiết</th>
+                        
                     </tr>
                 <tbody>
                 </tbody>
@@ -278,6 +278,45 @@
             </div>
          </form>
          <!-- form chinh sua thong tin san pham end-->
+         <!-- form chi tiet don hang start-->
+         <form action="">
+            <div class="overplay_OrderDetail">
+                <div class="overplay__behind_OrderDetail"></div>
+                <div class="form_OrdersDetail">
+                    <div class="title_OrderDetail">
+                        THÔNG TIN ĐƠN HÀNG
+                    </div>
+                    <div class="form_OrderDetail_item">
+                        <div class="btn_X">X</div>
+                    </div>
+                    <div class="form_OrderDetail_item">
+                        <span class="lableDetail__OrderDetail">Mã Đơn hàng: </span>
+                        <span  class="input_OrderDetail" id="maDonHang"></span>
+                    </div>
+                    <div class="form_OrderDetail_item">
+                        <span class="lableDetail__OrderDetail">Tên người đặt:</span>
+                        <span class="input_OrderDetail" id="tenNguoidat"></span>
+                    </div>
+                    <div class="form_OrderDetail_item">
+                        <span class="lableDetail__OrderDetail">SĐT người đặt:</span>
+                        <span class="input_OrderDetail" id="sdtNguoidat"></span>
+                    </div>
+                    <div class="form_OrderDetail_item">
+                        <span class="lableDetail__OrderDetail">Địa chỉ giao hàng:</span>
+                        <span class="input_OrderDetail" id="diaChiGiaohang"></span>
+                    </div>
+                    <div class="form_OrderDetail_item">
+                        <span class="lableDetail__OrderDetail">Chi tiết đơn hàng:</span>
+                        <span class="input_OrderDetail" id="chitietDonHang"></span>
+                    </div>
+                    <div class="form_OrderDetail_item">
+                        <span class="lableDetail__OrderDetail">Tổng tiền:</span>
+                        <span class="input_OrderDetail" id="tongtien"></span>
+                    </div>
+                </div>
+            </div>
+         </form>
+         <!-- form chi tiet don hang end -->
     </div>
     <script src="./data.js"></script>
     <script src="./Admin.js"></script>

@@ -230,16 +230,16 @@ function showOrder(arr, tBody) {
     <tr>
     <td>${++indx}</td>
     <td>${item.order_id}</td>
-    <td>${item.user_name}</td>
+    
     <td>${item.full_name}</td>
     <td>${item.phone}</td>
-    <td class="text">${item.details}</td>
     <td>${item.address_delivery}</td>
     <td>${item.order_date}</td>
     <td>${item.total_price}đ</td>
     <td><input type="checkbox" name="confirm" ${
       item.isConfirm == true ? "checked" : ""
     } onclick="return checkedOrder(${item.order_id})"></td>
+    <td class = "btn__Order_Detail" onclick = "return showDetailOfOrder(${item.order_id})"><img src="./img/Data-View-Details-icon.png" alt=""></td>
     </tr>
   `;
   });
@@ -508,4 +508,30 @@ const cb_thongke = document.querySelector(".cb_thongke");
 </tr>`;
     table_TK.innerHTML = htmls;
     showThongKe(cb_thongke.value);
+ }
+
+ //số chi tiết đơn hàng.
+ const overplay_OrderDetail = document.querySelector(".overplay_OrderDetail");
+ const overplay__behind_OrderDetail = document.querySelector(".overplay__behind_OrderDetail");
+overplay__behind_OrderDetail.onclick = function(){
+  overplay_OrderDetail.style.display = "none";
+}
+ function showDetailOfOrder(order_id){
+  console.log(order_id);
+  overplay_OrderDetail.style.display = "block";
+  let list_Orders = localStorage.getItem("list-orders") 
+  ? JSON.parse(localStorage.getItem("list-orders")) 
+  : [];
+  
+  list_Orders.forEach((item)=>{
+    if(item.order_id == order_id){
+      document.querySelector("#maDonHang").innerHTML = item.order_id;
+      document.querySelector("#tenNguoidat").innerHTML = item.full_name;
+      document.querySelector("#sdtNguoidat").innerHTML = item.phone;
+      document.querySelector("#diaChiGiaohang").innerHTML = item.address_delivery;
+      document.querySelector("#chitietDonHang").innerHTML = item.details;
+      let total_price = item.total_price+" VND";
+      document.querySelector("#tongtien").innerHTML = total_price;
+    }
+  })
  }
