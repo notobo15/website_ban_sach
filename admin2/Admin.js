@@ -718,3 +718,83 @@ function showDetailOfOrder(order_id) {
     }
   });
 }
+const compareDates = (d1, d2) => {
+  let orders = localStorage.getItem("orders")
+    ? JSON.parse(localStorage.getItem("orders"))
+    : [];
+  d1 = document.getElementById("fromDate").value;
+  // console.log(d1);
+  d2 = document.getElementById("toDate").value;
+  const tempOrders = [];
+  let date1 = new Date();
+  let date2 = new Date();
+  var date = 0,
+    month = 0,
+    year = 0;
+  // date1 = new Date(d1).getDate();
+  // // month1 = new Date(d1).getMonth();
+  // year1 = new Date(d1).getFullYear();
+  // date2 = new Date(d2).getDate();
+  // month2 = new Date(d2).getMonth();
+  // year2 = new Date(d2).getFullYear();
+  let day = new Date();
+  if (date1 > date2) {
+    window.alert("Ngày tìm kiếm không hợp lệ !!!");
+  } else {
+    const tempFromday = new Date(d1).getTime();
+    const tempToday = new Date(d2).getTime();
+    orders.forEach((item) => {
+      date = item.order_date.slice(0, 2);
+      month = item.order_date.slice(3, 5);
+      year = item.order_date.slice(6, 10);
+      const tempday = new String(month + "/" + date + "/" + year);
+      day = new Date(tempday).getTime();
+      if (day >= tempFromday - 2520000000 && day <= tempToday) {
+        tempOrders.push(item);
+      }
+    });
+    console.log(tempOrders);
+    fill_Orders(tempOrders, OrderTbody);
+  }
+};
+
+function fill_Orders(arr, tBody) {
+  let htmls = "";
+  arr.forEach((item, indx) => {
+    htmls += `
+    <tr>
+    <td>${++indx}</td>
+    <td>${item.order_id}</td>
+    
+    <td>${item.full_name}</td>
+    <td>${item.phone}</td>
+    <td>${item.address_delivery}</td>
+    <td>${item.order_date}</td>
+    <td>${item.total_price}đ</td>
+    <td><input type="checkbox" name="confirm" ${
+      item.isConfirm == true ? "checked" : ""
+    } onclick="return checkedOrder(${item.order_id})"></td>
+    <td class = "btn__Order_Detail" onclick = "return showDetailOfOrder(${
+      item.order_id
+    })"><img src="./img/Data-View-Details-icon.png" alt=""></td>
+    </tr>
+  `;
+  });
+  tBody.innerHTML = htmls;
+}
+const btn_find_Orders = document.querySelector("#btn_find_Orders");
+btn_find_Orders.onclick = function () {
+  compareDates();
+};
+document.querySelector(".btn__backHomePage").addEventListener("click", () => {
+  if (confirm("Bạn có chắc chắn muốn thoát admin ?")) {
+    // localStorage.removeItem("userLoginCurrent");
+    window.location.assign("../index.html");
+  }
+});
+document.querySelector(".btn_LogOut").addEventListener("click", () => {
+  if (confirm("Bạn có chắc chắn muốn thoát ?")) {
+    localStorage.removeItem("userLoginCurrent");
+    window.location.assign("../index.html");
+  }
+});
