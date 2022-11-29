@@ -231,9 +231,11 @@ function handleOrder() {
   // }
   orders = JSON.parse(localStorage.getItem("orders"));
   let date = new Date();
-  let dateOrder = `${date.getDate()}/${date.getMonth() + 1
-    }/${date.getFullYear()}:${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+  let dateOrder = `${date.getDate()}/${
+    date.getMonth() + 1
+  }/${date.getFullYear()}`;
   // chi tiet don hang
+  let dateTimeOrder = `:${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
   let productDetails = "";
   userCart.forEach((item) => {
     return (productDetails += `${item.title}(x${item.quantity})<br/>`);
@@ -244,18 +246,20 @@ function handleOrder() {
   }, 0);
   // tạo 1 object
   let id = 0;
+  orders = JSON.parse(localStorage.getItem("orders"));
   if (orders.length > 0) {
     let tam = orders[orders.length - 1].order_id;
     tam = tam.replace(/^\D+/g, "");
     id = +tam + 1;
   }
   const order = {
-    order_id: `DH${id}`,
+    order_id: `${id}`,
     details: productDetails,
     user_name: userLoginCurrent.user_name,
     full_name: `${userLoginCurrent.last_name} ${userLoginCurrent.first_name}`,
     phone: userLoginCurrent.phone,
     order_date: dateOrder,
+    order_time: dateTimeOrder,
     buyer_id: userLoginCurrent.id,
     address_delivery: "Giao Hàng Nhanh",
     total_price: p,
