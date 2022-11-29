@@ -46,6 +46,13 @@ btn_doanhthu.addEventListener("click", () => {
   headerShow("Content_DoanhThu");
 });
 
+if (JSON.parse(localStorage.getItem("userLoginCurrent")).account_type <= 1) {
+  alert("Bạn không có quyền truy cập !!!");
+  window.location.assign("../index.html");
+} else {
+  alert("Chào mừng bạn đến trang admin !!!");
+}
+
 function headerShow(name) {
   const listTable = document.querySelectorAll(".header_content");
   listTable.forEach((item) => {

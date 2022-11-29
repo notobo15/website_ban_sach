@@ -44,6 +44,8 @@ window.onload = () => {
 
 formInfo.addEventListener("submit", (e) => {
   e.preventDefault();
+  usersAccount = JSON.parse(localStorage.getItem("usersAccount"));
+  userLoginCurrent = JSON.parse(localStorage.getItem("userLoginCurrent"));
   // let isUserLastName, isUserFirstName, isUserPhone;
   // if (checkEmptyInput(inputs[0]) == false) {
   //   isUserLastName = checkLength(inputs[0], 1, 26);

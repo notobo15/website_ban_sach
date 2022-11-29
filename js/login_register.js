@@ -121,7 +121,6 @@ loginContent.addEventListener("submit", (e) => {
     return item.user_name == username.value;
   });
   if (isAccountSuccess == false) {
-    console.log(findAccount);
     if (findAccount == undefined) {
       resetInput([username, pass]);
     } else {
@@ -129,63 +128,21 @@ loginContent.addEventListener("submit", (e) => {
       resetInput([pass]);
     }
   } else {
-    alert("Đăng nhập thành công");
-    localStorage.setItem("userLoginCurrent", JSON.stringify(findAccount));
-    iconForm.click();
-    location.reload();
-    nameUser.innerText = findAccount.user_name;
-    const iconLogin = document.querySelector(".header__login-icon");
-    const avatarUser = document.querySelector(".header__login_avatar");
-    avatarUser.classList.add("show");
-    iconLogin.classList.remove("show");
+    if (findAccount.isActive == false) {
+      alert(`Tài khoản ${findAccount.user_name} đang bị khóa`);
+      resetInput([username, pass]);
+    } else {
+      alert("Đăng nhập thành công");
+      localStorage.setItem("userLoginCurrent", JSON.stringify(findAccount));
+      iconForm.click();
+      location.reload();
+      nameUser.innerText = findAccount.user_name;
+      const iconLogin = document.querySelector(".header__login-icon");
+      const avatarUser = document.querySelector(".header__login_avatar");
+      avatarUser.classList.add("show");
+      iconLogin.classList.remove("show");
+    }
   }
-  // let getUserRegister = localStorage.getItem("registerAccount");
-  // if (getUserRegister === null) {
-  //   getUserRegister = JSON.stringify([]);
-  // }
-  // registerAccount = JSON.parse(getUserRegister);
-  // console.log(getUserRegister);
-  // const findRegister = registerAccount.find((item) => {
-  //   return item.user_name === username.value && item.pw === pass.value;
-  // });
-  // const findUser = usersAccount.find((item) => {
-  //   return item.user_name === username.value && item.pw === pass.value;
-  // });
-  // console.log(findRegister);
-  // console.log(findUser);
-  // if (
-  //   (findUser != undefined && findRegister == undefined) ||
-  //   (findUser == undefined && findRegister != undefined)
-  // ) {
-  //   localStorage.setItem(
-  //     "userLoginCurrent",
-  //     // findUser !== undefined ? JSON.stringify(findUser): JSON.stringify(findUserByRegister);
-  //     findUser !== undefined
-  //       ? JSON.stringify(findUser)
-  //       : JSON.stringify(findRegister)
-  //   );
-  //   console.log(JSON.parse(localStorage.getItem("userLoginCurrent")).user_name);
-  //   alert("Đăng nhập thành công");
-  //   location.reload();
-  //   nameUser.innerText = JSON.parse(
-  //     localStorage.getItem("userLoginCurrent")
-  //   ).user_name;
-  //   iconForm.click();
-  //   const iconLogin = document.querySelector(".header__login-icon");
-  //   const avatarUser = document.querySelector(".header__login_avatar");
-  //   avatarUser.classList.add("show");
-  //   iconLogin.classList.remove("show");
-  //   linkAdmin.classList.remove("show");
-  //   console.log(linkAdmin);
-  //   adminAccount.forEach((item) => {
-  //     if (item === username.value) {
-  //       return linkAdmin.classList.add("show");
-  //     }
-  //   });
-  // } else {
-  //   alert("Đăng nhập khong dung");
-  //   resetInput([username, pass]);
-  // }
 });
 
 /* REGISTER */
@@ -216,7 +173,7 @@ registerContent.addEventListener("submit", (e) => {
     isUserLength3 = true;
     isMatchingPW3 = true;
   }
-  let usersAccount = JSON.parse(localStorage.getItem("usersAccount"));
+
   let checkAccount = usersAccount.find((item) => {
     return item.user_name == inputs[0].value;
   });
@@ -239,13 +196,14 @@ registerContent.addEventListener("submit", (e) => {
         date.getMonth() + 1
       }/${date.getFullYear()}`;
       let id = 0;
+      usersAccount = JSON.parse(localStorage.getItem("usersAccount"));
       if (usersAccount.length > 0) {
-        let tam = usersAccount[usersAccount.length - 1].id;
-        tam = tam.replace(/^\D+/g, "");
-        id = +tam + 1;
+        id = usersAccount[usersAccount.length - 1].id;
+        // tam = tam.replace(/^\D+/g, "");
+        // id = +tam + 1;
       }
       let user = {
-        id: id,
+        id: ++id,
         user_name: inputs[0].value,
         email: inputs[1].value,
         pw: inputs[2].value,
