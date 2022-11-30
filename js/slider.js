@@ -7,8 +7,9 @@ const card = document.querySelector(".container__row-card");
 let cardWidth = Math.floor(card.getBoundingClientRect().width);
 let containerWidth = productContainer[0].getBoundingClientRect().width;
 let tile = Math.floor(containerWidth / cardWidth);
-
 let numberItem = 5;
+
+console.log(productContainer[0].getBoundingClientRect().width);
 productContainer.forEach((item, i) => {
   window.addEventListener("resize", () => {
     productContainer[i].scrollLeft = 0;
