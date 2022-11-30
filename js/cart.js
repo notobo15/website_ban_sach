@@ -89,19 +89,19 @@ function getIdCart(id) {
     return ordersById.find((pro) => {
       item.quantity = pro.quantity;
       // item.buyer = ;
-      return pro.id === item.id;
+      return pro.id ==   item.id;
     });
   });
   console.log(b);
   // console.log(b);
   var cartItem = books.find((item) => {
-    return item.id === id;
+    return item.id == id;
   });
   let duplicateCheck = userCart.some((item) => {
-    return item.id === cartItem.id;
+    return item.id == cartItem.id;
   });
   // console.log(userCart);
-  if (userCart.length === 0 || duplicateCheck === false) {
+  if (userCart.length == 0 || duplicateCheck == false) {
     // cartItem.quantity = quantity;
     userCart.push(cartItem);
   }
@@ -128,12 +128,12 @@ function getIdCart(id) {
 
 function deleteItem(id) {
   let confirmDelete = confirm("Bạn có chắc chắn muốn xóa");
-  if (confirmDelete === true) {
+  if (confirmDelete == true) {
     // eDelete.parentNode.remove();
     console.log(id);
     userCart.forEach((i, indx) => {
       console.log(i);
-      if (i.id === id) {
+      if (i.id == id) {
         console.log(indx);
         userCart.splice(indx, 1);
         cartCount.innerText = userCart.length;
@@ -144,7 +144,7 @@ function deleteItem(id) {
     renderCart(userCart);
     // let e = document.querySelector(".cart__total p");
     // e.innerHTML = numbertoVND(renderMoneyCurrent(userCart));
-    if (userCart.length === 0) {
+    if (userCart.length == 0) {
       noCart.classList.remove("disable");
       document.querySelector(".cart__footer").style.display = "none";
     }

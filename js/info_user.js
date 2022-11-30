@@ -28,8 +28,10 @@ if (userLoginCurrent) {
   inputs[2].value = userLoginCurrent.phone;
   inputs[3].value = userLoginCurrent.birth_date;
   inputs[4].value = userLoginCurrent.address_details;
+  console.log(userLoginCurrent);
 }
 window.onload = () => {
+  console.log(userLoginCurrent.address_province);
   selects[0].value = userLoginCurrent.address_province;
   selects[0].click();
 
@@ -75,9 +77,9 @@ formInfo.addEventListener("submit", (e) => {
   userLoginCurrent.phone = inputs[2].value;
   userLoginCurrent.birth_date = inputs[3].value;
   userLoginCurrent.address_details = inputs[4].value;
-  userLoginCurrent.address_province = tam1[0];
-  userLoginCurrent.address_district = tam2[0];
-  userLoginCurrent.address_ward = tam3[0];
+  userLoginCurrent.address_province = selects[0].value;
+  userLoginCurrent.address_district = selects[1].value;
+  userLoginCurrent.address_ward = selects[2].value;
   userLoginCurrent.address_full = address_full.join(", ");
 
   localStorage.setItem("userLoginCurrent", JSON.stringify(userLoginCurrent));
@@ -90,11 +92,11 @@ formInfo.addEventListener("submit", (e) => {
       usersAccount[i].address_details = inputs[4].value;
 
       // let tam = selects[0].value.split("-");
-      usersAccount[i].address_province = tam1[0];
+      usersAccount[i].address_province = selects[0].value;
       // let tam2 = selects[1].value.split("-");
-      usersAccount[i].address_district = tam2[0];
+      usersAccount[i].address_district = selects[1].value;
       // let tam3 = selects[2].value.split("-");
-      usersAccount[i].address_ward = tam3[0];
+      usersAccount[i].address_ward = selects[2].value;
       usersAccount[i].address_full = address_full.join(", ");
       alert("Thay đổi thông tin thành công !");
       btnInfoClose.click();

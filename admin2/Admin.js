@@ -454,7 +454,7 @@ function thaydoiThongTinSP() {
   );
   console.log(index);
   books[index] = {
-    id: document.getElementById("maSP_ChinhSua").value,
+    id: +document.getElementById("maSP_ChinhSua").value,
     category: document.getElementById("book_type_seleted").value,
     title: document.getElementById("tenSP_ChinhSua").value,
     srcImg: srcImg,

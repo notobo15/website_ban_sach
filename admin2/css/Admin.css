@@ -3,6 +3,10 @@
   margin: 0;
   padding: 0;
   color: white;
+  
+}
+body {
+  font-family: "Roboto", sans-serif;  
 }
 
 .sidebar {
@@ -33,8 +37,9 @@ nav ul li a {
   color: white;
   text-decoration: none;
   font-size: 18px;
-  padding-left: 40px;
-  font-weight: 500;
+  padding-left: 20px;
+  text-align: start;
+  font-weight: 400;
   display: block;
   width: 100%;
   border-left: 3px solid transparent;
@@ -227,7 +232,9 @@ table tbody tr td {
   margin-top: 10px;
   font-size: 20px;
 }
-
+.header__img {
+  border-radius: 10px;
+}
 .Button {
   width: 80%;
   margin: 20px;
@@ -481,8 +488,10 @@ table {
   color: black;
   margin: 15px;
 }
+
 .header_content span {
-  font-size: 30px;
+  font-size: 18px;
+  text-align: center;
   color: black;
 }
 .cb_thongke {

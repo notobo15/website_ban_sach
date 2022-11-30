@@ -71,7 +71,7 @@ btnSearchSubmit.addEventListener("click", () => {
   });
   searchItems = search;
   console.log(searchItems);
-  if (searchItems.length === 0) {
+  if (searchItems.length == 0) {
     container_content.style.display = "flex";
     pagination_element.style.display = "none";
     container_header.innerHTML = "";
@@ -117,7 +117,7 @@ categoryList.forEach((item) => {
       if (category == "full_books") {
         return item;
       } else {
-        return item.category === category;
+        return item.category == category;
       }
     });
     // searchItems = searchCategory;
@@ -189,7 +189,7 @@ toolbarForm.addEventListener("submit", (e) => {
 }); */
 
 // inputSearch.addEventListener("keydown", (e) => {
-//   if (e.keyCode === 13) {
+//   if (e.keyCode == 13) {
 //     btnSearchSubmit.click();
 //   }
 // });
@@ -225,14 +225,14 @@ toolbarForm.addEventListener("submit", (e) => {
 //     );
 //   });
 //   console.log(search);
-//   if (min > max || search.length === 0) {
+//   if (min > max || search.length == 0) {
 //     DisplayList([], rows, current_page);
 //     SetupPagination([], pagination_element, rows);
 //     toolbarMessage.style.display = "block";
 //     toolbarMessage.innerHTML = `<h3>${"Vui lòng điền khoảng giá phù hợp hoặc không tìm thấy😥"}</h3>`;
 //   } else {
 //     // toolbarMessage.style.display = "none";
-//     if (isRangeUp === true) {
+//     if (isRangeUp == true) {
 //       toolbarMessage.style.display = "none";
 //       /* const search = books.sort(sortNameUp).filter((book) => {
 //           return book.currentPrice >= min && book.currentPrice <= max;
@@ -266,7 +266,7 @@ toolbarForm.addEventListener("submit", (e) => {
 //   Banner("disable");
 //   products_list("disable");
 
-//   if (searchItems.length === 0) {
+//   if (searchItems.length == 0) {
 //     container_content.innerHTML = `
 //         <div class="search__no-result-found">
 //             <p>Xin lỗi 😔 không có kểt quả với:<h3>${inputSearchValue}</h3></p>
