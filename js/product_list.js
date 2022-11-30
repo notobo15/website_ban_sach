@@ -1,5 +1,5 @@
 let numberItems = 10;
-
+books = JSON.parse(localStorage.getItem("books"));
 function renderProducts(arrProducts, element, nameCategory) {
   let htmls = "";
   let i = 0;
@@ -62,6 +62,8 @@ function showAllProducts(nameCategory) {
   window.scrollTo(0, 0);
 }
 const productContaier = document.querySelectorAll(".container__row");
+books = JSON.parse(localStorage.getItem("books"));
+console.log(books);
 renderProducts(books, productContaier[0], "skill_books");
 renderProducts(books, productContaier[1], "economic_books");
 renderProducts(books, productContaier[2], "children_books");

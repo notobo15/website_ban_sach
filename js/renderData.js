@@ -242,6 +242,7 @@ function changeImg(srcImg) {
 }
 
 function showItemDetail(id) {
+  let books = JSON.parse(localStorage.getItem("books"));
   let itemData = books.forEach((item) => {
     if (item.id === id) {
       const e = document.querySelector(".element" + id);

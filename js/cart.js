@@ -89,19 +89,19 @@ function getIdCart(id) {
     return ordersById.find((pro) => {
       item.quantity = pro.quantity;
       // item.buyer = ;
-      return pro.id === item.id;
+      return pro.id ==   item.id;
     });
   });
   console.log(b);
   // console.log(b);
   var cartItem = books.find((item) => {
-    return item.id === id;
+    return item.id == id;
   });
   let duplicateCheck = userCart.some((item) => {
-    return item.id === cartItem.id;
+    return item.id == cartItem.id;
   });
   // console.log(userCart);
-  if (userCart.length === 0 || duplicateCheck === false) {
+  if (userCart.length == 0 || duplicateCheck == false) {
     // cartItem.quantity = quantity;
     userCart.push(cartItem);
   }
@@ -122,16 +122,18 @@ function getIdCart(id) {
   localStorage.setItem("userCart", JSON.stringify(userCart));
   userCart = JSON.parse(localStorage.getItem("userCart"));
   renderCart(userCart);
+
+  // window.alert("Đã thêm sản phẩm vào giỏ hàng");
 }
 
 function deleteItem(id) {
   let confirmDelete = confirm("Bạn có chắc chắn muốn xóa");
-  if (confirmDelete === true) {
+  if (confirmDelete == true) {
     // eDelete.parentNode.remove();
     console.log(id);
     userCart.forEach((i, indx) => {
       console.log(i);
-      if (i.id === id) {
+      if (i.id == id) {
         console.log(indx);
         userCart.splice(indx, 1);
         cartCount.innerText = userCart.length;
@@ -142,7 +144,7 @@ function deleteItem(id) {
     renderCart(userCart);
     // let e = document.querySelector(".cart__total p");
     // e.innerHTML = numbertoVND(renderMoneyCurrent(userCart));
-    if (userCart.length === 0) {
+    if (userCart.length == 0) {
       noCart.classList.remove("disable");
       document.querySelector(".cart__footer").style.display = "none";
     }
@@ -219,6 +221,20 @@ function handleOrder() {
     cartBtnClose.click();
     return 0;
   }
+  if (
+    userLoginCurrent.address_district == "" ||
+    userLoginCurrent.address_province == "" ||
+    userLoginCurrent.address_ward == "" ||
+    userLoginCurrent.phone == "" ||
+    userLoginCurrent.last_name == "" ||
+    userLoginCurrent.first_name == "" ||
+    userLoginCurrent.birth_date == "" ||
+    userLoginCurrent.address_details == ""
+  ) {
+    alert("Bạn cần bổ sung thông tin :(");
+    cartBtnClose.click();
+    return;
+  }
   // if (
   //   userLoginCurrent.first_name == "" ||
   //   userLoginCurrent.last_name == "" ||
@@ -231,9 +247,11 @@ function handleOrder() {
   // }
   orders = JSON.parse(localStorage.getItem("orders"));
   let date = new Date();
-  let dateOrder = `${date.getDate()}/${date.getMonth() + 1
-    }/${date.getFullYear()}:${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+  let dateOrder = `${date.getDate()}/${
+    date.getMonth() + 1
+  }/${date.getFullYear()}`;
   // chi tiet don hang
+  let dateTimeOrder = `:${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
   let productDetails = "";
   userCart.forEach((item) => {
     return (productDetails += `${item.title}(x${item.quantity})<br/>`);
@@ -244,101 +262,37 @@ function handleOrder() {
   }, 0);
   // tạo 1 object
   let id = 0;
+  orders = JSON.parse(localStorage.getItem("orders"));
   if (orders.length > 0) {
     let tam = orders[orders.length - 1].order_id;
     tam = tam.replace(/^\D+/g, "");
     id = +tam + 1;
   }
   const order = {
-    order_id: `DH${id}`,
+    order_id: `${id}`,
     details: productDetails,
     user_name: userLoginCurrent.user_name,
     full_name: `${userLoginCurrent.last_name} ${userLoginCurrent.first_name}`,
     phone: userLoginCurrent.phone,
     order_date: dateOrder,
+    order_time: dateTimeOrder,
     buyer_id: userLoginCurrent.id,
     address_delivery: "Giao Hàng Nhanh",
     total_price: p,
     isConfirm: "false",
   };
-  orders.push(order);
-  localStorage.setItem("orders", JSON.stringify(orders));
-  cartCount.innerHTML = 0;
-  alert("Đặt hàng thành công");
-  userCart = [];
-  renderCart(userCart);
-  localStorage.setItem("userCart", JSON.stringify(userCart));
-  noCart.classList.remove("disable");
-  document.querySelector(".cart__footer").style.display = "none";
-  cart.click();
+  if (confirm("Bạn có chắc chắn đặt đơn hàng này không?") == false) {
+  } else {
+    orders.push(order);
+    localStorage.setItem("orders", JSON.stringify(orders));
+    cartCount.innerHTML = 0;
 
-  // const orderAll = JSON.parse(localStorage.getItem("orders"));
-  // if (orderAll != null) {
-  //   orderAll.push(order);
-  // }
-  // localStorage.setItem("orders", JSON.stringify(orderAll));
-  // userCart = [];
-  // ordersById = [];
-  // cartItems.innerHTML = "";
-  // noCart.classList.remove("disable");
-  // cartItemList.classList.remove("show");
-  // cart.click();
-
-  // let user = localStorage.getItem("userLoginCurrent");
-  // let info = JSON.parse(localStorage.getItem("info"));
-  // let checkInfo = info.find((item) => {
-  //   return item.id_user == JSON.parse(user).id;
-  // });
-  // if (user == null) {
-  //   alert("Dăng nhập để đặt hàng");
-  //   cartBtnClose.click();
-  // } else {
-  //   if (checkInfo == undefined) {
-  //     alert("Bạn chưa điền thông tin");
-  //     cartBtnClose.click();
-  //   } else {
-  //     alert("Đặt hàng thành công");
-
-  //     // lay date hien tai
-  //     let date = new Date();
-  //     let dateOrder = `${date.getDate()}/${
-  //       date.getMonth() + 1
-  //     }/${date.getFullYear()}:${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-  //     // chi tiet don hang
-  //     let productDetails = "";
-  //     userCart.forEach((item) => {
-  //       return (productDetails += `${item.title}(x${item.quantity})<br/>`);
-  //     });
-  //     // total thành tiền
-  //     const p = userCart.reduce((total, item) => {
-  //       return (total += item.currentPrice * item.quantity);
-  //     }, 0);
-  //     // tạo 1 object
-  //     const order = {
-  //       order_id: `DH000${orderID++}`,
-  //       details: productDetails,
-  //       user_name: infoAcc.user_name,
-  //       full_name: `${checkInfo.lastName} ${checkInfo.firstName}`,
-  //       phone: checkInfo.phone,
-  //       order_date: dateOrder,
-  //       // id_buyer: user.user_name,
-  //       address_delivery: "Giao Hàng Nhanh",
-  //       total_price: p,
-  //       isConfirm: "false",
-  //     };
-  //     cartCount.innerHTML = 0;
-
-  //     const orderAll = JSON.parse(localStorage.getItem("orders"));
-  //     if (orderAll != null) {
-  //       orderAll.push(order);
-  //     }
-  //     localStorage.setItem("orders", JSON.stringify(orderAll));
-  //     userCart = [];
-  //     ordersById = [];
-  //     cartItems.innerHTML = "";
-  //     noCart.classList.remove("disable");
-  //     cartItemList.classList.remove("show");
-  //     cart.click();
-  //   }
-  // }
+    userCart = [];
+    renderCart(userCart);
+    localStorage.setItem("userCart", JSON.stringify(userCart));
+    noCart.classList.remove("disable");
+    document.querySelector(".cart__footer").style.display = "none";
+    cart.click();
+    alert("Đặt hàng thành công");
+  }
 }
