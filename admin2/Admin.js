@@ -45,12 +45,17 @@ btn_taikhoan.addEventListener("click", () => {
 btn_doanhthu.addEventListener("click", () => {
   headerShow("Content_DoanhThu");
 });
-
-if (JSON.parse(localStorage.getItem("userLoginCurrent")).account_type <= 1) {
+userLoginCurrent = JSON.parse(localStorage.getItem("userLoginCurrent"));
+if (userLoginCurrent != null) {
+  if (userLoginCurrent.account_type > 1){
+    alert("Chào mừng bạn đến trang admin !!!");
+  }else {
+    alert("Bạn không có quyền truy cập !!!");
+    window.location.assign("../index.html");
+  }
+} else {
   alert("Bạn không có quyền truy cập !!!");
   window.location.assign("../index.html");
-} else {
-  alert("Chào mừng bạn đến trang admin !!!");
 }
 
 function headerShow(name) {
@@ -232,7 +237,7 @@ function showUser(arr, tBody) {
   });
   tBody.innerHTML = htmls;
 }
-showUser(usersAccount, UserTbody);
+showUser(JSON.parse(localStorage.getItem("usersAccount")), UserTbody);
 function checkedUser(id) {
   let usersAccount = localStorage.getItem("usersAccount")
     ? JSON.parse(localStorage.getItem("usersAccount"))
@@ -270,7 +275,7 @@ function showOrder(arr, tBody) {
     localStorage.setItem("orders", JSON.stringify(orders));
   }
   const temporders = [];
-  orders.forEach((item) => {
+  arr.forEach((item) => {
     temporders.push(item);
   });
   let htmls = "";
@@ -289,7 +294,9 @@ function showOrder(arr, tBody) {
       item.isConfirm
     }" class="btnConfirm" type="checkbox" name="confirm" ${
       item.isConfirm == true ? "checked" : ""
-    } onclick="return checkedOrder(${item.order_id})"></td>
+    } onclick="return checkedOrder(${item.order_id})" ${
+      item.isConfirm == true ? "disabled" : ""
+    }></td>
     <td class = "btn__Order_Detail" onclick = "return showDetailOfOrder(${
       item.order_id
     })"><img src="./img/Data-View-Details-icon.png" alt=""></td>
@@ -467,6 +474,7 @@ function thaydoiThongTinSP() {
   localStorage.setItem("books", JSON.stringify(books));
 }
 function checkedOrder(id) {
+  console.log(this)
   let orders = localStorage.getItem("orders")
     ? JSON.parse(localStorage.getItem("orders"))
     : [];
@@ -480,6 +488,7 @@ function checkedOrder(id) {
     }
   });
   localStorage.setItem("orders", JSON.stringify(orders));
+  showOrder(orders,OrderTbody);
 }
 /*
 const listConfirm = document.querySelectorAll(".btnConfirm");
@@ -701,6 +710,9 @@ const overplay_OrderDetail = document.querySelector(".overplay_OrderDetail");
 const overplay__behind_OrderDetail = document.querySelector(
   ".overplay__behind_OrderDetail"
 );
+document.querySelector(".btn_X").addEventListener("click", function(){
+  overplay_OrderDetail.style.display = "none";
+})
 overplay__behind_OrderDetail.onclick = function () {
   overplay_OrderDetail.style.display = "none";
 };
@@ -720,7 +732,7 @@ function showDetailOfOrder(order_id) {
       document.querySelector("#diaChiGiaohang").innerHTML =
         item.address_delivery;
       document.querySelector("#chitietDonHang").innerHTML = item.details;
-      let total_price = item.total_price + " VND";
+      let total_price = "-" + item.total_price + " VND";
       document.querySelector("#tongtien").innerHTML = total_price;
     }
   });
@@ -805,3 +817,48 @@ document.querySelector(".btn_LogOut").addEventListener("click", () => {
     window.location.assign("../index.html");
   }
 });
+
+const selectLoc = document.querySelector(".select__loc")
+selectLoc.onclick = function() {
+  let orders =  JSON.parse(localStorage.getItem("orders"));
+
+  let temp = selectLoc.value;
+  let temptable = []
+  if(temp == "chuaxacnhan"){
+    temptable = orders.filter((item) => {
+      if(item.isConfirm == "false") {
+        return item;
+      }
+    })
+  }else if(temp == "daxacnhan") {
+    temptable = orders.filter((item) => {
+      if(item.isConfirm == true) {
+        return item;
+      }
+    })
+  }else {
+    temptable = orders;
+  }
+  showOrder(temptable, OrderTbody);
+  // if(temp == "chuaxacnhan"){
+  //   orders.forEach((item)=>{
+  //     if (item.isActive == "false"){
+  //       temptable.push(item);
+  //     }
+  //   })
+  // }
+  // if(temp == "daxacnhan") {
+  //   orders.forEach((item)=>{
+  //     if (item.isActive == "true"){
+  //       temptable.push(item);
+  //     }
+  //   })
+  // }
+  // else {
+  //   orders.forEach((item)=>{
+  //       temptable.push(item);
+  //   })
+  // }
+
+  // 
+}
