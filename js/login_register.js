@@ -71,7 +71,6 @@ function showFormLogin() {
 formOverlay.addEventListener("click", () => {
   iconForm.click();
 });
-//var adminAccount = ["admin1", "admin2", "admin3"];
 
 if (localStorage.getItem("userLoginCurrent") !== null) {
   console.log("da dang nhap");
