@@ -20,8 +20,3 @@
   - đánh dấu đơn hàng: chưa xử lý (khách hàng mới đặt) và đã xử lý
 + Thống kê tình hình kinh doanh trong một khoảng thời gian của các sản phẩm thuộc một
 loại / tất cả sản phẩm.
-
-## List Tasks 
--  ~~Login~~
--  ~~Register~~
-- 
